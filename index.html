@@ -1,148 +1,446 @@
 <!DOCTYPE html>
-<html lang="ru"><head><meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FreeGram</title><link rel="icon" href="icon.png">
 <style>
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#eef3fb;--card:#fff;--tx:#14181f;--mut:#6b7686;--ac:#7c5cff;--in:#fff;--out:#e3dcff;--bd:#dfe5ef}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#10131a;--card:#1a1f2a;--tx:#eef1f6;--mut:#8c97a8;--ac:#9a82ff;--in:#222937;--out:#3b3170;--bd:#2a3140}}
-:root[data-theme=dark]{--bg:#10131a;--card:#1a1f2a;--tx:#eef1f6;--mut:#8c97a8;--ac:#9a82ff;--in:#222937;--out:#3b3170;--bd:#2a3140}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f0f2f5;--card:#fff;--tx:#14181f;--mut:#707579;--ac:#3390ec;--in:#fff;--out:#e3f6cf;--bd:#e2e6ea}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0e1621;--card:#17212b;--tx:#f1f3f5;--mut:#7f91a4;--ac:#6ab2f2;--in:#182533;--out:#2b5278;--bd:#0b121a}}
+:root[data-theme=dark]{--bg:#0e1621;--card:#17212b;--tx:#f1f3f5;--mut:#7f91a4;--ac:#6ab2f2;--in:#182533;--out:#2b5278;--bd:#0b121a}
 *{box-sizing:border-box}html,body{height:100%;margin:0}
-body{background:var(--bg);color:var(--tx);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column}
-#app{flex:1;display:flex;flex-direction:column;max-width:720px;width:100%;margin:0 auto;min-height:0}
-header{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--card);border-bottom:1px solid var(--bd);font-weight:600}
-header .sp{flex:1}.pill{background:var(--bg);border-radius:20px;padding:4px 10px;font-size:14px}
-main{flex:1;overflow-y:auto;padding:12px;min-height:0}
+body{background:var(--bg);color:var(--tx);font:16px/1.35 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column}
+#app{flex:1;display:flex;flex-direction:column;max-width:720px;width:100%;margin:0 auto;min-height:0;background:var(--bg)}
+header{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--card);border-bottom:1px solid var(--bd);min-height:52px}
+header b{font-size:17px;display:flex;align-items:center;gap:4px;min-width:0}header .sp{flex:1}.pill{background:var(--bg);border-radius:20px;padding:4px 10px;font-size:14px}
+main{flex:1;overflow-y:auto;padding:10px;min-height:0}
 nav{display:flex;background:var(--card);border-top:1px solid var(--bd)}
-nav button{flex:1;border:0;background:none;color:var(--mut);padding:10px 4px;font:inherit;font-size:13px}
-nav button.on{color:var(--ac);font-weight:600}
-.row{display:flex;gap:12px;align-items:center;padding:10px;background:var(--card);border-radius:14px;margin-bottom:8px;cursor:pointer}
-.av{width:44px;height:44px;border-radius:50%;background:var(--ac);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
-.row .t{flex:1;min-width:0}.row .s{color:var(--mut);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.msgs{display:flex;flex-direction:column;gap:6px}
-.m{max-width:80%;padding:8px 12px;border-radius:16px;background:var(--in);word-wrap:break-word;white-space:pre-wrap}
-.m.me{align-self:flex-end;background:var(--out)}.m small{color:var(--mut);margin-left:8px;font-size:11px}.m .nm{color:var(--ac);font-weight:600;font-size:13px;display:block}
-.bar{display:flex;gap:8px;padding:8px;background:var(--card);border-top:1px solid var(--bd)}
+nav button{flex:1;border:0;background:none;color:var(--mut);padding:8px 2px;font:inherit;font-size:12px}nav button.on{color:var(--ac);font-weight:600}
+.row{display:flex;gap:12px;align-items:center;padding:9px 10px;background:var(--card);border-radius:12px;margin-bottom:6px;cursor:pointer}
+.av{width:48px;height:48px;border-radius:50%;background:var(--ac);color:#fff;display:flex;align-items:center;justify-content:center;font-size:21px;flex:none;overflow:hidden}.av svg{width:100%;height:100%}
+.row .t{flex:1;min-width:0}.row .s{color:var(--mut);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.row b{display:flex;align-items:center;gap:4px}
+.bd{width:16px;height:16px;flex:none;cursor:pointer}
+.msgs{display:flex;flex-direction:column;gap:5px}
+.m{max-width:82%;padding:6px 10px;border-radius:14px;background:var(--in);word-wrap:break-word;white-space:pre-wrap}.m.me{align-self:flex-end;background:var(--out)}
+.m small{color:var(--mut);margin-left:8px;font-size:11px}.m .nm{font-weight:600;font-size:13px;display:flex;align-items:center;gap:4px;color:var(--ac)}
+.ib{display:block;width:100%;margin-top:6px;border:0;border-radius:8px;padding:8px;background:#0002;color:var(--ac);font:inherit;font-weight:600;cursor:pointer}
+.bar{display:flex;gap:8px;padding:8px;background:var(--card);border-top:1px solid var(--bd)}.bar.ro{justify-content:center;color:var(--mut);font-size:14px}
 .bar input{flex:1;border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:20px;padding:10px 14px;font:inherit;min-width:0}
-.btn{border:0;background:var(--ac);color:#fff;border-radius:20px;padding:10px 16px;font:inherit;cursor:pointer;margin:2px 0}
-.btn.g{background:var(--bg);color:var(--tx);border:1px solid var(--bd)}
-.gift{width:230px;border-radius:18px;padding:14px;text-align:center;color:#fff;background:linear-gradient(160deg,var(--c1),var(--c2))}
-.gift.me{align-self:flex-end}.gift.in{align-self:flex-start}.gift .em{font-size:64px;line-height:1.1}
+.btn{border:0;background:var(--ac);color:#fff;border-radius:20px;padding:10px 16px;font:inherit;cursor:pointer;margin:2px 0}.btn.g{background:var(--bg);color:var(--tx);border:1px solid var(--bd)}
+.gift{width:230px;border-radius:18px;padding:14px;text-align:center;color:#fff;background:linear-gradient(160deg,var(--c1),var(--c2))}.gift.me{align-self:flex-end}.gift.in{align-self:flex-start}.gift .em{font-size:64px;line-height:1.1}
 .gift .at{font-size:13px;text-align:left;margin-top:8px;background:#0003;border-radius:10px;padding:6px 10px}.gift .at div{display:flex;justify-content:space-between}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.card{border-radius:16px;padding:12px;color:#fff;text-align:center;background:linear-gradient(160deg,var(--c1),var(--c2));font-size:13px}
-.card .em{font-size:44px}.card button{margin:6px 2px 0;border:0;border-radius:12px;background:#0004;color:#fff;padding:5px 10px;font:inherit;cursor:pointer}
-h3{margin:16px 4px 8px}.mut{color:var(--mut)}.err{color:#e5484d;min-height:1.4em}
+.card{border-radius:16px;padding:12px;color:#fff;text-align:center;background:linear-gradient(160deg,var(--c1),var(--c2));font-size:13px}.card .em{font-size:44px}
+.card button{margin:6px 2px 0;border:0;border-radius:12px;background:#0004;color:#fff;padding:5px 10px;font:inherit;cursor:pointer}
+h3{margin:14px 4px 8px;font-size:15px;color:var(--ac)}.mut{color:var(--mut)}.err{color:#e5484d;min-height:1.4em}
 .sheet{position:fixed;inset:0;background:#0007;display:flex;align-items:flex-end;justify-content:center;z-index:9}
-.sheet>div{background:var(--card);width:100%;max-width:720px;border-radius:20px 20px 0 0;padding:16px;max-height:75%;overflow:auto}
+.sheet>div{background:var(--card);width:100%;max-width:720px;border-radius:18px 18px 0 0;padding:16px;max-height:80%;overflow:auto}
 input.f{width:100%;border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:12px;padding:10px;font:inherit;margin:6px 0}
-.auth{padding:24px 16px;text-align:center}.auth h1{margin:8px 0 4px}.auth img{width:110px;height:110px;border-radius:26px}.auth .f{text-align:center}
+.auth{padding:20px 16px;text-align:center}.auth h1{margin:8px 0 4px}.auth img{width:110px;height:110px;border-radius:26px}.auth .f{text-align:center}.lang{text-align:right}
+.ph{display:flex;gap:8px;align-items:center}.ph .f{margin:0}
+.prof{text-align:center;background:var(--card);border-radius:14px;padding:16px;margin-bottom:10px}.prof .av{width:84px;height:84px;margin:0 auto 8px;font-size:36px}
+.prof b{justify-content:center;font-size:20px}
+.dots span,.emo span{display:inline-block;width:34px;height:34px;border-radius:50%;margin:3px;cursor:pointer;text-align:center;line-height:34px;border:2px solid transparent;background:var(--bg)}.dots span.on,.emo span.on{border-color:var(--ac)}
+#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#000c;color:#fff;padding:10px 16px;border-radius:14px;z-index:20;max-width:85%;text-align:center;display:none}
 </style></head><body>
-<div id="app"><header><span id="title">FreeGram</span><span class="sp"></span><span class="pill" id="st"></span></header><main id="main"></main><nav id="nav"></nav></div>
+<div id="app"><header id="hd"></header><main id="main"></main><nav id="nav"></nav></div><div id="toast"></div>
 <script>
+const BUILD=parseInt("__BUILD__")||0;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const ls={g:k=>{try{return localStorage.getItem(k)||""}catch(e){return ""}},s:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const TXT=`hello|Welcome to FreeGram|Добро пожаловать в FreeGram
+phoneHint|Choose your country and enter your phone number.|Выбери страну и введи номер телефона.
+phonePh|Phone number|Номер телефона
+next|Next|Далее
+pw|Password|Пароль
+newpw|Create a password (6+ characters)|Придумай пароль (от 6 символов)
+yname|Your name|Твоё имя
+login|Log in|Войти
+signup|Sign up|Регистрация
+code|6-digit code|Код из 6 цифр
+anonHint|Anonymous number. The code will come from the FreeGram bot (coming soon).|Анонимный номер. Код придёт от бота FreeGram (скоро).
+haveAcc|Welcome back! Enter your password.|С возвращением! Введи пароль.
+newAcc|New number. Create an account.|Новый номер. Создай аккаунт.
+country|Country|Страна
+search|Search|Поиск
+srv|Server address|Адрес сервера
+back|Back|Назад
+cancel|Cancel|Отмена
+noConn|No connection to the server (it may be asleep, wait a minute and retry)|Нет связи с сервером (он мог уснуть, подожди минуту и повтори)
+anonName|Anonymous number|Анонимный номер
+tChats|Chats|Чаты
+tGifts|Gifts|Подарки
+tMarket|Market|Маркет
+tAdmin|Admin|Админ
+tSet|Settings|Настройки
+general|General chat|Общий чат
+saved|Saved Messages|Избранное
+searchPh|Search by username|Поиск по юзернейму
+msgPh|Message|Сообщение
+noRes|Nothing found|Ничего не найдено
+kBot|bot|бот
+kChannel|channel|канал
+roChan|Only the channel admin can post here|Писать в канал может только админ
+m_welcome|Welcome to FreeGram! Security notices about your account will appear in this chat.|Добро пожаловать в FreeGram! Здесь будут появляться уведомления безопасности вашего аккаунта.
+m_login|New login to your account from {dev}. If this was not you, open Settings → Devices and end that session.|Новый вход в аккаунт с устройства {dev}. Если это были не вы, откройте Настройки → Устройства и завершите этот сеанс.
+m_fgreply|This is an official notifications bot. Messages sent here are not read.|Это официальный бот уведомлений. Сообщения сюда не читаются.
+ub_free|Your account is free of any restrictions.|Ваш аккаунт свободен от каких-либо ограничений.
+ub_frozen|Your account is frozen. Please write a message explaining why you think this is a mistake.|Ваш аккаунт заморожен. Напишите сообщение, почему вы считаете это ошибкой.
+ub_sent|Your message has been sent to the administration.|Ваше сообщение отправлено администрации.
+ub_unfrozen|Your account has been unfrozen.|Ваш аккаунт разморожен.
+ub_start|Send /start to check your account status.|Отправьте /start, чтобы проверить статус аккаунта.
+ap_msg|Appeal from {who}:\n{text}|Апелляция от {who}:\n{text}
+btnIgnore|Ignore|Игнор
+btnUnfreeze|Unfreeze|Разморозить
+btnGive|Verify|Верифицировать
+btnAgree|Agree|Согласен
+btnDecl|Decline verification|Отказаться от верификации
+done_ignore|Ignored|Проигнорировано
+done_unfreeze|Unfrozen|Разморожено
+done_vagree|Verified|Верифицировано
+done_vdecl|Declined|Отклонено
+done_vgive|Verified|Верифицировано
+v_hello|Send the @username of a bot, channel, group or person to request a verification badge.|Отправьте @юзернейм бота, канала, группы или человека, чтобы запросить галочку верификации.
+v_nf|Nothing found with this username.|Ничего не найдено по этому юзернейму.
+v_has|This account already has a badge.|У этого аккаунта уже есть галочка.
+v_sent|Request sent to the administration.|Запрос отправлен администрации.
+v_req|Verification request from {who} for {target}.|Запрос верификации от {who} для {target}.
+v_offer|You are offered a verification badge for {target}. Do you agree?|Вам предлагают верификацию для {target}. Вы согласны?
+v_ok|Verification badge added.|Галочка верификации добавлена.
+v_no|Verification declined.|Верификация отклонена.
+ch_welcome|Welcome to the official FreeGram channel!|Добро пожаловать в официальный канал FreeGram!
+b_jacops|Verified account by company “JaCops”|Верифицированный аккаунт компанией «JaCops»
+b_spfizoor|Verified account by organization “spFizoor”|Верифицированный аккаунт организацией «spFizoor»
+b_g7|Verified account by organization “G7G5G2”|Верифицированный аккаунт организацией «G7G5G2»
+shop|Buy a gift for 100 ★|Купить подарок за 100 ★
+myGifts|My gifts|Мои подарки
+giftFrom|Gift from you|Подарок от вас
+gift|Gift|Подарок
+model|Model|Модель
+bg|Backdrop|Фон
+sym|Symbol|Значок
+sell|Sell|Продать
+unlist|Remove|Снять
+buy|Buy|Купить
+send|Send|Отправить
+pickGift|Choose a gift|Выбери подарок
+noGifts|No gifts|Нет подарков
+price|Price in stars|Цена в звёздах
+empty|Nothing here yet|Пока пусто
+usernames|Usernames|Юзернеймы
+legendary|Legendary|Легендарный
+rare|Rare|Редкий
+common|Common|Обычный
+giftDM|Gifts can be sent in private chats|Подарки дарят в личных чатах
+username|Username|Юзернейм
+setUser|Set username|Сменить юзернейм
+mkColl|Make collectible|Сделать коллекционный
+collHint|Collectible usernames can be sold. Price: up to 4 letters ★500, 5-6 letters ★100, longer ★10.|Коллекционные юзернеймы можно продавать. Цена: до 4 букв ★500, 5-6 букв ★100, длиннее ★10.
+engOnly|Latin letters, digits and _ only|Только латиница, цифры и _
+primary|Make primary|Сделать основным
+isPrimary|primary|основной
+bio|About|О себе
+status|Emoji status|Эмодзи-статус
+nameColor|Name color|Цвет имени
+save|Save|Сохранить
+stars|Stars|Звёзды
+setStars|Set balance|Установить баланс
+starsPh|How many stars to set|Сколько звёзд поставить
+myNames|My usernames|Мои юзернеймы
+theme|Theme|Тема
+lang|Language|Язык
+langName|English|Русский
+logout|Log out|Выйти
+addAcc|Add account|Добавить аккаунт
+accounts|Accounts|Аккаунты
+devices|Devices|Устройства
+thisDev|This device|Это устройство
+kick|End session|Завершить сеанс
+kickAll|End all other sessions|Завершить все остальные сеансы
+important|Important list|Список важного
+name|Name|Имя
+editProfile|Edit profile|Изменить профиль
+adSearch|Search users, bots, channels|Поиск пользователей, ботов, каналов
+badge|Badge|Галочка
+noBadge|No badge|Без галочки
+ask|Ask the owner first|Сначала спросить владельца
+freeze|Freeze|Заморозить
+unfreeze|Unfreeze|Разморозить
+ban|Ban and delete account|Забанить и удалить аккаунт
+confirmBan|Delete this account with all chats forever?|Удалить аккаунт со всеми перепискамм навсегда?
+kickSess|End all sessions|Завершить все сеансы
+createBot|Create bot|Создать бота
+botName|Bot name|Имя бота
+botHandle|Bot @username (Latin)|Юзернейм бота (латиница)
+botLines|Replies (one per line)|Ответы (по одному в строке)
+create|Create|Создать
+done|Done|Готово
+updT|Update available|Вышло обновление
+updGo|Download|Скачать
+updLater|Later|Позже
+E_PHONE|Enter a valid phone number|Введи корректный номер
+E_RATE|Too many attempts, wait 10 minutes|Слишком много попыток, подожди 10 минут
+E_PWSHORT|Password must be at least 6 characters|Пароль минимум 6 символов
+E_EXISTS|This number is already registered|Этот номер уже зарегистрирован
+E_LOGIN|Wrong phone or password|Неверный номер или пароль
+E_ANON_REG|Anonymous numbers cannot be registered here yet|Анонимные номера пока нельзя зарегистрировать
+E_ANON_CODE|Anonymous numbers sign in with a code|Анонимные номера входят по коду
+E_ANON_SOON|Anonymous numbers will be available later via the bot|Анонимные номера будут доступны позже через бота
+E_CODE|Wrong code|Неверный код
+E_AUTH|Session ended, log in again|Сеанс завершён, войдите снова
+E_FROZEN|Your account is frozen|Аккаунт заморожен
+E_NOUSER|Not found|Не найдено
+E_EMPTY|Empty|Пусто
+E_NOTYOURS|Not allowed|Нет доступа
+E_NOTENOUGH|Not enough stars|Не хватает звёзд
+E_SOLD|Already sold|Уже продано
+E_OWN|This is yours|Это твоё
+E_NAMEFMT|Latin letters, digits and _ only (3-20, start with a letter)|Только латиница, цифры и _ (3-20, начинается с буквы)
+E_TAKEN|Already taken|Уже занято
+E_LIMIT|Limit reached|Достигнут лимит
+E_PRICE|Price from 1 to 1,000,000,000,000|Цена от 1 до 1 000 000 000 000
+E_NUM|Number from 0 to 1e15|Число от 0 до 1e15
+E_ADMIN|Not allowed for this account|Недоступно для этого аккаунта
+E_NOPOST|Only the channel admin can post|Писать может только админ канала
+E_GIFT_DM|Gifts can be sent in private chats|Подарки дарят в личных чатах
+E_BIG|Too big|Слишком большой запрос
+E_SERVER|Server error|Ошибка сервера
+E_NOMETHOD|Unknown request|Неизвестный запрос`;
+const D={};TXT.split("\n").forEach(l=>{const a=l.split("|");D[a[0]]=[a[1],a[2]||a[1]]});
+let LANG=ls.g("fg_lang")||"en";
+const t=(k,p)=>{let s=(D[k]||[k,k])[LANG==="ru"?1:0].replace(/\\n/g,"\n");if(p)for(const x in p)s=s.replace("{"+x+"}",p[x]);return s};
+const COUNTRIES=[["RU","Russia","Россия","7"],["KZ","Kazakhstan","Казахстан","7"],["UA","Ukraine","Украина","380"],["BY","Belarus","Беларусь","375"],["US","United States","США","1"],["GB","United Kingdom","Великобритания","44"],["DE","Germany","Германия","49"],["FR","France","Франция","33"],["IT","Italy","Италия","39"],["ES","Spain","Испания","34"],["PL","Poland","Польша","48"],["TR","Turkey","Турция","90"],["AE","UAE","ОАЭ","971"],["IL","Israel","Израиль","972"],["GE","Georgia","Грузия","995"],["AM","Armenia","Армения","374"],["AZ","Azerbaijan","Азербайджан","994"],["UZ","Uzbekistan","Узбекистан","998"],["KG","Kyrgyzstan","Киргизия","996"],["TJ","Tajikistan","Таджикистан","992"],["MD","Moldova","Молдова","373"],["LV","Latvia","Латвия","371"],["LT","Lithuania","Литва","370"],["EE","Estonia","Эстония","372"],["FI","Finland","Финляндия","358"],["SE","Sweden","Швеция","46"],["NO","Norway","Норвегия","47"],["NL","Netherlands","Нидерланды","31"],["CZ","Czechia","Чехия","420"],["CA","Canada","Канада","1"],["BR","Brazil","Бразилия","55"],["IN","India","Индия","91"],["CN","China","Китай","86"],["JP","Japan","Япония","81"],["KR","South Korea","Южная Корея","82"],["TH","Thailand","Таиланд","66"],["EG","Egypt","Египет","20"],["AU","Australia","Австралия","61"],["MX","Mexico","Мексика","52"],["SA","Saudi Arabia","Саудовская Аравия","966"],["AN","Anonymous number","Анонимный номер","888"]];
+const flag=c=>c==="AN"?"🕶️":String.fromCodePoint(...[...c].map(x=>127397+x.charCodeAt(0)));
+const ccName=c=>c[LANG==="ru"?2:1];
+function detectCC(){const r=((navigator.language||"").split("-")[1]||"").toUpperCase();if(COUNTRIES.some(c=>c[0]===r&&r!=="AN"))return r;return({ru:"RU",uk:"UA",be:"BY",kk:"KZ"})[(navigator.language||"").slice(0,2)]||"US"}
+const fmt=n=>Number(n).toLocaleString(LANG==="ru"?"ru-RU":"en-US");
+const UA=navigator.userAgent;
+const DEV=window.Capacitor?"Android app":/Electron/.test(UA)?"Windows app":"Web ("+(/Edg\//.test(UA)?"Edge":/Chrome\//.test(UA)?"Chrome":/Safari\//.test(UA)?"Safari":/Firefox\//.test(UA)?"Firefox":"browser")+")";
 const guess=location.protocol.startsWith("http")&&!(location.hostname==="localhost"&&!location.port)?location.origin:"";
-let API=ls.g("fg_srv")||guess,TOK=ls.g("fg_tok"),ME=null,tab="chats",cur=null,es=null,PH="";
-const fmt=n=>Number(n).toLocaleString("ru-RU");
-async function api(p,b){
-  const r=await fetch(API+p,{method:b?"POST":"GET",headers:{"Content-Type":"application/json",Authorization:"Bearer "+TOK},body:b?JSON.stringify(b):undefined});
+let API=ls.g("fg_srv")||guess,ACCTS=[],ACT=0,ME=null,tab="chats",cur=null,SUB=null,es=null,AU={step:"phone",cc:detectCC(),phone:"",msg:"",adding:false};
+try{ACCTS=JSON.parse(ls.g("fg_accts")||"[]")}catch(e){}
+ACT=Math.min(+ls.g("fg_act")||0,Math.max(ACCTS.length-1,0));
+const TOK=()=>ACCTS[ACT]?ACCTS[ACT].tok:"";
+const saveAcc=()=>{ls.s("fg_accts",JSON.stringify(ACCTS));ls.s("fg_act",ACT)};
+async function api(p,b,tok){
+  let r;try{r=await fetch(API+p,{method:b?"POST":"GET",headers:{"Content-Type":"application/json",Authorization:"Bearer "+(tok||TOK())},body:b?JSON.stringify(b):undefined})}catch(e){throw new Error(t("noConn"))}
   const j=await r.json().catch(()=>({}));
-  if(!r.ok){if(r.status===401&&TOK&&ME)logout();throw new Error(j.error||"Ошибка")}
+  if(!r.ok){if(r.status===401&&ME&&!tok){ACCTS.splice(ACT,1);ACT=0;saveAcc();ME=null;toast(t("E_AUTH"));ACCTS.length?boot():authView()}throw new Error(t(j.error||"E_SERVER"))}
   return j;
 }
-function logout(){TOK="";ME=null;cur=null;ls.s("fg_tok","");if(es)es.close();authView()}
+function toast(m){const e=$("toast");e.textContent=m;e.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display="none",2600)}
+// ---------- graphics ----------
+const PL=(l,d)=>`<svg viewBox="0 0 1024 1024"><rect width="1024" height="1024" fill="#000"/><polygon fill="${l}" points="170,500 790,248 768,282 786,294 440,640"/><polygon fill="${d}" points="440,640 786,294 806,306 776,338 790,360 560,820"/><polygon fill="${l}" points="870,215 925,185 905,245"/></svg>`;
+const CK=c=>`<path d="M4.8 8.6l2.1 2.1 4.2-4.6" fill="none" stroke="${c}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>`,BL="#2a8cff";
+const BD={blue:`<circle cx="8" cy="8" r="7.5" fill="${BL}"/>`+CK("#fff"),white:`<circle cx="8" cy="8" r="7.2" fill="#fff" stroke="#bcc6d2"/>`+CK(BL),red:`<circle cx="8" cy="8" r="7.5" fill="#e53935"/>`+CK("#fff"),triangle:`<polygon points="8,0.8 15.4,14.2 0.6,14.2" fill="${BL}"/>`+CK("#fff").replace('d="M4.8 8.6','transform="translate(0 1.5)" d="M4.8 8.6'),crown:`<polygon points="1,14 1.6,4.5 5.4,8.4 8,2.2 10.6,8.4 14.4,4.5 15,14" fill="${BL}"/>`+CK("#fff").replace('d="M4.8 8.6','transform="translate(0 1.4)" d="M4.8 8.6'),diamond:`<polygon points="8,0.4 15.6,8 8,15.6 0.4,8" fill="${BL}"/>`+CK("#fff")};
+const BADGES=["blue","white","red","triangle","crown","diamond"];
+const badge=b=>b&&BD[b]?`<svg class="bd" viewBox="0 0 16 16" data-bd="${b}">${BD[b]}</svg>`:"";
+const nm=c=>`<span style="${c.color?"color:"+c.color:""}">${esc(c.name)}</span>${badge(c.badge)}${c.status?" "+esc(c.status):""}`;
+const hue=s=>{let h=0;for(const ch of String(s))h=(h*31+ch.charCodeAt(0))%360;return h};
+function av(c){
+  if(c.id==="ch_freegram")return`<div class="av">${PL("#fff","#cfd4da")}</div>`;
+  if(c.id==="sys_freegram")return`<div class="av">${PL("#3ddc84","#1f9658")}</div>`;
+  if(c.kind==="self")return`<div class="av" style="background:#3390ec">🔖</div>`;
+  if(c.kind==="all")return`<div class="av" style="background:linear-gradient(135deg,#6a5acd,#2b1b6b)">🌌</div>`;
+  if(c.id==="sys_unban")return`<div class="av" style="background:#e5484d">🛡</div>`;
+  if(c.id==="sys_verif")return`<div class="av" style="background:#2a8cff">✓</div>`;
+  return`<div class="av" style="background:hsl(${hue(c.id)} 55% 50%)">${esc([...(c.name||"?")][0].toUpperCase())}</div>`;
+}
+const cname=c=>c.kind==="self"?t("saved"):c.kind==="all"?t("general"):c.name;
+const SYS={ch:{id:"ch_freegram",kind:"channel",name:"FreeGram",badge:"blue"},fg:{id:"sys_freegram",kind:"bot",name:"FreeGram",handle:"freegram",badge:"blue"},ub:{id:"sys_unban",kind:"bot",name:"Ban_Bot",handle:"unban_bot"},vb:{id:"sys_verif",kind:"bot",name:"Verification",handle:"verification"}};
+// ---------- auth ----------
+const dialOf=cc=>COUNTRIES.find(c=>c[0]===cc)[3];
 function authView(msg,step){
-  $("nav").innerHTML="";document.querySelector(".bar")?.remove();$("title").textContent="FreeGram";$("st").textContent="";
-  const logo='<img src="icon.png" alt=""><h1>FreeGram</h1>';
-  $("main").innerHTML=step==="code"
-   ?`<div class="auth">${logo}<p class="mut">Код отправлен на ${esc(PH)}.<br>Он придёт в Telegram от «Verification Codes».</p><div class="err">${esc(msg||"")}</div><input class="f" id="cd" inputmode="numeric" maxlength="5" placeholder="Код из 5 цифр"><button class="btn" data-a="verify">Войти</button> <button class="btn g" data-a="again">Назад</button></div>`
-   :`<div class="auth">${logo}<p class="mut">Введи номер телефона</p><input class="f" id="ph" type="tel" placeholder="+7 999 123 45 67" value="${esc(PH)}"><details class="mut"><summary>Адрес сервера</summary><input class="f" id="srv" placeholder="https://имя.onrender.com" value="${esc(API)}"></details><div class="err">${esc(msg||"")}</div><button class="btn" data-a="code">Далее</button></div>`;
+  if(msg!==undefined)AU.msg=msg;if(step)AU.step=step;
+  $("hd").innerHTML=`<b>FreeGram</b>`;$("nav").innerHTML="";document.querySelector(".bar")?.remove();
+  const c=COUNTRIES.find(x=>x[0]===AU.cc),a=AU;
+  let h=`<div class="auth"><div class="lang">${a.adding?`<button class="btn g" data-a="cancelAdd">${t("cancel")}</button> `:""}<button class="btn g" data-a="lang">${t("langName")==="English"?"Русский":"English"}</button></div><img src="icon.png" alt=""><h1>${t("hello")}</h1>`;
+  if(a.step==="phone")h+=`<p class="mut">${t("phoneHint")}</p><div class="ph"><button class="btn g" data-a="pickc">${flag(c[0])} +${c[3]}</button><input class="f" id="ph" type="tel" inputmode="tel" placeholder="${t("phonePh")}" value="${esc(a.phone)}"></div><details class="mut"><summary>${t("srv")}</summary><input class="f" id="srv" value="${esc(API)}"></details><div class="err">${esc(a.msg)}</div><button class="btn" data-a="next">${t("next")}</button>`;
+  else{
+    h+=`<p class="mut">${esc(a.full)}<br>${t(a.step==="pw"?"haveAcc":a.step==="new"?"newAcc":"anonHint")}</p>`;
+    if(a.step==="new")h+=`<input class="f" id="un" placeholder="${t("yname")}">`;
+    if(a.step==="code")h+=`<input class="f" id="cd" inputmode="numeric" maxlength="6" placeholder="${t("code")}">`;
+    if(a.step!=="code"||a.haspw)h+=`<input class="f" id="pw" type="password" placeholder="${t(a.step==="new"?"newpw":"pw")}">`;
+    h+=`<div class="err">${esc(a.msg)}</div><button class="btn" data-a="go">${t(a.step==="new"?"signup":"login")}</button> <button class="btn g" data-a="again">${t("back")}</button>`;
+  }
+  $("main").innerHTML=h+"</div>";
 }
-async function getCode(){
-  PH=$("ph").value.trim();const s=$("srv");if(s){API=s.value.trim().replace(/\/+$/,"");ls.s("fg_srv",API)}
-  try{const j=await api("/api/code",{phone:PH});authView(j.via==="demo"?"Демо-режим, твой код: "+j.code:"","code")}
-  catch(e){authView(e.message==="Failed to fetch"?"Нет связи с сервером (он мог уснуть, подожди минуту и повтори)":e.message)}
+async function authNext(){
+  const s=$("srv");if(s){API=s.value.trim().replace(/\/+$/,"");ls.s("fg_srv",API)}
+  const dial=dialOf(AU.cc);let d=$("ph").value.replace(/\D/g,"");
+  if(dial==="7"&&d.length===11&&(d[0]==="8"||d[0]==="7"))d=d.slice(1);
+  AU.phone=d;AU.full="+"+dial+d;
+  try{const j=await api("/api/check",{phone:AU.full},"x");AU.haspw=j.haspw;AU.step=j.anon?"code":j.exists?"pw":"new";authView("")}catch(e){authView(e.message)}
 }
-async function verify(){
-  try{const j=await api("/api/verify",{phone:PH,code:$("cd").value});TOK=j.token;ls.s("fg_tok",TOK);boot()}
-  catch(e){authView(e.message,"code")}
+async function authGo(){
+  const g=i=>$(i)?$(i).value:"";
+  const path=AU.step==="new"?"/api/register":AU.step==="pw"?"/api/login":"/api/anon";
+  try{
+    const j=await api(path,{phone:AU.full,password:g("pw"),name:g("un"),code:g("cd"),dev:DEV},"x");
+    const me=await api("/api/me",null,j.token),i=ACCTS.findIndex(a=>a.id===me.id);
+    if(i>=0){ACCTS[i].tok=j.token;ACT=i}else{ACCTS.push({tok:j.token,id:me.id,name:me.name});ACT=ACCTS.length-1}
+    saveAcc();AU={step:"phone",cc:AU.cc,phone:"",msg:"",adding:false};cur=null;SUB=null;tab="chats";boot();
+  }catch(e){authView(e.message)}
 }
-async function boot(){
-  try{ME=await api("/api/me")}catch(e){return authView()}
-  if(es)es.close();
-  es=new EventSource(API+"/api/stream?token="+TOK);
-  es.addEventListener("msg",()=>{if(cur)refreshMsgs();else if(tab==="chats")render()});
-  render();
+function pickCountry(){
+  const draw=q=>COUNTRIES.filter(c=>!q||(c[1]+c[2]+c[3]).toLowerCase().includes(q)).map(c=>`<div class="row" data-cc="${c[0]}"><div class="t">${flag(c[0])} ${esc(ccName(c))}</div><span class="mut">+${c[3]}</span></div>`).join("");
+  const s=sheet(`<b>${t("country")}</b><input class="f" id="cs" placeholder="${t("search")}"><div id="cl">${draw("")}</div>`,(e,s)=>{const r=e.target.closest("[data-cc]");if(r){AU.cc=r.dataset.cc;AU.phone=$("ph")?$("ph").value:"";s.remove();authView("")}});
+  $("cs").oninput=e=>{$("cl").innerHTML=draw(e.target.value.toLowerCase())};
 }
-const giftHtml=(g,w)=>`<div class="gift ${w}" style="--c1:${g.c[0]};--c2:${g.c[1]}"><div class="em">${g.e}</div><b>${w==="me"?"Подарок от вас":"Подарок"}</b><div>${esc(g.n)} #${g.num}</div><div class="at"><div><span>Модель</span><b>${esc(g.model)}</b></div><div><span>Фон</span><b>${esc(g.bg)}</b></div><div><span>Значок</span><b>${esc(g.sym)}</b></div></div></div>`;
-const card=(g,btns)=>`<div class="card" style="--c1:${g.c[0]};--c2:${g.c[1]}"><div class="em">${g.e}</div><b>${esc(g.n)} #${g.num}</b><div>${esc(g.model)}<br>${esc(g.bg)} · ${esc(g.sym)}</div>${g.price!=null?`<div>★ ${fmt(g.price)}</div>`:""}${btns||""}</div>`;
-const nrow=(n,btns)=>`<div class="row" style="cursor:default"><div class="av">@</div><div class="t"><b>@${esc(n.u)}</b><div class="s">${esc(n.r)}${n.primary?" · основной":""}${n.price!=null?" · ★ "+fmt(n.price):""}</div></div>${btns||""}</div>`;
-const tm=ts=>new Date(ts).toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
 function sheet(html,onclick){const s=document.createElement("div");s.className="sheet";s.innerHTML=`<div>${html}</div>`;s.onclick=e=>{if(e.target===s)s.remove();else onclick&&onclick(e,s)};document.body.appendChild(s);return s}
-function ask(title,cb){sheet(`<b>${esc(title)}</b><input class="f" id="ask" inputmode="numeric"><button class="btn" data-ok="1">ОК</button>`,(e,s)=>{if(e.target.dataset.ok){const v=$("ask").value.trim();s.remove();cb(v)}});$("ask").focus()}
+function ask(title,cb){sheet(`<b>${esc(title)}</b><input class="f" id="ask" inputmode="numeric"><button class="btn" data-ok="1">OK</button>`,(e,s)=>{if(e.target.dataset.ok){const v=$("ask").value.trim();s.remove();cb(v)}});$("ask").focus()}
+// ---------- app ----------
+async function boot(){
+  if(!TOK())return authView();
+  try{ME=await api("/api/me")}catch(e){return ACCTS.length?authView(e.message):authView()}
+  ACCTS[ACT].name=ME.name;saveAcc();
+  if(es)es.close();
+  es=new EventSource(API+"/api/stream?token="+TOK());
+  es.addEventListener("msg",()=>{if(cur)refreshMsgs();else if(tab==="chats"&&!SUB)render()});
+  es.onerror=()=>setTimeout(()=>{if(ME)api("/api/me").catch(()=>{})},4000);
+  render();checkUpdate();
+}
+const lastTxt=l=>l&&typeof l==="object"?t(l.k,l.p):l||"";
+const gHtml=(g,w)=>`<div class="gift ${w}" style="--c1:${g.c[0]};--c2:${g.c[1]}"><div class="em">${g.e}</div><b>${w==="me"?t("giftFrom"):t("gift")}</b><div>${esc(g.n)} #${g.num}</div><div class="at"><div><span>${t("model")}</span><b>${esc(g.model)}</b></div><div><span>${t("bg")}</span><b>${esc(g.bg)}</b></div><div><span>${t("sym")}</span><b>${esc(g.sym)}</b></div></div></div>`;
+const card=(g,btns)=>`<div class="card" style="--c1:${g.c[0]};--c2:${g.c[1]}"><div class="em">${g.e}</div><b>${esc(g.n)} #${g.num}</b><div>${esc(g.model)}<br>${esc(g.bg)} · ${esc(g.sym)}</div>${g.price!=null?`<div>★ ${fmt(g.price)}</div>`:""}${btns||""}</div>`;
+const nrow=(n,btns)=>`<div class="row" style="cursor:default"><div class="av">@</div><div class="t"><b>@${esc(n.u)}</b><div class="s">${t(n.r)}${n.coll?" · ✦":""}${n.primary?" · "+t("isPrimary"):""}${n.price!=null?" · ★ "+fmt(n.price):""}</div></div>${btns||""}</div>`;
+const tm=ts=>new Date(ts).toLocaleTimeString(LANG==="ru"?"ru-RU":"en-US",{hour:"2-digit",minute:"2-digit"});
+const rmBar=()=>document.querySelector(".bar")?.remove();
+function head(title,backTo,right){
+  $("hd").innerHTML=(backTo?`<button class="btn g" data-a="${backTo}">‹</button>`:"")+`<b>${title}</b><span class="sp"></span>${right||""}`;
+}
 async function refreshMsgs(){
   if(!cur)return;
   try{const j=await api("/api/messages?with="+encodeURIComponent(cur.id)),box=$("msgs");if(!box)return;
-    box.innerHTML=j.map(m=>{const w=m.from===ME.id?"me":"in";return m.g?giftHtml(m.g,w):`<div class="m ${w}">${cur.id==="all"&&w==="in"?`<span class="nm">${esc(m.fn)}</span>`:""}${esc(m.t)}<small>${tm(m.ts)}</small></div>`}).join("");
+    box.innerHTML=j.map(m=>{
+      const w=m.from===ME.id?"me":"in";if(m.g)return gHtml(m.g,w);
+      const body=esc(m.k?t(m.k,m.p):m.t);
+      const bt=m.btn?(m.done?`<div class="mut">${t("done_"+m.done)}</div>`:m.btn.map(b=>`<button class="ib" data-bt="${m.id}" data-k="${b.k}">${t(b.l)}</button>`).join("")):"";
+      return`<div class="m ${w}">${cur.id==="all"&&w==="in"?`<span class="nm">${nm(m.u)}</span>`:""}${body}<small>${tm(m.ts)}</small>${bt}</div>`}).join("");
     $("main").scrollTop=$("main").scrollHeight}catch(e){}
 }
+function openChat(c){cur=c;SUB=null;render()}
 async function render(){
-  try{ME=await api("/api/me")}catch(e){}
-  $("st").textContent="★ "+fmt(ME.stars);
-  $("nav").innerHTML=[["chats","💬","Чаты"],["gifts","🎁","Подарки"],["market","🛒","Маркет"],["me","👤","Профиль"]].map(t=>`<button class="${tab===t[0]&&!cur?"on":""}" data-t="${t[0]}">${t[1]}<br>${t[2]}</button>`).join("");
+  try{ME=await api("/api/me")}catch(e){if(!ME)return}
+  $("nav").innerHTML=[["chats","💬",t("tChats")],["gifts","🎁",t("tGifts")],["market","🛒",t("tMarket")],...(ME.admin?[["admin","🛠",t("tAdmin")]]:[]),["set","⚙️",t("tSet")]].map(x=>`<button class="${tab===x[0]&&!cur?"on":""}" data-t="${x[0]}">${x[1]}<br>${x[2]}</button>`).join("");
   const m=$("main");
   if(cur){
-    $("title").innerHTML=`<a href="#" data-a="back" style="color:var(--ac);text-decoration:none">‹</a> ${esc(cur.name)}`;
-    if(!$("in")){m.innerHTML='<div class="msgs" id="msgs"></div>';const b=document.createElement("div");b.className="bar";b.innerHTML='<button class="btn g" data-a="gift">🎁</button><input id="in" placeholder="Сообщение"><button class="btn" data-a="send">➤</button>';$("app").insertBefore(b,$("nav"))}
-    return refreshMsgs();
+    head(`${nm({...cur,name:cname(cur)})}`,"back",cur.kind==="bot"||cur.kind==="channel"?`<span class="pill">${t(cur.kind==="bot"?"kBot":"kChannel")}</span>`:"");
+    const ro=cur.kind==="channel"&&!cur.canPost;
+    if(!$("msgs")){m.innerHTML='<div class="msgs" id="msgs"></div>'}
+    rmBar();const b=document.createElement("div");
+    if(ro){b.className="bar ro";b.textContent=t("roChan")}
+    else{b.className="bar";b.innerHTML=(cur.kind==="user"?'<button class="btn g" data-a="gift">🎁</button>':"")+`<input id="in" placeholder="${t("msgPh")}"><button class="btn" data-a="send">➤</button>`}
+    $("app").insertBefore(b,$("nav"));return refreshMsgs();
   }
-  document.querySelector(".bar")?.remove();
-  $("title").textContent={chats:"FreeGram",gifts:"Мои подарки",market:"Маркет",me:"Профиль"}[tab];
+  rmBar();
   try{
+  if(SUB)return await subView(m);
+  head("FreeGram",null,`<span class="pill">★ ${fmt(ME.stars)}</span>`);
   if(tab==="chats"){const l=await api("/api/chats");
-    m.innerHTML=`<div style="display:flex;gap:8px;margin-bottom:10px"><input class="f" id="nu" placeholder="Написать по @юзернейму" style="margin:0"><button class="btn" data-a="newchat">+</button></div>`+l.map(c=>`<div class="row" data-c="${esc(c.id)}" data-n="${esc(c.name)}"><div class="av">${c.id==="all"?"🌌":"💬"}</div><div class="t"><b>${esc(c.name)}</b><div class="s">${esc(c.last)}</div></div></div>`).join("")}
+    m.innerHTML=`<input class="f" id="q" placeholder="${t("searchPh")}"><div id="res"></div>`+l.map(c=>`<div class="row" data-c='${esc(JSON.stringify(c))}'>${av(c)}<div class="t"><b>${nm({...c,name:cname(c)})}</b><div class="s">${esc(lastTxt(c.last))}</div></div></div>`).join("")}
   if(tab==="gifts"){const inv=await api("/api/inv");
-    m.innerHTML=`<button class="btn" data-a="shop">🛍 Купить подарок за 100 ★</button><h3>Подарки (${inv.length})</h3><div class="grid">${inv.map(g=>card(g,g.price==null?`<button data-sell="${g.id}">Продать</button>`:`<button data-unl="${g.id}">Снять</button>`)).join("")}</div>`}
+    m.innerHTML=`<button class="btn" data-a="shop">🛍 ${t("shop")}</button><h3>${t("myGifts")} (${inv.length})</h3><div class="grid">${inv.map(g=>card(g,g.price==null?`<button data-sell="${g.id}">${t("sell")}</button>`:`<button data-unl="${g.id}">${t("unlist")}</button>`)).join("")}</div>`}
   if(tab==="market"){const [gl,nl]=await Promise.all([api("/api/market"),api("/api/nmarket")]);
-    m.innerHTML=`<h3>Подарки</h3><div class="grid">${gl.map(g=>card(g,g.owner===ME.id?`<button data-unl="${g.id}">Снять</button>`:`<button data-buy="${g.id}">Купить</button>`)).join("")||'<span class="mut">Пока пусто</span>'}</div><h3>Юзернеймы</h3>${nl.map(n=>nrow(n,n.mine?`<button class="btn g" data-nunl="${esc(n.u)}">Снять</button>`:`<button class="btn" data-nbuy="${esc(n.u)}">Купить</button>`)).join("")||'<span class="mut">Пока пусто</span>'}`}
-  if(tab==="me")m.innerHTML=`<div class="row" style="cursor:default"><div class="av">👤</div><div class="t"><b>${esc(ME.name)}</b><div class="s">@${esc(ME.handle)} · ${esc(ME.phone)}</div></div></div>
-  <label class="mut">Имя</label><input class="f" id="pn" value="${esc(ME.name)}"><button class="btn" data-a="saveprof">Сохранить</button>
-  <h3>Звёзды: ★ ${fmt(ME.stars)}</h3><input class="f" id="sa" inputmode="numeric" placeholder="Сколько звёзд поставить себе"><button class="btn" data-a="stars">Установить баланс</button>
-  <h3>Мои юзернеймы (${ME.names.length})</h3>${ME.names.map(n=>nrow(n,(n.primary?"":`<button class="btn g" data-pri="${esc(n.u)}">Основной</button>`)+(n.price==null?`<button class="btn g" data-nsell="${esc(n.u)}">Продать</button>`:`<button class="btn g" data-nunl="${esc(n.u)}">Снять</button>`))).join("")}
-  <input class="f" id="un" placeholder="Новый @юзернейм"><p class="mut">Цена создания: до 4 символов ★500, 5-6 символов ★100, длиннее ★10.</p><button class="btn" data-a="claim">Создать юзернейм</button>
-  <h3></h3><button class="btn g" data-a="theme">Тема</button> <button class="btn g" data-a="logout">Выйти</button>`;
+    m.innerHTML=`<h3>${t("tGifts")}</h3><div class="grid">${gl.map(g=>card(g,g.owner===ME.id?`<button data-unl="${g.id}">${t("unlist")}</button>`:`<button data-buy="${g.id}">${t("buy")}</button>`)).join("")||`<span class="mut">${t("empty")}</span>`}</div><h3>${t("usernames")}</h3>${nl.map(n=>nrow({...n,coll:1},n.mine?`<button class="btn g" data-nunl="${esc(n.u)}">${t("unlist")}</button>`:`<button class="btn" data-nbuy="${esc(n.u)}">${t("buy")}</button>`)).join("")||`<span class="mut">${t("empty")}</span>`}`}
+  if(tab==="admin")m.innerHTML=`<div style="display:flex;gap:8px"><input class="f" id="aq" placeholder="${t("adSearch")}" style="margin:0"><button class="btn" data-a="asearch">🔍</button></div><div id="ares"></div><h3>${t("createBot")}</h3><input class="f" id="bn" placeholder="${t("botName")}"><input class="f" id="bh" placeholder="${t("botHandle")}"><textarea class="f" id="bl" rows="3" placeholder="${t("botLines")}"></textarea><button class="btn" data-a="mkbot">${t("create")}</button>`;
+  if(tab==="set")m.innerHTML=`<div class="prof">${av(ME)}<b>${nm(ME)}</b><div class="mut">${esc(ME.phone)} · @${esc(ME.handle)}</div><div>${esc(ME.bio)}</div></div>
+  <div class="row" data-s="edit">✏️ <div class="t">${t("editProfile")}</div></div><div class="row" data-s="user">@ <div class="t">${t("username")}</div></div>
+  <div class="row" data-s="stars">★ <div class="t">${t("stars")}: ${fmt(ME.stars)}</div></div><div class="row" data-s="dev">💻 <div class="t">${t("devices")}</div></div>
+  <div class="row" data-s="acc">👥 <div class="t">${t("accounts")} (${ACCTS.length}/3)</div></div>
+  <div class="row" data-a="lang">🌐 <div class="t">${t("lang")}: ${t("langName")}</div></div><div class="row" data-a="theme">🌓 <div class="t">${t("theme")}</div></div>
+  <div class="row" data-s="imp">📌 <div class="t">${t("important")}</div></div><div class="row" data-a="logout">🚪 <div class="t">${t("logout")}</div></div>`;
   }catch(e){m.innerHTML=`<p class="err">${esc(e.message)}</p>`}
 }
-async function sendMsg(){const i=$("in"),t=i.value.trim();if(!t)return;i.value="";try{await api("/api/send",{to:cur.id,t});refreshMsgs()}catch(e){alert(e.message)}}
+const EMO=["","⭐","🔥","💎","👑","🚀","🎮","🎵","❤️","🌈","🦄","🌙","⚡","🍑","😎"],COL=["","#e53935","#fb8c00","#c9a800","#43a047","#00acc1","#1e88e5","#8e24aa","#ec407a"];
+let ED={};
+async function subView(m){
+  head(({edit:t("editProfile"),user:t("username"),stars:t("stars"),dev:t("devices"),acc:t("accounts"),imp:t("important")})[SUB],"sback");
+  if(SUB==="edit"){ED=ED.k?ED:{k:1,status:ME.status,color:ME.color};
+    m.innerHTML=`<label class="mut">${t("name")}</label><input class="f" id="pn" value="${esc(ME.name)}"><label class="mut">${t("bio")}</label><input class="f" id="pb" maxlength="120" value="${esc(ME.bio)}"><h3>${t("status")}</h3><div class="emo">${EMO.map(e=>`<span data-st="${e}" class="${ED.status===e?"on":""}">${e||"∅"}</span>`).join("")}</div><h3>${t("nameColor")}</h3><div class="dots">${COL.map(c=>`<span data-co="${c}" class="${ED.color===c?"on":""}" style="${c?"background:"+c:""}">${c?"":"∅"}</span>`).join("")}</div><button class="btn" data-a="saveprof">${t("save")}</button>`}
+  if(SUB==="user")m.innerHTML=`<div class="prof"><b>@${esc(ME.handle)}</b></div><input class="f" id="uh" placeholder="${t("engOnly")}"><button class="btn" data-a="sethandle">${t("setUser")}</button><h3>${t("mkColl")}</h3><p class="mut">${t("collHint")}</p><input class="f" id="uc" placeholder="${t("engOnly")}"><button class="btn" data-a="mkcoll">${t("mkColl")}</button><h3>${t("myNames")}</h3>${ME.names.map(n=>nrow(n,(n.primary?"":`<button class="btn g" data-pri="${esc(n.u)}">★</button>`)+(n.coll?(n.price==null?`<button class="btn g" data-nsell="${esc(n.u)}">${t("sell")}</button>`:`<button class="btn g" data-nunl="${esc(n.u)}">${t("unlist")}</button>`):""))).join("")}`;
+  if(SUB==="stars")m.innerHTML=`<div class="prof"><b>★ ${fmt(ME.stars)}</b></div><input class="f" id="sa" inputmode="numeric" placeholder="${t("starsPh")}"><button class="btn" data-a="stars">${t("setStars")}</button>`;
+  if(SUB==="dev"){const l=await api("/api/sessions");m.innerHTML=l.sort((a,b)=>b.last-a.last).map(s=>`<div class="row" style="cursor:default"><div class="av">${/Android/.test(s.dev)?"📱":/Windows/.test(s.dev)?"💻":"🌐"}</div><div class="t"><b>${esc(s.dev)}</b><div class="s">${s.cur?t("thisDev")+" · ":""}${new Date(s.last).toLocaleString(LANG==="ru"?"ru-RU":"en-US")}</div></div>${s.cur?"":`<button class="btn g" data-kick="${s.sid}">✕</button>`}</div>`).join("")+`<button class="btn" data-a="kickall">${t("kickAll")}</button>`}
+  if(SUB==="acc")m.innerHTML=ACCTS.map((a,i)=>`<div class="row" data-sw="${i}"><div class="av" style="background:hsl(${hue(a.id)} 55% 50%)">${esc([...(a.name||"?")][0].toUpperCase())}</div><div class="t"><b>${esc(a.name)}</b><div class="s">${i===ACT?"✓":""}</div></div></div>`).join("")+(ACCTS.length<3?`<button class="btn" data-a="addacc">${t("addAcc")}</button>`:"");
+  if(SUB==="imp")m.innerHTML=[SYS.ch,SYS.fg,SYS.vb,SYS.ub].map(c=>`<div class="row" data-c='${esc(JSON.stringify(c))}'>${av(c)}<div class="t"><b>${nm(c)}</b><div class="s">${c.handle?"@"+c.handle:t("kChannel")}</div></div></div>`).join("");
+}
+async function sendMsg(){
+  const i=$("in");if(!i)return;const x=i.value.trim();if(!x)return;i.value="";
+  try{await api("/api/send",{to:cur.id,t:x});refreshMsgs()}catch(e){toast(e.message);if(e.message===t("E_FROZEN"))openChat({...SYS.ub})}
+}
+async function asearch(){
+  const l=await api("/api/admin/users?q="+encodeURIComponent($("aq").value));
+  $("ares").innerHTML=l.map(c=>`<div class="row" data-ad='${esc(JSON.stringify(c))}'>${av(c)}<div class="t"><b>${nm(c)}</b><div class="s">${c.handle?"@"+c.handle:""} ${esc(c.phone||"")} ${c.frozen?"❄️":""}</div></div></div>`).join("");
+}
+function adminSheet(c){
+  const isU=c.kind==="user"&&!c.admin;let ask=false;
+  sheet(`<b>${nm(c)}</b><div class="mut">${c.handle?"@"+c.handle:""} ${esc(c.phone||"")}</div><h3>${t("badge")}</h3><div class="emo">${["",...BADGES].map(b=>`<span data-vt="${b}" class="${c.badge===b?"on":""}">${b?badge(b):"∅"}</span>`).join("")}</div><label><input type="checkbox" id="ak"> ${t("ask")}</label>`
+  +(isU?`<h3></h3><button class="btn g" data-fr="${c.frozen?0:1}">${t(c.frozen?"unfreeze":"freeze")}</button> <button class="btn g" data-ks="1">${t("kickSess")}</button> <button class="btn g" data-as="1">★</button> <button class="btn g" data-ban="1" style="color:#e5484d">${t("ban")}</button>`:""),async(e,s)=>{
+    const d=e.target.closest("[data-vt],[data-fr],[data-ks],[data-as],[data-ban]");if(!d)return;const D_=d.dataset;
+    try{
+      if(D_.vt!==undefined)await api("/api/admin/verify",{id:c.id,type:D_.vt,ask:$("ak").checked});
+      else if(D_.fr!==undefined)await api("/api/admin/set",{id:c.id,frozen:D_.fr==="1"});
+      else if(D_.ks)await api("/api/admin/kick",{id:c.id});
+      else if(D_.as){s.remove();return ask(t("starsPh"),async v=>{try{await api("/api/admin/set",{id:c.id,stars:v});toast(t("done"))}catch(x){toast(x.message)}})}
+      else if(D_.ban){if(!confirm(t("confirmBan")))return;await api("/api/admin/ban",{id:c.id})}
+      s.remove();toast(t("done"));if(tab==="admin")asearch();
+    }catch(x){toast(x.message)}
+  });
+}
+async function checkUpdate(){
+  if(!BUILD||(!window.Capacitor&&!/Electron/.test(UA)))return;
+  try{const v=await api("/api/version");if(v.latest&&v.latest>BUILD&&v.repo){const url=`https://github.com/${v.repo}/releases/latest/download/FreeGram.${window.Capacitor?"apk":"exe"}`;
+    sheet(`<b>${t("updT")}</b><p class="mut">v${v.latest}</p><button class="btn" data-url="${url}">${t("updGo")}</button> <button class="btn g" data-x="1">${t("updLater")}</button>`,(e,s)=>{if(e.target.dataset.url){if(window.Capacitor)location.href=e.target.dataset.url;else window.open(e.target.dataset.url,"_blank")}if(e.target.dataset.x||e.target.dataset.url)s.remove()})}}catch(e){}
+}
+function switchTo(i){ACT=i;saveAcc();cur=null;SUB=null;tab="chats";ME=null;boot()}
 document.addEventListener("click",async e=>{
-  const t=e.target.closest("[data-a],[data-t],[data-c],[data-buy],[data-sell],[data-unl],[data-pri],[data-nsell],[data-nunl],[data-nbuy]");if(!t)return;
-  const d=t.dataset,a=d.a;
+  const T=e.target.closest("[data-a],[data-t],[data-c],[data-s],[data-bd],[data-bt],[data-buy],[data-sell],[data-unl],[data-pri],[data-nsell],[data-nunl],[data-nbuy],[data-kick],[data-sw],[data-st],[data-co],[data-ad]");if(!T)return;
+  const d=T.dataset,a=d.a;
   try{
-  if(a==="code"||a==="again")return a==="code"?getCode():authView();
-  if(a==="verify")return verify();
-  if(d.t){tab=d.t;cur=null;return render()}
-  if(d.c){cur={id:d.c,name:d.n};return render()}
-  if(a==="back"){e.preventDefault();cur=null;return render()}
+  if(d.bd){const k={triangle:"b_jacops",crown:"b_spfizoor",diamond:"b_g7"}[d.bd];if(k)toast(t(k));return}
+  if(a==="lang"){LANG=LANG==="en"?"ru":"en";ls.s("fg_lang",LANG);return ME?render():authView()}
+  if(a==="pickc")return pickCountry();
+  if(a==="next")return authNext();
+  if(a==="go")return authGo();
+  if(a==="again")return authView("","phone");
+  if(a==="cancelAdd"){AU.adding=false;AU.step="phone";return boot()}
+  if(d.t){tab=d.t;cur=null;SUB=null;return render()}
+  if(d.c){return openChat(JSON.parse(d.c))}
+  if(a==="back"){cur=null;return render()}
+  if(d.s){SUB=d.s;ED={};return render()}
+  if(a==="sback"){SUB=null;return render()}
   if(a==="send")return sendMsg();
-  if(a==="newchat"){const u=await api("/api/user?u="+encodeURIComponent($("nu").value));cur={id:u.id,name:u.name+" @"+u.handle};return render()}
-  if(a==="gift"){if(cur.id==="all")return alert("Подарки дарят в личных чатах");const inv=await api("/api/inv");
-    return sheet(`<b>Выбери подарок</b><div class="grid" style="margin-top:10px">${inv.map(g=>card(g,`<button data-sg="${g.id}">Отправить</button>`)).join("")||'<span class="mut">Нет подарков</span>'}</div>`,async(ev,s)=>{const id=ev.target.dataset.sg;if(id){try{await api("/api/send",{to:cur.id,gift:id});s.remove();refreshMsgs()}catch(x){alert(x.message)}}})}
+  if(d.bt){await api("/api/btn",{id:+d.bt,k:d.k});return refreshMsgs()}
+  if(a==="gift"){const inv=await api("/api/inv");
+    return sheet(`<b>${t("pickGift")}</b><div class="grid" style="margin-top:10px">${inv.map(g=>card(g,`<button data-sg="${g.id}">${t("send")}</button>`)).join("")||`<span class="mut">${t("noGifts")}</span>`}</div>`,async(ev,s)=>{const id=ev.target.dataset.sg;if(id){try{await api("/api/send",{to:cur.id,gift:id});s.remove();refreshMsgs()}catch(x){toast(x.message)}}})}
   if(a==="shop"){await api("/api/shop",{});return render()}
-  if(a==="claim"){await api("/api/names",{u:$("un").value});return render()}
+  if(a==="mkcoll"){await api("/api/names",{u:$("uc").value});return render()}
+  if(a==="sethandle"){await api("/api/handle",{u:$("uh").value});return render()}
   if(a==="stars"){await api("/api/stars",{amount:$("sa").value});return render()}
-  if(d.sell)return ask("Цена в звёздах",async v=>{try{await api("/api/list",{id:d.sell,price:v});render()}catch(x){alert(x.message)}});
-  if(d.nsell)return ask("Цена в звёздах",async v=>{try{await api("/api/nlist",{u:d.nsell,price:v});render()}catch(x){alert(x.message)}});
+  if(d.sell)return ask(t("price"),async v=>{try{await api("/api/list",{id:d.sell,price:v});render()}catch(x){toast(x.message)}});
+  if(d.nsell)return ask(t("price"),async v=>{try{await api("/api/nlist",{u:d.nsell,price:v});render()}catch(x){toast(x.message)}});
   if(d.unl){await api("/api/unlist",{id:d.unl});return render()}
   if(d.nunl){await api("/api/nunlist",{u:d.nunl});return render()}
   if(d.buy){await api("/api/buy",{id:d.buy});return render()}
   if(d.nbuy){await api("/api/nbuy",{u:d.nbuy});return render()}
   if(d.pri){await api("/api/primary",{u:d.pri});return render()}
-  if(a==="saveprof"){await api("/api/profile",{name:$("pn").value});return render()}
+  if(d.st!==undefined){ED.status=d.st;return subView($("main"))}
+  if(d.co!==undefined){ED.color=d.co;return subView($("main"))}
+  if(a==="saveprof"){await api("/api/profile",{name:$("pn").value,bio:$("pb").value,status:ED.status,color:ED.color});SUB=null;return render()}
+  if(d.kick){await api("/api/kick",{sid:d.kick});return render()}
+  if(a==="kickall"){await api("/api/kickall",{});return render()}
+  if(d.sw!==undefined)return switchTo(+d.sw);
+  if(a==="addacc"){AU={step:"phone",cc:AU.cc,phone:"",msg:"",adding:true};cur=null;SUB=null;return authView()}
   if(a==="theme"){const r=document.documentElement;r.dataset.theme=r.dataset.theme==="dark"?"light":"dark";return}
-  if(a==="logout")return logout();
-  }catch(x){alert(x.message)}
+  if(a==="logout"){ACCTS.splice(ACT,1);ACT=0;saveAcc();ME=null;cur=null;SUB=null;if(es)es.close();return ACCTS.length?boot():authView()}
+  if(a==="asearch")return asearch();
+  if(a==="mkbot"){await api("/api/admin/bot",{name:$("bn").value,handle:$("bh").value,lines:$("bl").value});toast(t("done"));return}
+  if(d.ad)return adminSheet(JSON.parse(d.ad));
+  }catch(x){toast(x.message)}
+});
+document.addEventListener("input",async e=>{
+  if(e.target.id==="q"){const q=e.target.value.trim();if(q.length<2){$("res").innerHTML="";return}
+    try{const l=await api("/api/search?q="+encodeURIComponent(q));$("res").innerHTML=l.map(c=>`<div class="row" data-c='${esc(JSON.stringify(c))}'>${av(c)}<div class="t"><b>${nm(c)}</b><div class="s">@${esc(c.handle)}</div></div></div>`).join("")||`<p class="mut">${t("noRes")}</p>`}catch(x){}}
 });
 document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.id==="in")sendMsg()});
-TOK?boot():authView();
+ACCTS.length?boot():authView();
 </script></body></html>

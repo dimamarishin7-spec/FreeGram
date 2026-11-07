@@ -13,6 +13,7 @@ jobs:
         with: {distribution: temurin, java-version: 17}
       - name: Build APK
         run: |
+          sed -i "s/__BUILD__/${{ github.run_number }}/" index.html
           mkdir -p www
           cp index.html icon.png www/
           npm install
@@ -38,6 +39,7 @@ jobs:
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: "false"
         run: |
+          sed -i "s/__BUILD__/${{ github.run_number }}/" index.html
           mkdir -p www
           cp index.html icon.png www/
           npm install
@@ -46,3 +48,22 @@ jobs:
         with:
           name: FreeGram-EXE
           path: dist/FreeGram.exe
+  release:
+    needs: [android, windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: FreeGram-*
+          merge-multiple: true
+          path: out
+      - run: mv out/app-debug.apk out/FreeGram.apk
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.run_number }}
+          name: FreeGram ${{ github.run_number }}
+          files: |
+            out/FreeGram.apk
+            out/FreeGram.exe
