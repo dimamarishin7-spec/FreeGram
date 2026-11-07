@@ -1,0 +1,17 @@
+{
+  "name": "freegram",
+  "version": "1.0.0",
+  "description": "FreeGram messenger",
+  "author": "FreeGram",
+  "main": "electron-main.js",
+  "scripts": {"dist": "electron-builder --win portable"},
+  "dependencies": {"@capacitor/core": "^6.1.2", "@capacitor/android": "^6.1.2"},
+  "devDependencies": {"@capacitor/cli": "^6.1.2", "electron": "^31.0.0", "electron-builder": "^24.13.3"},
+  "build": {
+    "appId": "com.freegram.app",
+    "productName": "FreeGram",
+    "files": ["electron-main.js", "icon.png", "www/**/*"],
+    "directories": {"output": "dist"},
+    "win": {"target": "portable", "artifactName": "FreeGram.exe", "icon": "icon.png"}
+  }
+}
