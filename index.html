@@ -1,45 +1,83 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#3390ec">
 <title>FreeGram</title><link rel="icon" href="icon.png">
 <style>
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f0f2f5;--card:#fff;--tx:#14181f;--mut:#707579;--ac:#3390ec;--in:#fff;--out:#e3f6cf;--bd:#e2e6ea}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0e1621;--card:#17212b;--tx:#f1f3f5;--mut:#7f91a4;--ac:#6ab2f2;--in:#182533;--out:#2b5278;--bd:#0b121a}}
-:root[data-theme=dark]{--bg:#0e1621;--card:#17212b;--tx:#f1f3f5;--mut:#7f91a4;--ac:#6ab2f2;--in:#182533;--out:#2b5278;--bd:#0b121a}
-*{box-sizing:border-box}html,body{height:100%;margin:0}
-body{background:var(--bg);color:var(--tx);font:16px/1.35 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column}
-#app{flex:1;display:flex;flex-direction:column;max-width:720px;width:100%;margin:0 auto;min-height:0;background:var(--bg)}
-header{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--card);border-bottom:1px solid var(--bd);min-height:52px}
-header b{font-size:17px;display:flex;align-items:center;gap:4px;min-width:0}header .sp{flex:1}.pill{background:var(--bg);border-radius:20px;padding:4px 10px;font-size:14px}
-main{flex:1;overflow-y:auto;padding:10px;min-height:0}
-nav{display:flex;background:var(--card);border-top:1px solid var(--bd)}
-nav button{flex:1;border:0;background:none;color:var(--mut);padding:8px 2px;font:inherit;font-size:12px}nav button.on{color:var(--ac);font-weight:600}
-.row{display:flex;gap:12px;align-items:center;padding:9px 10px;background:var(--card);border-radius:12px;margin-bottom:6px;cursor:pointer}
-.av{width:48px;height:48px;border-radius:50%;background:var(--ac);color:#fff;display:flex;align-items:center;justify-content:center;font-size:21px;flex:none;overflow:hidden}.av svg{width:100%;height:100%}
-.row .t{flex:1;min-width:0}.row .s{color:var(--mut);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.row b{display:flex;align-items:center;gap:4px}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#efeff4;--card:#fff;--list:#fff;--tx:#000;--mut:#8e8e93;--ac:#3390ec;--sep:#e5e5ea;--in:#fff;--out:#effdde;--outtx:#000;--tick:#4fae4e;--hd:rgba(249,249,249,.94);--wall:linear-gradient(160deg,#cde3c3,#b6d3e6 55%,#e4d5ee)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#000;--card:#1c1c1e;--list:#000;--tx:#fff;--mut:#8d8e93;--ac:#6ab3f3;--sep:#2c2c2e;--in:#212d3b;--out:#2b5278;--outtx:#fff;--tick:#8ec9f5;--hd:rgba(28,28,30,.94);--wall:linear-gradient(160deg,#0f1c2b,#17293c 60%,#0e1621)}}
+:root[data-theme=dark]{--bg:#000;--card:#1c1c1e;--list:#000;--tx:#fff;--mut:#8d8e93;--ac:#6ab3f3;--sep:#2c2c2e;--in:#212d3b;--out:#2b5278;--outtx:#fff;--tick:#8ec9f5;--hd:rgba(28,28,30,.94);--wall:linear-gradient(160deg,#0f1c2b,#17293c 60%,#0e1621)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--tx);font:16px/1.3 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column}
+#app{flex:1;display:flex;flex-direction:column;max-width:720px;width:100%;margin:0 auto;min-height:0;background:var(--list)}
+header{display:flex;align-items:center;min-height:46px;padding:0 8px;background:var(--hd);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:.5px solid var(--sep)}
+.hl,.hr{width:84px;display:flex;align-items:center}.hr{justify-content:flex-end}.hc{flex:1;text-align:center;min-width:0;display:flex;flex-direction:column;align-items:center}
+.hc b{font-size:17px;font-weight:600;display:flex;align-items:center;gap:4px;max-width:100%;white-space:nowrap;overflow:hidden}.hc span{font-size:12px;color:var(--mut)}
+.hb{border:0;background:none;color:var(--ac);padding:6px 8px 6px 0;display:flex}.hb svg{width:12px;height:20px}
+.pill{background:var(--bg);border-radius:14px;padding:3px 10px;font-size:13px;font-weight:600}
+main{flex:1;overflow-y:auto;min-height:0;background:var(--bg)}main.wall{background:var(--wall);padding:0}main.lst{background:var(--list)}
+nav{display:flex;background:var(--hd);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:.5px solid var(--sep)}
+nav button{flex:1;border:0;background:none;color:var(--mut);padding:6px 2px 4px;font:inherit;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:2px}nav button svg{width:25px;height:25px}nav button.on{color:var(--ac)}
+.sr{display:flex;align-items:center;gap:6px;margin:8px 12px;padding:0 10px;background:var(--bg);border-radius:10px;color:var(--mut)}.sr svg{width:16px;height:16px;flex:none}.sr input{flex:1;border:0;background:none;color:var(--tx);font:inherit;padding:8px 0;outline:0}
+.lst{background:var(--list)}
+.cr{display:flex;gap:11px;padding:8px 0 0 12px;background:var(--list);cursor:pointer}.cr:active{background:var(--bg)}
+.cr .av{width:54px;height:54px;margin-bottom:8px}.cr .t{flex:1;min-width:0;border-bottom:.5px solid var(--sep);padding:3px 12px 9px 0}
+.l1,.l2{display:flex;align-items:center;gap:6px}.l1 b{flex:1;min-width:0;display:flex;align-items:center;gap:4px;font-size:16.5px;font-weight:600;white-space:nowrap;overflow:hidden}
+.tm{color:var(--mut);font-size:14px}.l2{margin-top:2px}.l2 .s{flex:1;color:var(--mut);font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pin{width:15px;height:15px;color:var(--mut)}
+.av{border-radius:50%;background:var(--ac);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;flex:none;overflow:hidden;font-weight:500}.av svg{width:100%;height:100%}
+.row{display:flex;gap:12px;align-items:center;padding:9px 14px;background:var(--card);border-bottom:.5px solid var(--sep);cursor:pointer}.row .av{width:44px;height:44px}.row .t{flex:1;min-width:0}.row .s{color:var(--mut);font-size:14px}.row b{display:flex;align-items:center;gap:4px}
 .bd{width:16px;height:16px;flex:none;cursor:pointer}
-.msgs{display:flex;flex-direction:column;gap:5px}
-.m{max-width:82%;padding:6px 10px;border-radius:14px;background:var(--in);word-wrap:break-word;white-space:pre-wrap}.m.me{align-self:flex-end;background:var(--out)}
-.m small{color:var(--mut);margin-left:8px;font-size:11px}.m .nm{font-weight:600;font-size:13px;display:flex;align-items:center;gap:4px;color:var(--ac)}
-.ib{display:block;width:100%;margin-top:6px;border:0;border-radius:8px;padding:8px;background:#0002;color:var(--ac);font:inherit;font-weight:600;cursor:pointer}
-.bar{display:flex;gap:8px;padding:8px;background:var(--card);border-top:1px solid var(--bd)}.bar.ro{justify-content:center;color:var(--mut);font-size:14px}
-.bar input{flex:1;border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:20px;padding:10px 14px;font:inherit;min-width:0}
-.btn{border:0;background:var(--ac);color:#fff;border-radius:20px;padding:10px 16px;font:inherit;cursor:pointer;margin:2px 0}.btn.g{background:var(--bg);color:var(--tx);border:1px solid var(--bd)}
-.gift{width:230px;border-radius:18px;padding:14px;text-align:center;color:#fff;background:linear-gradient(160deg,var(--c1),var(--c2))}.gift.me{align-self:flex-end}.gift.in{align-self:flex-start}.gift .em{font-size:64px;line-height:1.1}
+.msgs{display:flex;flex-direction:column;padding:8px 10px 10px;min-height:100%;justify-content:flex-end}
+.dp{align-self:center;background:rgba(0,0,0,.28);color:#fff;padding:3px 11px;border-radius:12px;font-size:12.5px;font-weight:600;margin:10px 0 6px}
+.mw{display:flex;flex-direction:column;max-width:80%;margin-top:7px}.mw.tight{margin-top:2px}.mw.me{align-self:flex-end;align-items:flex-end}.mw.in{align-self:flex-start;align-items:flex-start}
+.m{position:relative;padding:6px 9px 5px 10px;border-radius:17px;background:var(--in);color:var(--tx);word-wrap:break-word;overflow-wrap:anywhere;white-space:pre-wrap;box-shadow:0 1px 1px rgba(0,0,0,.1)}
+.m.me{background:var(--out);color:var(--outtx)}
+.m.tail.me{border-bottom-right-radius:5px}.m.tail.in{border-bottom-left-radius:5px}
+.m.tail::after{content:"";position:absolute;bottom:0;width:9px;height:12px}
+.m.tail.me::after{right:-4.5px;background:var(--out);clip-path:path("M0 0L0 12L9 12C4 11 .5 7 0 0Z")}
+.m.tail.in::after{left:-4.5px;background:var(--in);clip-path:path("M9 0L9 12L0 12C5 11 8.5 7 9 0Z")}
+.m .nm{font-weight:600;font-size:14px;display:flex;align-items:center;gap:4px;margin-bottom:1px}
+.mt{float:right;margin:7px 0 -3px 10px;font-size:11px;color:var(--mut);display:inline-flex;align-items:center;gap:3px;white-space:nowrap;line-height:1}.me .mt{color:var(--tick)}.tk{width:14px;height:10px}
+.kb{display:flex;flex-direction:column;gap:2px;margin-top:2px;width:100%}.ib{border:0;border-radius:10px;padding:9px;background:rgba(0,0,0,.32);color:#fff;font:inherit;font-weight:500;cursor:pointer;backdrop-filter:blur(8px)}.kd{color:#fff;background:rgba(0,0,0,.32);border-radius:10px;padding:7px;text-align:center;font-size:14px}
+.bar{display:flex;align-items:flex-end;gap:8px;padding:6px 8px;background:var(--hd);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:.5px solid var(--sep)}.bar.ro{justify-content:center;color:var(--mut);font-size:14px;padding:13px}
+.bar input{flex:1;border:.5px solid var(--sep);background:var(--card);color:var(--tx);border-radius:19px;padding:8px 14px;font:inherit;min-width:0;outline:0}
+.ic{border:0;background:none;color:var(--mut);width:36px;height:36px;padding:5px;display:flex;align-items:center;justify-content:center}.ic svg{width:26px;height:26px}
+.sb{border:0;width:34px;height:34px;border-radius:50%;background:var(--ac);padding:7px;display:flex}.sb svg{width:100%;height:100%}
+.btn{border:0;background:var(--ac);color:#fff;border-radius:12px;padding:10px 16px;font:inherit;font-weight:500;cursor:pointer;margin:2px 0}.btn.g{background:var(--bg);color:var(--tx)}.btn.w{display:block;width:calc(100% - 24px);margin:14px 12px;padding:13px}
+.gift{width:230px;border-radius:18px;padding:14px;text-align:center;color:#fff;background:linear-gradient(160deg,var(--c1),var(--c2));margin-top:7px}.gift.me{align-self:flex-end}.gift.in{align-self:flex-start}.gift .em{font-size:64px;line-height:1.1}
 .gift .at{font-size:13px;text-align:left;margin-top:8px;background:#0003;border-radius:10px;padding:6px 10px}.gift .at div{display:flex;justify-content:space-between}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.pad{padding:0 12px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
 .card{border-radius:16px;padding:12px;color:#fff;text-align:center;background:linear-gradient(160deg,var(--c1),var(--c2));font-size:13px}.card .em{font-size:44px}
 .card button{margin:6px 2px 0;border:0;border-radius:12px;background:#0004;color:#fff;padding:5px 10px;font:inherit;cursor:pointer}
-h3{margin:14px 4px 8px;font-size:15px;color:var(--ac)}.mut{color:var(--mut)}.err{color:#e5484d;min-height:1.4em}
-.sheet{position:fixed;inset:0;background:#0007;display:flex;align-items:flex-end;justify-content:center;z-index:9}
-.sheet>div{background:var(--card);width:100%;max-width:720px;border-radius:18px 18px 0 0;padding:16px;max-height:80%;overflow:auto}
-input.f{width:100%;border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:12px;padding:10px;font:inherit;margin:6px 0}
-.auth{padding:20px 16px;text-align:center}.auth h1{margin:8px 0 4px}.auth img{width:110px;height:110px;border-radius:26px}.auth .f{text-align:center}.lang{text-align:right}
-.ph{display:flex;gap:8px;align-items:center}.ph .f{margin:0}
-.prof{text-align:center;background:var(--card);border-radius:14px;padding:16px;margin-bottom:10px}.prof .av{width:84px;height:84px;margin:0 auto 8px;font-size:36px}
-.prof b{justify-content:center;font-size:20px}
-.dots span,.emo span{display:inline-block;width:34px;height:34px;border-radius:50%;margin:3px;cursor:pointer;text-align:center;line-height:34px;border:2px solid transparent;background:var(--bg)}.dots span.on,.emo span.on{border-color:var(--ac)}
+.sh{padding:18px 16px 6px;font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.3px}.note{padding:6px 16px;font-size:13px;color:var(--mut)}
+.mut{color:var(--mut)}.err{color:#ff3b30;min-height:1.4em}
+.grp{background:var(--card);margin:14px 12px;border-radius:12px;overflow:hidden}
+.li{display:flex;align-items:center;gap:12px;padding-left:14px;min-height:44px;cursor:pointer}.li:active{background:var(--bg)}
+.ico{width:29px;height:29px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex:none}.ico svg{width:18px;height:18px}
+.lt{flex:1;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 14px 9px 0;border-bottom:.5px solid var(--sep)}.grp>.li:last-child .lt{border-bottom:0}
+.rt{display:flex;align-items:center;gap:8px;color:var(--mut)}.chev{width:8px;height:14px;color:#c4c4c9}
+.grp input,.grp textarea{display:block;width:100%;border:0;border-bottom:.5px solid var(--sep);background:transparent;color:var(--tx);font:inherit;padding:12px 14px;outline:0}.grp>*:last-child{border-bottom:0}
+.prof{text-align:center;padding:18px 16px 4px;background:var(--bg)}.prof .av{width:96px;height:96px;margin:0 auto 10px;font-size:40px}.prof b{display:flex;justify-content:center;align-items:center;gap:5px;font-size:22px;font-weight:600}.prof .bio{margin-top:6px}
+.dots span,.emo span{display:inline-block;width:38px;height:38px;border-radius:50%;margin:3px;cursor:pointer;text-align:center;line-height:34px;border:2px solid transparent;background:var(--bg)}.dots span.on,.emo span.on{border-color:var(--ac)}.emo,.dots{padding:6px 10px}
 #toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#000c;color:#fff;padding:10px 16px;border-radius:14px;z-index:20;max-width:85%;text-align:center;display:none}
+.sheet{position:fixed;inset:0;background:#0006;display:flex;align-items:flex-end;justify-content:center;z-index:9}
+.sheet>div{background:var(--card);width:100%;max-width:720px;border-radius:14px 14px 0 0;padding:20px 14px 16px;max-height:82%;overflow:auto;position:relative}.sheet>div::before{content:"";position:absolute;top:7px;left:50%;width:36px;height:4px;margin-left:-18px;border-radius:2px;background:var(--sep)}
+input.f,textarea.f{width:100%;border:0;background:var(--bg);color:var(--tx);border-radius:10px;padding:11px 12px;font:inherit;margin:6px 0;outline:0}
+.auth{padding:18px 0;text-align:center}.auth h1{margin:8px 0 4px;font-size:26px}.auth p{padding:0 24px}.auth img{width:112px;height:112px;border-radius:26px}.lang{text-align:right;padding:0 12px}
+.pr{display:flex;align-items:center}.pr span{padding:12px 14px;border-right:.5px solid var(--sep);font-size:17px}.pr input{border:0}.auth .grp{text-align:left}.auth details{padding:0 24px}
+.cr{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+#toast{top:70px!important;bottom:auto!important}
+.gc{position:relative;overflow:hidden;border-radius:16px;padding:12px 8px 10px;color:#fff;text-align:center;font-size:13px;cursor:default}.gc>*{position:relative}.gc>.pt{position:absolute}
+.gc b{display:block;font-size:14px;margin-top:2px;text-shadow:0 1px 2px #0004}.gc .s2{opacity:.85;font-size:12px}.gc button{margin:6px 2px 0;border:0;border-radius:12px;background:#0004;color:#fff;padding:5px 10px;font:inherit;cursor:pointer}.pgm{position:absolute!important;top:6px;right:8px}
+.gi{display:flex;align-items:center;justify-content:center;position:relative;margin:0 auto}.gi img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.pt{inset:0;overflow:hidden;opacity:.16;font-size:15px;line-height:24px;letter-spacing:12px;word-break:break-all;pointer-events:none;padding:2px}
+.gm{align-self:center;margin:10px 0 4px;width:230px}.gb{position:relative;overflow:hidden;border-radius:18px;padding:12px;text-align:center;color:#fff}.gb>*{position:relative}.gb>.pt{position:absolute}.gb .gt{font-size:12px;opacity:.9;margin-bottom:4px}.gb b{display:block;font-size:16px;text-shadow:0 1px 2px #0004}
+.gb .at{font-size:13px;text-align:left;margin-top:8px;background:#0003;border-radius:10px;padding:6px 10px}.gb .at div{display:flex;justify-content:space-between;gap:8px}.gb .at i{opacity:.7;font-style:normal;font-weight:400}.gn{margin-top:8px;font-size:13px;background:#0003;border-radius:10px;padding:5px 8px}
+.acts{display:flex;gap:8px;margin:10px 12px}.acts>div{flex:1;background:var(--card);border-radius:12px;padding:9px 4px 7px;text-align:center;color:var(--ac);font-size:12px;cursor:pointer}.acts svg{width:24px;height:24px;display:block;margin:0 auto 3px}
+.inf{padding:9px 14px;border-bottom:.5px solid var(--sep)}.inf small{display:block;color:var(--mut);font-size:12.5px}
+.rc{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px}.rc span{background:rgba(0,0,0,.28);color:#fff;border-radius:12px;padding:2px 8px;font-size:13px;cursor:pointer}.rc span.mine{background:var(--ac)}
+.rq{border-left:2px solid var(--ac);padding:1px 8px;margin:0 0 4px;font-size:13px;color:var(--ac);border-radius:2px}.rq b{font-weight:600}
+.bar{flex-wrap:wrap}.rp{flex-basis:100%;display:none;align-items:center;justify-content:space-between;border-left:2px solid var(--ac);padding:2px 8px;font-size:13px;color:var(--mut)}.rp .ic{width:28px;height:28px}
+.m{cursor:pointer}.nm{cursor:pointer}.hc[data-pf],.hr[data-pf]{cursor:pointer}
 </style></head><body>
 <div id="app"><header id="hd"></header><main id="main"></main><nav id="nav"></nav></div><div id="toast"></div>
 <script>
@@ -72,6 +110,44 @@ tGifts|Gifts|Подарки
 tMarket|Market|Маркет
 tAdmin|Admin|Админ
 tSet|Settings|Настройки
+today|Today|Сегодня
+edit|Edit|Изменить
+msgBtn|Message|Написать
+giftBtn|Gift|Подарок
+sendGift|Send a gift|Отправить подарок
+giftShop|Gift shop|Магазин подарков
+myNft|My collectibles|Мои коллекционные
+giftSent|You sent a gift|Вы отправили подарок
+giftGot|You received a gift|Вы получили подарок
+upgrade|Upgrade (25 ★)|Улучшить (25 ★)
+convert|Convert to stars|Обменять на звёзды
+pinG|Pin|Закрепить
+unpinG|Unpin|Открепить
+buyGift|Buy a gift for myself|Купить подарок себе
+note|Add a comment|Добавить комментарий
+sendFor|Send for ★ {n}|Отправить за ★ {n}
+pinChat|Pin|Закрепить
+unpinChat|Unpin|Открепить
+clearHist|Clear history|Очистить историю
+delChat|Delete chat|Удалить чат
+confirmClear|Clear this chat history?|Очистить историю чата?
+confirmDelChat|Delete this chat?|Удалить этот чат?
+reply|Reply|Ответить
+copy|Copy|Копировать
+editMsg|Edit|Изменить
+delMsg|Delete|Удалить
+edited|edited|изменено
+roBot|This is a notifications bot, you cannot write here|Это бот уведомлений, писать сюда нельзя
+bt_blue|Blue check|Синяя галочка
+bt_white|White check|Белая галочка
+bt_red|Red check|Красная галочка
+bt_triangle|Triangle (JaCops)|Треугольник (JaCops)
+bt_crown|Crown (spFizoor)|Корона (spFizoor)
+bt_diamond|Diamond (G7G5G2)|Ромб (G7G5G2)
+admTools|Admin tools|Инструменты админа
+botDone|Bot created|Бот создан
+phoneL|Phone|Телефон
+pinned|Pinned|Закреплено
 general|General chat|Общий чат
 saved|Saved Messages|Избранное
 searchPh|Search by username|Поиск по юзернейму
@@ -221,6 +297,7 @@ try{ACCTS=JSON.parse(ls.g("fg_accts")||"[]")}catch(e){}
 ACT=Math.min(+ls.g("fg_act")||0,Math.max(ACCTS.length-1,0));
 const TOK=()=>ACCTS[ACT]?ACCTS[ACT].tok:"";
 const saveAcc=()=>{ls.s("fg_accts",JSON.stringify(ACCTS));ls.s("fg_act",ACT)};
+let PF=null,MSGS=[],REPLY=null,EDIT=null,NOCLICK=0;
 async function api(p,b,tok){
   let r;try{r=await fetch(API+p,{method:b?"POST":"GET",headers:{"Content-Type":"application/json",Authorization:"Bearer "+(tok||TOK())},body:b?JSON.stringify(b):undefined})}catch(e){throw new Error(t("noConn"))}
   const j=await r.json().catch(()=>({}));
@@ -236,14 +313,22 @@ const BADGES=["blue","white","red","triangle","crown","diamond"];
 const badge=b=>b&&BD[b]?`<svg class="bd" viewBox="0 0 16 16" data-bd="${b}">${BD[b]}</svg>`:"";
 const nm=c=>`<span style="${c.color?"color:"+c.color:""}">${esc(c.name)}</span>${badge(c.badge)}${c.status?" "+esc(c.status):""}`;
 const hue=s=>{let h=0;for(const ch of String(s))h=(h*31+ch.charCodeAt(0))%360;return h};
-function av(c){
-  if(c.id==="ch_freegram")return`<div class="av">${PL("#fff","#cfd4da")}</div>`;
-  if(c.id==="sys_freegram")return`<div class="av">${PL("#3ddc84","#1f9658")}</div>`;
-  if(c.kind==="self")return`<div class="av" style="background:#3390ec">🔖</div>`;
-  if(c.kind==="all")return`<div class="av" style="background:linear-gradient(135deg,#6a5acd,#2b1b6b)">🌌</div>`;
-  if(c.id==="sys_unban")return`<div class="av" style="background:#e5484d">🛡</div>`;
-  if(c.id==="sys_verif")return`<div class="av" style="background:#2a8cff">✓</div>`;
-  return`<div class="av" style="background:hsl(${hue(c.id)} 55% 50%)">${esc([...(c.name||"?")][0].toUpperCase())}</div>`;
+const GR=[["#ff885e","#ff516a"],["#ffcd6a","#ffa85c"],["#82b1ff","#665fff"],["#a0de7e","#54cb68"],["#53edd6","#28c9b7"],["#72d5fd","#2a9ef1"],["#e0a2f3","#d669ed"]];
+const P={edit:"M17 3a2.8 2.8 0 0 1 4 4L7.5 20.5 2 22l1.5-5.5z",mon:"M3 4h18v12H3zM8 21h8M12 16v5",users:"M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8",globe:"M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z",moon:"M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z",pin:"M12 17v5M9 3h6l-1 7 3 3v2H7v-2l3-3z",out:"M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9",book:"M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z",star:"M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z",at:"M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.9 7.9",shield:"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",gift:"M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z",bag:"M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0",chat:"M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.3A8 8 0 1 1 21 12z",gear:"M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z",clip:"M21 11.5l-8.5 8.5a5 5 0 0 1-7-7L14 4.5a3.3 3.3 0 0 1 4.7 4.7L10 18a1.7 1.7 0 0 1-2.4-2.4l7.8-7.8",send:"M12 19V6M6 12l6-6 6 6",search:"M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3",pinI:"M12 17v5M9 3h6l-1 7 3 3v2H7v-2l3-3z",tv:"M2 7h20v13H2zM7 2l5 5 5-5"};
+const IC=p=>`<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${P[p]}"/></svg>`;
+const TI=p=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="${P[p]}"/></svg>`;
+const CHEV='<svg class="chev" viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const BACK='<svg viewBox="0 0 12 20"><path d="M10 2L2 10l8 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const TICK='<svg class="tk" viewBox="0 0 16 11"><path d="M1.5 5.8l3.4 3.4L12.6 1.5M7.2 7.4l1.7 1.8 6-7.4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function av(c,sz){
+  const S=sz?`width:${sz}px;height:${sz}px;font-size:${Math.round(sz*.4)}px;`:"",A=(i,bg)=>`<div class="av" style="${S}${bg?"background:"+bg:""}">${i}</div>`;
+  if(c.id==="ch_freegram")return A(PL("#fff","#cfd4da"));
+  if(c.id==="sys_freegram")return A(PL("#3ddc84","#1f9658"));
+  if(c.kind==="self")return A(`<span style="width:50%;display:flex">${IC("book")}</span>`,"linear-gradient(#54a9eb,#3390ec)");
+  if(c.kind==="all")return A("🌌","linear-gradient(135deg,#6a5acd,#2b1b6b)");
+  if(c.id==="sys_unban")return A("🛡","linear-gradient(#ff7a7a,#e5484d)");
+  if(c.id==="sys_verif")return A("✓","linear-gradient(#54a9eb,#2a8cff)");
+  const g=GR[hue(c.id)%7];return A(esc([...(c.name||"?")][0].toUpperCase()),`linear-gradient(${g[0]},${g[1]})`);
 }
 const cname=c=>c.kind==="self"?t("saved"):c.kind==="all"?t("general"):c.name;
 const SYS={ch:{id:"ch_freegram",kind:"channel",name:"FreeGram",badge:"blue"},fg:{id:"sys_freegram",kind:"bot",name:"FreeGram",handle:"freegram",badge:"blue"},ub:{id:"sys_unban",kind:"bot",name:"Ban_Bot",handle:"unban_bot"},vb:{id:"sys_verif",kind:"bot",name:"Verification",handle:"verification"}};
@@ -251,16 +336,16 @@ const SYS={ch:{id:"ch_freegram",kind:"channel",name:"FreeGram",badge:"blue"},fg:
 const dialOf=cc=>COUNTRIES.find(c=>c[0]===cc)[3];
 function authView(msg,step){
   if(msg!==undefined)AU.msg=msg;if(step)AU.step=step;
-  $("hd").innerHTML=`<b>FreeGram</b>`;$("nav").innerHTML="";document.querySelector(".bar")?.remove();
+  $("hd").innerHTML=`<div class="hc"><b>FreeGram</b></div>`;$("nav").style.display="none";document.querySelector(".bar")?.remove();$("main").className="";
   const c=COUNTRIES.find(x=>x[0]===AU.cc),a=AU;
   let h=`<div class="auth"><div class="lang">${a.adding?`<button class="btn g" data-a="cancelAdd">${t("cancel")}</button> `:""}<button class="btn g" data-a="lang">${t("langName")==="English"?"Русский":"English"}</button></div><img src="icon.png" alt=""><h1>${t("hello")}</h1>`;
-  if(a.step==="phone")h+=`<p class="mut">${t("phoneHint")}</p><div class="ph"><button class="btn g" data-a="pickc">${flag(c[0])} +${c[3]}</button><input class="f" id="ph" type="tel" inputmode="tel" placeholder="${t("phonePh")}" value="${esc(a.phone)}"></div><details class="mut"><summary>${t("srv")}</summary><input class="f" id="srv" value="${esc(API)}"></details><div class="err">${esc(a.msg)}</div><button class="btn" data-a="next">${t("next")}</button>`;
+  if(a.step==="phone")h+=`<p class="mut">${t("phoneHint")}</p><div class="grp"><div class="li" data-a="pickc"><div class="lt"><span>${flag(c[0])} ${esc(ccName(c))}</span><span class="rt">${CHEV}</span></div></div><div class="pr"><span>+${c[3]}</span><input id="ph" type="tel" inputmode="tel" placeholder="${t("phonePh")}" value="${esc(a.phone)}"></div></div><details class="mut"><summary>${t("srv")}</summary><input class="f" id="srv" value="${esc(API)}"></details><div class="err">${esc(a.msg)}</div><button class="btn w" data-a="next">${t("next")}</button>`;
   else{
-    h+=`<p class="mut">${esc(a.full)}<br>${t(a.step==="pw"?"haveAcc":a.step==="new"?"newAcc":"anonHint")}</p>`;
-    if(a.step==="new")h+=`<input class="f" id="un" placeholder="${t("yname")}">`;
-    if(a.step==="code")h+=`<input class="f" id="cd" inputmode="numeric" maxlength="6" placeholder="${t("code")}">`;
-    if(a.step!=="code"||a.haspw)h+=`<input class="f" id="pw" type="password" placeholder="${t(a.step==="new"?"newpw":"pw")}">`;
-    h+=`<div class="err">${esc(a.msg)}</div><button class="btn" data-a="go">${t(a.step==="new"?"signup":"login")}</button> <button class="btn g" data-a="again">${t("back")}</button>`;
+    h+=`<p class="mut">${esc(a.full)}<br>${t(a.step==="pw"?"haveAcc":a.step==="new"?"newAcc":"anonHint")}</p><div class="grp">`;
+    if(a.step==="new")h+=`<input id="un" placeholder="${t("yname")}">`;
+    if(a.step==="code")h+=`<input id="cd" inputmode="numeric" maxlength="6" placeholder="${t("code")}">`;
+    if(a.step!=="code"||a.haspw)h+=`<input id="pw" type="password" placeholder="${t(a.step==="new"?"newpw":"pw")}">`;
+    h+=`</div><div class="err">${esc(a.msg)}</div><button class="btn w" data-a="go">${t(a.step==="new"?"signup":"login")}</button><button class="btn g w" data-a="again" style="margin-top:0">${t("back")}</button>`;
   }
   $("main").innerHTML=h+"</div>";
 }
@@ -300,76 +385,153 @@ async function boot(){
   render();checkUpdate();
 }
 const lastTxt=l=>l&&typeof l==="object"?t(l.k,l.p):l||"";
-const gHtml=(g,w)=>`<div class="gift ${w}" style="--c1:${g.c[0]};--c2:${g.c[1]}"><div class="em">${g.e}</div><b>${w==="me"?t("giftFrom"):t("gift")}</b><div>${esc(g.n)} #${g.num}</div><div class="at"><div><span>${t("model")}</span><b>${esc(g.model)}</b></div><div><span>${t("bg")}</span><b>${esc(g.bg)}</b></div><div><span>${t("sym")}</span><b>${esc(g.sym)}</b></div></div></div>`;
-const card=(g,btns)=>`<div class="card" style="--c1:${g.c[0]};--c2:${g.c[1]}"><div class="em">${g.e}</div><b>${esc(g.n)} #${g.num}</b><div>${esc(g.model)}<br>${esc(g.bg)} · ${esc(g.sym)}</div>${g.price!=null?`<div>★ ${fmt(g.price)}</div>`:""}${btns||""}</div>`;
-const nrow=(n,btns)=>`<div class="row" style="cursor:default"><div class="av">@</div><div class="t"><b>@${esc(n.u)}</b><div class="s">${t(n.r)}${n.coll?" · ✦":""}${n.primary?" · "+t("isPrimary"):""}${n.price!=null?" · ★ "+fmt(n.price):""}</div></div>${btns||""}</div>`;
+const SYE={Apple:"🍎",Star:"⭐",Moon:"🌙",Bolt:"⚡",Crown:"👑",Heart:"❤️",Clover:"🍀",Skull:"💀",Flower:"🌸",Fire:"🔥",Gem:"💎",Cat:"🐱",Snowflake:"❄️",Cherry:"🍒",Ghost:"👻"};
+const gbg=g=>g.kind==="reg"?`linear-gradient(160deg,${g.c[0]},${g.c[1]})`:`radial-gradient(circle at 50% 40%,${g.c[0]},${g.c[1]})`;
+const gimg=(g,s)=>`<span class="gi" style="font-size:${s}px;width:${Math.round(s*1.3)}px;height:${Math.round(s*1.3)}px">${g.e}<img src="${API}/gifts/${esc(g.key||"")}.png" alt="" onload="this.parentNode.firstChild.nodeValue=''" onerror="this.remove()"></span>`;
+const pat=g=>g.kind==="reg"?"":`<div class="pt">${(SYE[g.sym]||"✨").repeat(20)}</div>`;
+const card=(g,btns)=>`<div class="gc" style="background:${gbg(g)}">${pat(g)}${gimg(g,44)}<b>${esc(g.n)}${g.kind==="reg"?"":" #"+g.num}</b><div class="s2">${g.kind==="reg"?"★ "+g.cost:esc(g.model)}</div>${g.price!=null?`<div>★ ${fmt(g.price)}</div>`:""}${g.pg?'<div class="pgm">📌</div>':""}${btns||""}</div>`;
+const gHtml=(g,w,m)=>`<div class="gm"><div class="gb" style="background:${gbg(g)}">${pat(g)}<div class="gt">${t(w==="me"?"giftSent":"giftGot")}</div>${gimg(g,64)}<b>${esc(g.n)}${g.kind==="reg"?"":" #"+g.num}</b>${g.kind==="reg"?`<div>★ ${g.cost}</div>`:`<div class="at"><div><span>${t("model")}</span><b>${esc(g.model)} <i>${g.r?g.r[0]+"%":""}</i></b></div><div><span>${t("bg")}</span><b>${esc(g.bg)} <i>${g.r?g.r[1]+"%":""}</i></b></div><div><span>${t("sym")}</span><b>${esc(g.sym)} <i>${g.r?g.r[2]+"%":""}</i></b></div></div>`}${m&&m.t?`<div class="gn">${esc(m.t)}</div>`:""}</div></div>`;
+const li=(ic,col,txt,attr,right)=>`<div class="li" ${attr}><div class="ico" style="background:${col}">${IC(ic)}</div><div class="lt"><span>${txt}</span><span class="rt">${right||""}${CHEV}</span></div></div>`;
+const nrow=(n,btns)=>`<div class="li" style="cursor:default"><div class="ico" style="background:#34c759">${IC("at")}</div><div class="lt"><span><b>@${esc(n.u)}</b><br><small class="mut">${t(n.r)}${n.coll?" · ✦":""}${n.primary?" · "+t("isPrimary"):""}${n.price!=null?" · ★ "+fmt(n.price):""}</small></span><span class="rt">${btns||""}</span></div></div>`;
 const tm=ts=>new Date(ts).toLocaleTimeString(LANG==="ru"?"ru-RU":"en-US",{hour:"2-digit",minute:"2-digit"});
+const loc=()=>LANG==="ru"?"ru-RU":"en-US";
+const fmtTime=ts=>{if(!ts)return"";const d=new Date(ts),n=new Date();if(d.toDateString()===n.toDateString())return tm(ts);if(n-d<6*864e5)return d.toLocaleDateString(loc(),{weekday:"short"});return d.toLocaleDateString(loc(),{day:"2-digit",month:"2-digit",year:"2-digit"})};
+const dayLabel=ts=>{const d=new Date(ts);return d.toDateString()===new Date().toDateString()?t("today"):d.toLocaleDateString(loc(),{day:"numeric",month:"long"})};
 const rmBar=()=>document.querySelector(".bar")?.remove();
-function head(title,backTo,right){
-  $("hd").innerHTML=(backTo?`<button class="btn g" data-a="${backTo}">‹</button>`:"")+`<b>${title}</b><span class="sp"></span>${right||""}`;
+function head(title,backTo,right,sub,pf){
+  $("hd").innerHTML=`<div class="hl">${backTo?`<button class="hb" data-a="${backTo}">${BACK}</button>`:""}</div><div class="hc" ${pf?`data-pf="${esc(pf)}"`:""}><b>${title}</b>${sub?`<span>${sub}</span>`:""}</div><div class="hr" ${pf?`data-pf="${esc(pf)}"`:""}>${right||""}</div>`;
 }
+function updRp(){const r=$("rp");if(!r)return;r.innerHTML=EDIT?`<span>✎ ${t("editMsg")}</span><button class="ic" data-a="rpx">✕</button>`:REPLY?`<span><b>${esc(REPLY.fn)}</b> ${esc(String(REPLY.t).slice(0,60))}</span><button class="ic" data-a="rpx">✕</button>`:"";r.style.display=EDIT||REPLY?"flex":"none"}
 async function refreshMsgs(){
   if(!cur)return;
-  try{const j=await api("/api/messages?with="+encodeURIComponent(cur.id)),box=$("msgs");if(!box)return;
-    box.innerHTML=j.map(m=>{
-      const w=m.from===ME.id?"me":"in";if(m.g)return gHtml(m.g,w);
+  try{const j=await api("/api/messages?with="+encodeURIComponent(cur.id)),box=$("msgs");if(!box)return;MSGS=j;
+    let h="",lastDay="";
+    j.forEach((m,i)=>{
+      const day=new Date(m.ts).toDateString();if(day!==lastDay){h+=`<div class="dp">${dayLabel(m.ts)}</div>`;lastDay=day}
+      const w=m.from===ME.id?"me":"in",p=j[i-1],n=j[i+1],sameP=p&&p.from===m.from&&!p.g&&new Date(p.ts).toDateString()===day,sameN=n&&n.from===m.from&&!n.g&&new Date(n.ts).toDateString()===day;
+      if(m.g){h+=gHtml(m.g,w,m);return}
       const body=esc(m.k?t(m.k,m.p):m.t);
-      const bt=m.btn?(m.done?`<div class="mut">${t("done_"+m.done)}</div>`:m.btn.map(b=>`<button class="ib" data-bt="${m.id}" data-k="${b.k}">${t(b.l)}</button>`).join("")):"";
-      return`<div class="m ${w}">${cur.id==="all"&&w==="in"?`<span class="nm">${nm(m.u)}</span>`:""}${body}<small>${tm(m.ts)}</small>${bt}</div>`}).join("");
-    $("main").scrollTop=$("main").scrollHeight}catch(e){}
+      const rq=m.r?`<div class="rq"><b>${esc(m.r.fn)}</b><br>${esc(m.r.t)}</div>`:"";
+      const rcs=m.re?Object.entries(m.re).filter(([e,a])=>a.length):[];
+      const rc=rcs.length?`<div class="rc">${rcs.map(([e,a])=>`<span class="${a.includes(ME.id)?"mine":""}" data-rx="${m.id}:${e}">${e} ${a.length}</span>`).join("")}</div>`:"";
+      const kb=m.btn?`<div class="kb">${m.done?`<div class="kd">${t("done_"+m.done.split(":")[0])}</div>`:m.btn.map(b=>`<button class="ib" data-bt="${m.id}" data-k="${b.k}">${t(b.l)}</button>`).join("")}</div>`:"";
+      const nmx=cur.id==="all"&&w==="in"&&!sameP?`<span class="nm" data-pf="${esc(m.from)}" style="color:hsl(${hue(m.from)} 60% 45%)">${nm(m.u)}</span>`:"";
+      h+=`<div class="mw ${w}${sameP?" tight":""}"><div class="m ${w}${sameN?"":" tail"}" data-mm="${m.id}">${nmx}${rq}${body}<span class="mt">${m.ed?t("edited")+" ":""}${tm(m.ts)}${w==="me"?TICK:""}</span></div>${rc}${kb}</div>`;
+    });
+    box.innerHTML=h;$("main").scrollTop=$("main").scrollHeight}catch(e){}
 }
-function openChat(c){cur=c;SUB=null;render()}
+function openChat(c){cur=c;SUB=null;PF=null;REPLY=null;EDIT=null;render()}
 async function render(){
   try{ME=await api("/api/me")}catch(e){if(!ME)return}
-  $("nav").innerHTML=[["chats","💬",t("tChats")],["gifts","🎁",t("tGifts")],["market","🛒",t("tMarket")],...(ME.admin?[["admin","🛠",t("tAdmin")]]:[]),["set","⚙️",t("tSet")]].map(x=>`<button class="${tab===x[0]&&!cur?"on":""}" data-t="${x[0]}">${x[1]}<br>${x[2]}</button>`).join("");
-  const m=$("main");
+  const tabs=[["chats","chat",t("tChats")],["gifts","gift",t("tGifts")],["market","bag",t("tMarket")],...(ME.admin?[["admin","shield",t("tAdmin")]]:[]),["set","gear",t("tSet")]];
+  $("nav").innerHTML=tabs.map(x=>`<button class="${tab===x[0]&&!SUB?"on":""}" data-t="${x[0]}">${TI(x[1])}<span>${x[2]}</span></button>`).join("");
+  $("nav").style.display=cur||PF?"none":"flex";
+  const m=$("main");m.className=cur&&!PF?"wall":tab==="chats"&&!SUB&&!PF?"lst":"";
+  if(PF){rmBar();try{await profView(m)}catch(e){m.innerHTML=`<p class="err" style="padding:16px">${esc(e.message)}</p>`}return}
   if(cur){
-    head(`${nm({...cur,name:cname(cur)})}`,"back",cur.kind==="bot"||cur.kind==="channel"?`<span class="pill">${t(cur.kind==="bot"?"kBot":"kChannel")}</span>`:"");
-    const ro=cur.kind==="channel"&&!cur.canPost;
-    if(!$("msgs")){m.innerHTML='<div class="msgs" id="msgs"></div>'}
+    const sub=cur.kind==="bot"?t("kBot"):cur.kind==="channel"?t("kChannel"):cur.kind==="user"&&cur.handle?"@"+cur.handle:"";
+    head(nm({...cur,name:cname(cur)}),"back",av(cur,36),sub,cur.kind==="self"||cur.kind==="all"?"":cur.id);
+    const ro=(cur.kind==="channel"&&!cur.canPost)||cur.id==="sys_freegram";
+    if(!$("msgs"))m.innerHTML='<div class="msgs" id="msgs"></div>';
     rmBar();const b=document.createElement("div");
-    if(ro){b.className="bar ro";b.textContent=t("roChan")}
-    else{b.className="bar";b.innerHTML=(cur.kind==="user"?'<button class="btn g" data-a="gift">🎁</button>':"")+`<input id="in" placeholder="${t("msgPh")}"><button class="btn" data-a="send">➤</button>`}
-    $("app").insertBefore(b,$("nav"));return refreshMsgs();
+    if(ro){b.className="bar ro";b.textContent=cur.id==="sys_freegram"?t("roBot"):t("roChan")}
+    else{b.className="bar";b.innerHTML=`<div class="rp" id="rp"></div>`+(cur.kind==="user"?`<button class="ic" data-a="gift">${TI("clip")}</button>`:"")+`<input id="in" placeholder="${t("msgPh")}" autocomplete="off"><button class="sb" data-a="send">${IC("send")}</button>`}
+    $("app").insertBefore(b,$("nav"));updRp();return refreshMsgs();
   }
   rmBar();
   try{
   if(SUB)return await subView(m);
-  head("FreeGram",null,`<span class="pill">★ ${fmt(ME.stars)}</span>`);
+  head(({chats:t("tChats"),gifts:t("tGifts"),market:t("tMarket"),admin:t("tAdmin"),set:t("tSet")})[tab],null,`<span class="pill">★ ${fmt(ME.stars)}</span>`);
   if(tab==="chats"){const l=await api("/api/chats");
-    m.innerHTML=`<input class="f" id="q" placeholder="${t("searchPh")}"><div id="res"></div>`+l.map(c=>`<div class="row" data-c='${esc(JSON.stringify(c))}'>${av(c)}<div class="t"><b>${nm({...c,name:cname(c)})}</b><div class="s">${esc(lastTxt(c.last))}</div></div></div>`).join("")}
+    m.innerHTML=`<div class="sr">${TI("search")}<input id="q" placeholder="${t("searchPh")}"></div><div id="res"></div>`+l.map(c=>`<div class="cr" data-c='${esc(JSON.stringify(c))}'>${av(c,54)}<div class="t"><div class="l1"><b>${nm({...c,name:cname(c)})}</b><span class="tm">${fmtTime(c.ts)}</span></div><div class="l2"><span class="s">${esc(lastTxt(c.last))}</span>${c.pin?`<span class="pin">${TI("pinI")}</span>`:""}</div></div></div>`).join("")}
   if(tab==="gifts"){const inv=await api("/api/inv");
-    m.innerHTML=`<button class="btn" data-a="shop">🛍 ${t("shop")}</button><h3>${t("myGifts")} (${inv.length})</h3><div class="grid">${inv.map(g=>card(g,g.price==null?`<button data-sell="${g.id}">${t("sell")}</button>`:`<button data-unl="${g.id}">${t("unlist")}</button>`)).join("")}</div>`}
+    m.innerHTML=`<button class="btn w" data-a="gself">${t("buyGift")}</button><div class="sh">${t("myGifts")} (${inv.length})</div><div class="pad"><div class="grid">${inv.map(g=>card(g,gBtns(g))).join("")}</div></div>`}
   if(tab==="market"){const [gl,nl]=await Promise.all([api("/api/market"),api("/api/nmarket")]);
-    m.innerHTML=`<h3>${t("tGifts")}</h3><div class="grid">${gl.map(g=>card(g,g.owner===ME.id?`<button data-unl="${g.id}">${t("unlist")}</button>`:`<button data-buy="${g.id}">${t("buy")}</button>`)).join("")||`<span class="mut">${t("empty")}</span>`}</div><h3>${t("usernames")}</h3>${nl.map(n=>nrow({...n,coll:1},n.mine?`<button class="btn g" data-nunl="${esc(n.u)}">${t("unlist")}</button>`:`<button class="btn" data-nbuy="${esc(n.u)}">${t("buy")}</button>`)).join("")||`<span class="mut">${t("empty")}</span>`}`}
-  if(tab==="admin")m.innerHTML=`<div style="display:flex;gap:8px"><input class="f" id="aq" placeholder="${t("adSearch")}" style="margin:0"><button class="btn" data-a="asearch">🔍</button></div><div id="ares"></div><h3>${t("createBot")}</h3><input class="f" id="bn" placeholder="${t("botName")}"><input class="f" id="bh" placeholder="${t("botHandle")}"><textarea class="f" id="bl" rows="3" placeholder="${t("botLines")}"></textarea><button class="btn" data-a="mkbot">${t("create")}</button>`;
-  if(tab==="set")m.innerHTML=`<div class="prof">${av(ME)}<b>${nm(ME)}</b><div class="mut">${esc(ME.phone)} · @${esc(ME.handle)}</div><div>${esc(ME.bio)}</div></div>
-  <div class="row" data-s="edit">✏️ <div class="t">${t("editProfile")}</div></div><div class="row" data-s="user">@ <div class="t">${t("username")}</div></div>
-  <div class="row" data-s="stars">★ <div class="t">${t("stars")}: ${fmt(ME.stars)}</div></div><div class="row" data-s="dev">💻 <div class="t">${t("devices")}</div></div>
-  <div class="row" data-s="acc">👥 <div class="t">${t("accounts")} (${ACCTS.length}/3)</div></div>
-  <div class="row" data-a="lang">🌐 <div class="t">${t("lang")}: ${t("langName")}</div></div><div class="row" data-a="theme">🌓 <div class="t">${t("theme")}</div></div>
-  <div class="row" data-s="imp">📌 <div class="t">${t("important")}</div></div><div class="row" data-a="logout">🚪 <div class="t">${t("logout")}</div></div>`;
-  }catch(e){m.innerHTML=`<p class="err">${esc(e.message)}</p>`}
+    m.innerHTML=`<div class="sh">${t("tGifts")}</div><div class="pad"><div class="grid">${gl.map(g=>card(g,g.owner===ME.id?`<button data-unl="${g.id}">${t("unlist")}</button>`:`<button data-buy="${g.id}">${t("buy")}</button>`)).join("")||`<span class="mut">${t("empty")}</span>`}</div></div><div class="sh">${t("usernames")}</div><div class="grp">${nl.map(n=>nrow({...n,coll:1},n.mine?`<button class="btn g" data-nunl="${esc(n.u)}">${t("unlist")}</button>`:`<button class="btn" data-nbuy="${esc(n.u)}">${t("buy")}</button>`)).join("")||`<div class="note">${t("empty")}</div>`}</div>`}
+  if(tab==="admin")m.innerHTML=`<div class="sr">${TI("search")}<input id="aq" placeholder="${t("adSearch")}"></div><div id="ares"></div><div class="sh">${t("createBot")}</div><div class="grp"><input id="bn" placeholder="${t("botName")}"><input id="bh" placeholder="${t("botHandle")}"><textarea id="bl" rows="3" placeholder="${t("botLines")}"></textarea></div><button class="btn w" data-a="mkbot">${t("create")}</button>`;
+  if(tab==="set")m.innerHTML=`<div class="prof" data-pf="${esc(ME.id)}" style="cursor:pointer">${av(ME,96)}<b>${nm(ME)}</b><div class="mut">${esc(ME.phone)} · @${esc(ME.handle)}</div>${ME.bio?`<div class="bio">${esc(ME.bio)}</div>`:""}</div>
+  <div class="grp">${li("edit","#3390ec",t("editProfile"),'data-s="edit"')}${li("at","#34c759",t("username"),'data-s="user"',"@"+esc(ME.handle))}${li("star","#ffb400",t("stars"),'data-s="stars"',fmt(ME.stars))}${li("book","#3390ec",t("saved"),`data-c='${esc(JSON.stringify({id:ME.id,kind:"self"}))}'`)}</div>
+  <div class="grp">${li("mon","#ff9500",t("devices"),'data-s="dev"')}${li("users","#af52de",t("accounts"),'data-s="acc"',ACCTS.length+"/3")}${li("pin","#ff3b30",t("important"),'data-s="imp"')}</div>
+  <div class="grp">${li("globe","#5856d6",t("lang"),'data-a="lang"',t("langName"))}${li("moon","#636366",t("theme"),'data-a="theme"')}</div>
+  <div class="grp">${li("out","#ff3b30",t("logout"),'data-a="logout"')}</div><div class="note" style="text-align:center">FreeGram 3.0${BUILD?" · build "+BUILD:""}</div>`;
+  }catch(e){m.innerHTML=`<p class="err" style="padding:16px">${esc(e.message)}</p>`}
 }
+const gBtns=g=>(g.kind==="reg"?`<button data-up="${g.id}">${t("upgrade")}</button><button data-cv="${g.id}">${t("convert")}</button>`:(g.price==null?`<button data-sell="${g.id}">${t("sell")}</button>`:`<button data-unl="${g.id}">${t("unlist")}</button>`))+`<button data-gp="${g.id}">${t(g.pg?"unpinG":"pinG")}</button>`;
 const EMO=["","⭐","🔥","💎","👑","🚀","🎮","🎵","❤️","🌈","🦄","🌙","⚡","🍑","😎"],COL=["","#e53935","#fb8c00","#c9a800","#43a047","#00acc1","#1e88e5","#8e24aa","#ec407a"];
 let ED={};
 async function subView(m){
   head(({edit:t("editProfile"),user:t("username"),stars:t("stars"),dev:t("devices"),acc:t("accounts"),imp:t("important")})[SUB],"sback");
   if(SUB==="edit"){ED=ED.k?ED:{k:1,status:ME.status,color:ME.color};
-    m.innerHTML=`<label class="mut">${t("name")}</label><input class="f" id="pn" value="${esc(ME.name)}"><label class="mut">${t("bio")}</label><input class="f" id="pb" maxlength="120" value="${esc(ME.bio)}"><h3>${t("status")}</h3><div class="emo">${EMO.map(e=>`<span data-st="${e}" class="${ED.status===e?"on":""}">${e||"∅"}</span>`).join("")}</div><h3>${t("nameColor")}</h3><div class="dots">${COL.map(c=>`<span data-co="${c}" class="${ED.color===c?"on":""}" style="${c?"background:"+c:""}">${c?"":"∅"}</span>`).join("")}</div><button class="btn" data-a="saveprof">${t("save")}</button>`}
-  if(SUB==="user")m.innerHTML=`<div class="prof"><b>@${esc(ME.handle)}</b></div><input class="f" id="uh" placeholder="${t("engOnly")}"><button class="btn" data-a="sethandle">${t("setUser")}</button><h3>${t("mkColl")}</h3><p class="mut">${t("collHint")}</p><input class="f" id="uc" placeholder="${t("engOnly")}"><button class="btn" data-a="mkcoll">${t("mkColl")}</button><h3>${t("myNames")}</h3>${ME.names.map(n=>nrow(n,(n.primary?"":`<button class="btn g" data-pri="${esc(n.u)}">★</button>`)+(n.coll?(n.price==null?`<button class="btn g" data-nsell="${esc(n.u)}">${t("sell")}</button>`:`<button class="btn g" data-nunl="${esc(n.u)}">${t("unlist")}</button>`):""))).join("")}`;
-  if(SUB==="stars")m.innerHTML=`<div class="prof"><b>★ ${fmt(ME.stars)}</b></div><input class="f" id="sa" inputmode="numeric" placeholder="${t("starsPh")}"><button class="btn" data-a="stars">${t("setStars")}</button>`;
-  if(SUB==="dev"){const l=await api("/api/sessions");m.innerHTML=l.sort((a,b)=>b.last-a.last).map(s=>`<div class="row" style="cursor:default"><div class="av">${/Android/.test(s.dev)?"📱":/Windows/.test(s.dev)?"💻":"🌐"}</div><div class="t"><b>${esc(s.dev)}</b><div class="s">${s.cur?t("thisDev")+" · ":""}${new Date(s.last).toLocaleString(LANG==="ru"?"ru-RU":"en-US")}</div></div>${s.cur?"":`<button class="btn g" data-kick="${s.sid}">✕</button>`}</div>`).join("")+`<button class="btn" data-a="kickall">${t("kickAll")}</button>`}
-  if(SUB==="acc")m.innerHTML=ACCTS.map((a,i)=>`<div class="row" data-sw="${i}"><div class="av" style="background:hsl(${hue(a.id)} 55% 50%)">${esc([...(a.name||"?")][0].toUpperCase())}</div><div class="t"><b>${esc(a.name)}</b><div class="s">${i===ACT?"✓":""}</div></div></div>`).join("")+(ACCTS.length<3?`<button class="btn" data-a="addacc">${t("addAcc")}</button>`:"");
-  if(SUB==="imp")m.innerHTML=[SYS.ch,SYS.fg,SYS.vb,SYS.ub].map(c=>`<div class="row" data-c='${esc(JSON.stringify(c))}'>${av(c)}<div class="t"><b>${nm(c)}</b><div class="s">${c.handle?"@"+c.handle:t("kChannel")}</div></div></div>`).join("");
+    m.innerHTML=`<div class="prof">${av(ME,96)}</div><div class="grp"><input id="pn" placeholder="${t("name")}" value="${esc(ME.name)}"><input id="pb" placeholder="${t("bio")}" maxlength="120" value="${esc(ME.bio)}"></div><div class="sh">${t("status")}</div><div class="grp emo">${EMO.map(e=>`<span data-st="${e}" class="${ED.status===e?"on":""}">${e||"∅"}</span>`).join("")}</div><div class="sh">${t("nameColor")}</div><div class="grp dots">${COL.map(c=>`<span data-co="${c}" class="${ED.color===c?"on":""}" style="${c?"background:"+c:""}">${c?"":"∅"}</span>`).join("")}</div><button class="btn w" data-a="saveprof">${t("save")}</button>`}
+  if(SUB==="user")m.innerHTML=`<div class="prof"><b>@${esc(ME.handle)}</b></div><div class="grp"><input id="uh" placeholder="${t("engOnly")}"></div><button class="btn w" data-a="sethandle" style="margin-top:0">${t("setUser")}</button><div class="sh">${t("mkColl")}</div><div class="grp"><input id="uc" placeholder="${t("engOnly")}"></div><div class="note">${t("collHint")}</div><button class="btn w" data-a="mkcoll" style="margin-top:6px">${t("mkColl")}</button><div class="sh">${t("myNames")}</div><div class="grp">${ME.names.map(n=>nrow(n,(n.primary?"":`<button class="btn g" data-pri="${esc(n.u)}">★</button>`)+(n.coll?(n.price==null?`<button class="btn g" data-nsell="${esc(n.u)}">${t("sell")}</button>`:`<button class="btn g" data-nunl="${esc(n.u)}">${t("unlist")}</button>`):""))).join("")}</div>`;
+  if(SUB==="stars")m.innerHTML=`<div class="prof"><b>★ ${fmt(ME.stars)}</b></div><div class="grp"><input id="sa" inputmode="numeric" placeholder="${t("starsPh")}"></div><button class="btn w" data-a="stars" style="margin-top:0">${t("setStars")}</button>`;
+  if(SUB==="dev"){const l=await api("/api/sessions");m.innerHTML=`<div class="grp">${l.sort((a,b)=>b.last-a.last).map(s=>`<div class="li" style="cursor:default"><div class="ico" style="background:${/Android/.test(s.dev)?"#34c759":/Windows/.test(s.dev)?"#3390ec":"#ff9500"}">${IC(/Android|Windows/.test(s.dev)?"mon":"globe")}</div><div class="lt"><span><b>${esc(s.dev)}</b><br><small class="mut">${s.cur?t("thisDev")+" · ":""}${new Date(s.last).toLocaleString(loc())}</small></span><span class="rt">${s.cur?"":`<button class="btn g" data-kick="${s.sid}">✕</button>`}</span></div></div>`).join("")}</div><button class="btn w" data-a="kickall" style="background:#ff3b30">${t("kickAll")}</button>`}
+  if(SUB==="acc")m.innerHTML=`<div class="lst">${ACCTS.map((a,i)=>`<div class="cr" data-sw="${i}"><div class="av" style="width:54px;height:54px;background:linear-gradient(${GR[hue(a.id)%7][0]},${GR[hue(a.id)%7][1]})">${esc([...(a.name||"?")][0].toUpperCase())}</div><div class="t"><div class="l1"><b>${esc(a.name)}</b></div><div class="l2"><span class="s">${i===ACT?"✓":""}</span></div></div></div>`).join("")}</div>`+(ACCTS.length<3?`<button class="btn w" data-a="addacc">${t("addAcc")}</button>`:"");
+  if(SUB==="imp")m.innerHTML=`<div class="lst">${[SYS.ch,SYS.fg,SYS.vb,SYS.ub].map(c=>`<div class="cr" data-c='${esc(JSON.stringify(c))}'>${av(c,54)}<div class="t"><div class="l1"><b>${nm(c)}</b></div><div class="l2"><span class="s">${c.handle?"@"+c.handle:t("kChannel")}</span></div></div></div>`).join("")}</div>`;
 }
+async function profView(m){
+  const p=await api("/api/pinfo?id="+encodeURIComponent(PF)),isMe=p.id===ME.id,ent=p.kind==="user"||p.kind==="bot";
+  head(esc(p.name),"pback",isMe?`<button class="hb" data-s="edit" style="color:var(--ac);padding:6px">${t("edit")}</button>`:"");
+  m.className="";
+  const sub=p.kind==="bot"?t("kBot"):p.kind==="channel"?t("kChannel"):"";
+  let h=`<div class="prof">${av(p,96)}<b>${nm(p)}</b><div class="mut">${sub}</div></div><div class="acts"><div data-c='${esc(JSON.stringify(isMe?{id:ME.id,kind:"self"}:p))}'>${TI("chat")}<span>${t("msgBtn")}</span></div>${ent&&!isMe?`<div data-gf="${esc(p.id)}">${TI("gift")}<span>${t("giftBtn")}</span></div>`:""}</div>`;
+  h+=`<div class="grp">${p.handle?`<div class="inf"><small>${t("username")}</small>@${esc(p.handle)}</div>`:""}${p.bio?`<div class="inf"><small>${t("bio")}</small>${esc(p.bio)}</div>`:""}${p.phone?`<div class="inf"><small>${t("phoneL")}</small>${esc(p.phone)}</div>`:""}${p.stars!=null?`<div class="inf"><small>${t("stars")}</small>★ ${fmt(p.stars)}</div>`:""}</div>`;
+  if(p.gifts&&p.gifts.length)h+=`<div class="sh">${t("tGifts")} (${p.gifts.length})</div><div class="pad"><div class="grid">${p.gifts.map(g=>card(g,isMe?`<button data-gp="${g.id}">${t(g.pg?"unpinG":"pinG")}</button>`:"")).join("")}</div></div>`;
+  if(!isMe)h+=`<div class="grp" style="margin-top:18px"><div class="li" data-cm="clear:${esc(p.id)}"><div class="lt"><span>${t("clearHist")}</span></div></div><div class="li" data-cm="del:${esc(p.id)}"><div class="lt"><span style="color:#ff3b30">${t("delChat")}</span></div></div></div>`;
+  if(ME.admin){
+    h+=`<div class="sh">${t("admTools")} · ${t("badge")}</div><div class="grp emo">${["",...BADGES].map(b=>`<span data-vt="${b}" class="${p.badge===b?"on":""}">${b?badge(b):"∅"}</span>`).join("")}</div><label class="note"><input type="checkbox" id="ak"> ${t("ask")}</label>`;
+    if(p.kind==="user"&&!p.admin)h+=`<div class="grp"><div class="li" data-fr="${p.frozen?0:1}"><div class="lt"><span>${t(p.frozen?"unfreeze":"freeze")}</span></div></div><div class="li" data-ks="1"><div class="lt"><span>${t("kickSess")}</span></div></div><div class="li" data-as="1"><div class="lt"><span>${t("setStarsAdm")}</span></div></div><div class="li" data-ban="1"><div class="lt"><span style="color:#ff3b30">${t("ban")}</span></div></div></div>`;
+  }
+  m.innerHTML=h;
+}
+async function giftSheet(to){
+  const [shop,inv]=await Promise.all([api("/api/shopitems"),to===ME.id?Promise.resolve([]):api("/api/inv")]);
+  const mine=inv.filter(g=>g.kind!=="reg");
+  sheet(`<b>${t("sendGift")}</b><div class="sh" style="padding-left:2px">${t("giftShop")}</div><div class="grid">${shop.map(x=>`<div class="gc" data-gs="${x.key}" style="background:linear-gradient(160deg,${x.c[0]},${x.c[1]});cursor:pointer">${gimg(x,44)}<b>${esc(x.n)}</b><div class="s2">★ ${x.cost}</div></div>`).join("")}</div>${mine.length?`<div class="sh" style="padding-left:2px">${t("myNft")}</div><div class="grid">${mine.map(g=>card(g,`<button data-sg="${g.id}">${t("send")}</button>`)).join("")}</div>`:""}`,async(ev,sh)=>{
+    const gs=ev.target.closest("[data-gs]"),sg=ev.target.dataset.sg;
+    if(sg){try{await api("/api/send",{to,gift:sg});sh.remove();toast(t("done"));cur?refreshMsgs():render()}catch(x){toast(x.message)}return}
+    if(gs){const x=shop.find(i=>i.key===gs.dataset.gs);sh.remove();
+      sheet(`<div style="text-align:center">${gimg(x,64)}<b style="display:block">${esc(x.n)}</b></div><input class="f" id="gnote" maxlength="200" placeholder="${t("note")}"><button class="btn w" data-ok="1" style="width:100%;margin:8px 0 0">${t("sendFor",{n:x.cost})}</button>`,async(e2,s2)=>{if(e2.target.dataset.ok){try{await api("/api/sendgift",{to,key:x.key,note:$("gnote").value});s2.remove();toast(t("done"));cur?refreshMsgs():render()}catch(z){toast(z.message)}}})}
+  });
+}
+async function chatAct(act,id){
+  if(act==="pin")await api("/api/pin",{id});
+  else if(act==="clear"){if(!confirm(t("confirmClear")))return;await api("/api/clear",{id})}
+  else if(act==="del"){if(!confirm(t("confirmDelChat")))return;await api("/api/delchat",{id});if(cur&&cur.id===id)cur=null;PF=null}
+  toast(t("done"));render();
+}
+function ctxMenu(c){
+  const row=(a,txt,red)=>`<div class="li" data-cm="${a}:${esc(c.id)}"><div class="lt"><span ${red?'style="color:#ff3b30"':""}>${txt}</span></div></div>`;
+  sheet(`<b>${esc(cname(c))}</b><div class="grp" style="margin:10px 0">${c.fixed?"":row("pin",t(c.pin?"unpinChat":"pinChat"))}${row("clear",t("clearHist"))}${c.fixed?"":row("del",t("delChat"),1)}</div>`,(e,s)=>{if(e.target.closest("[data-cm]"))s.remove()});
+}
+function msgMenu(id){
+  const m=MSGS.find(x=>x.id===id);if(!m||m.g)return;
+  const mine=m.from===ME.id,txt=m.k?t(m.k,m.p):m.t,RX=["👍","❤️","🔥","😂","😮","😢","🎉","💯"];
+  const row=(a,x,red)=>`<div class="li" data-ma="${a}"><div class="lt"><span ${red?'style="color:#ff3b30"':""}>${x}</span></div></div>`;
+  sheet(`<div class="emo" style="text-align:center">${RX.map(e=>`<span data-rxs="${e}">${e}</span>`).join("")}</div><div class="grp" style="margin:8px 0">${row("reply",t("reply"))}${row("copy",t("copy"))}${mine&&!m.k?row("edit",t("editMsg")):""}${mine||ME.admin||m.to===ME.id?row("del",t("delMsg"),1):""}</div>`,async(e,sh)=>{
+    const r=e.target.closest("[data-rxs]"),a=e.target.closest("[data-ma]");
+    if(r){sh.remove();try{await api("/api/react",{id,e:r.dataset.rxs})}catch(x){toast(x.message)}return refreshMsgs()}
+    if(!a)return;sh.remove();const k=a.dataset.ma;
+    if(k==="reply"){REPLY={id,fn:m.fn,t:txt};EDIT=null;updRp()}
+    if(k==="copy"){try{await navigator.clipboard.writeText(txt);toast(t("done"))}catch(x){}}
+    if(k==="edit"){EDIT=id;REPLY=null;$("in").value=m.t;updRp()}
+    if(k==="del"){try{await api("/api/del",{id})}catch(x){toast(x.message)}refreshMsgs()}
+  });
+}
+let LPT=0;
+document.addEventListener("touchstart",e=>{const r=e.target.closest(".cr[data-c]");if(!r||!$("nav")||$("nav").style.display==="none")return;LPT=setTimeout(()=>{LPT=0;NOCLICK=Date.now()+800;ctxMenu(JSON.parse(r.dataset.c))},550)},{passive:true});
+["touchend","touchmove","touchcancel"].forEach(ev=>document.addEventListener(ev,()=>{clearTimeout(LPT)},{passive:true}));
+document.addEventListener("contextmenu",e=>{const r=e.target.closest(".cr[data-c]");if(r&&$("nav").style.display!=="none"){e.preventDefault();ctxMenu(JSON.parse(r.dataset.c))}});
 async function sendMsg(){
-  const i=$("in");if(!i)return;const x=i.value.trim();if(!x)return;i.value="";
-  try{await api("/api/send",{to:cur.id,t:x});refreshMsgs()}catch(e){toast(e.message);if(e.message===t("E_FROZEN"))openChat({...SYS.ub})}
+  const i=$("in");if(!i)return;const x=i.value.trim();if(!x)return;
+  try{
+    if(EDIT){await api("/api/edit",{id:EDIT,t:x});EDIT=null}else await api("/api/send",{to:cur.id,t:x,reply:REPLY&&REPLY.id});
+    i.value="";REPLY=null;updRp();refreshMsgs();
+  }catch(e){toast(e.message);if(e.message===t("E_FROZEN"))openChat({...SYS.ub})}
 }
 async function asearch(){
   const l=await api("/api/admin/users?q="+encodeURIComponent($("aq").value));
-  $("ares").innerHTML=l.map(c=>`<div class="row" data-ad='${esc(JSON.stringify(c))}'>${av(c)}<div class="t"><b>${nm(c)}</b><div class="s">${c.handle?"@"+c.handle:""} ${esc(c.phone||"")} ${c.frozen?"❄️":""}</div></div></div>`).join("");
+  $("ares").innerHTML=l.map(c=>`<div class="row" data-ad='${esc(JSON.stringify(c))}'>${av(c,44)}<div class="t"><b>${nm(c)}</b><div class="s">${c.handle?"@"+c.handle:""} ${esc(c.phone||"")} ${c.frozen?"❄️":""}</div></div></div>`).join("");
 }
 function adminSheet(c){
   const isU=c.kind==="user"&&!c.admin;let ask=false;
@@ -393,9 +555,29 @@ async function checkUpdate(){
 }
 function switchTo(i){ACT=i;saveAcc();cur=null;SUB=null;tab="chats";ME=null;boot()}
 document.addEventListener("click",async e=>{
-  const T=e.target.closest("[data-a],[data-t],[data-c],[data-s],[data-bd],[data-bt],[data-buy],[data-sell],[data-unl],[data-pri],[data-nsell],[data-nunl],[data-nbuy],[data-kick],[data-sw],[data-st],[data-co],[data-ad]");if(!T)return;
+  const T=e.target.closest("[data-a],[data-t],[data-c],[data-pf],[data-gf],[data-gp],[data-up],[data-cv],[data-cm],[data-mm],[data-rx],[data-vt],[data-fr],[data-ks],[data-as],[data-ban],[data-s],[data-bd],[data-bt],[data-buy],[data-sell],[data-unl],[data-pri],[data-nsell],[data-nunl],[data-nbuy],[data-kick],[data-sw],[data-st],[data-co],[data-ad]");if(!T)return;
   const d=T.dataset,a=d.a;
   try{
+  if(Date.now()<NOCLICK)return;
+  if(d.pf){e.preventDefault();PF=d.pf;return render()}
+  if(a==="pback"){PF=null;return render()}
+  if(a==="gift")return giftSheet(cur.id);
+  if(a==="gself")return giftSheet(ME.id);
+  if(d.gf)return giftSheet(d.gf);
+  if(d.gp){await api("/api/gpin",{id:d.gp});return render()}
+  if(d.up){await api("/api/upgrade",{id:d.up});toast(t("done"));return render()}
+  if(d.cv){await api("/api/convert",{id:d.cv});toast(t("done"));return render()}
+  if(d.cm){const q=d.cm.split(":");return chatAct(q[0],q.slice(1).join(":"))}
+  if(d.mm&&!e.target.closest("[data-pf]"))return msgMenu(+d.mm);
+  if(d.rx){const q=d.rx.split(":");try{await api("/api/react",{id:+q[0],e:q[1]})}catch(x){toast(x.message)}return refreshMsgs()}
+  if(a==="rpx"){REPLY=null;EDIT=null;updRp();return}
+  if(d.vt!==undefined&&PF){await api("/api/admin/verify",{id:PF,type:d.vt,ask:!!($("ak")&&$("ak").checked)});toast(t("done"));return render()}
+  if(d.fr!==undefined&&PF){await api("/api/admin/set",{id:PF,frozen:d.fr==="1"});toast(t("done"));return render()}
+  if(d.ks&&PF){await api("/api/admin/kick",{id:PF});toast(t("done"));return}
+  if(d.as&&PF)return ask(t("starsPh"),async v=>{try{await api("/api/admin/set",{id:PF,stars:v});toast(t("done"));render()}catch(x){toast(x.message)}});
+  if(d.ban&&PF){if(!confirm(t("confirmBan")))return;await api("/api/admin/ban",{id:PF});PF=null;toast(t("done"));return render()}
+  if(a==="mkbot"){const r=await api("/api/admin/bot",{name:$("bn").value,handle:$("bh").value,lines:$("bl").value});toast(t("botDone")+": @"+r.handle);$("bn").value=$("bh").value=$("bl").value="";return}
+
   if(d.bd){const k={triangle:"b_jacops",crown:"b_spfizoor",diamond:"b_g7"}[d.bd];if(k)toast(t(k));return}
   if(a==="lang"){LANG=LANG==="en"?"ru":"en";ls.s("fg_lang",LANG);return ME?render():authView()}
   if(a==="pickc")return pickCountry();
@@ -403,7 +585,7 @@ document.addEventListener("click",async e=>{
   if(a==="go")return authGo();
   if(a==="again")return authView("","phone");
   if(a==="cancelAdd"){AU.adding=false;AU.step="phone";return boot()}
-  if(d.t){tab=d.t;cur=null;SUB=null;return render()}
+  if(d.t){tab=d.t;cur=null;SUB=null;PF=null;return render()}
   if(d.c){return openChat(JSON.parse(d.c))}
   if(a==="back"){cur=null;return render()}
   if(d.s){SUB=d.s;ED={};return render()}
@@ -434,13 +616,14 @@ document.addEventListener("click",async e=>{
   if(a==="logout"){ACCTS.splice(ACT,1);ACT=0;saveAcc();ME=null;cur=null;SUB=null;if(es)es.close();return ACCTS.length?boot():authView()}
   if(a==="asearch")return asearch();
   if(a==="mkbot"){await api("/api/admin/bot",{name:$("bn").value,handle:$("bh").value,lines:$("bl").value});toast(t("done"));return}
-  if(d.ad)return adminSheet(JSON.parse(d.ad));
+  if(d.ad){PF=JSON.parse(d.ad).id;cur=null;SUB=null;return render()}
   }catch(x){toast(x.message)}
 });
 document.addEventListener("input",async e=>{
+  if(e.target.id==="aq"){asearch();return}
   if(e.target.id==="q"){const q=e.target.value.trim();if(q.length<2){$("res").innerHTML="";return}
-    try{const l=await api("/api/search?q="+encodeURIComponent(q));$("res").innerHTML=l.map(c=>`<div class="row" data-c='${esc(JSON.stringify(c))}'>${av(c)}<div class="t"><b>${nm(c)}</b><div class="s">@${esc(c.handle)}</div></div></div>`).join("")||`<p class="mut">${t("noRes")}</p>`}catch(x){}}
+    try{const l=await api("/api/search?q="+encodeURIComponent(q));$("res").innerHTML=l.map(c=>`<div class="cr" data-c='${esc(JSON.stringify(c))}'>${av(c,54)}<div class="t"><div class="l1"><b>${nm(c)}</b></div><div class="l2"><span class="s">@${esc(c.handle)}</span></div></div></div>`).join("")||`<p class="mut">${t("noRes")}</p>`}catch(x){}}
 });
-document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.id==="in")sendMsg()});
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.id==="in")sendMsg();if(e.key==="Enter"&&e.target.id==="aq")asearch()});
 ACCTS.length?boot():authView();
 </script></body></html>

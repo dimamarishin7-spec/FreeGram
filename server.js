@@ -39,13 +39,19 @@ async function flush(){
 // ---------- helpers ----------
 const pick=a=>a[Math.floor(Math.random()*a.length)],rint=n=>Math.floor(Math.random()*n);
 const L=s=>String(s||'').trim().toLowerCase();
-const GIFTS=[["🍑","Precious Peach",["#c2569b","#7a2f6b"]],["🐸","Kissed Frog",["#3fae6a","#1f6b45"]],["🔮","Magic Orb",["#5b6cff","#2a2f8f"]],["🧸","Plush Bear",["#e0955a","#9a5226"]],["💎","Astral Gem",["#2bb7d6","#16607a"]],["🔥","Heart Flame",["#ff7a45","#b02a2a"]]];
-const MODELS=["Mardi Gras","Neon Pulse","Frost Byte","Golden Hour","Void","Candy"],BGS=["Dark Lilac","Ocean","Mint","Sunset","Graphite"],SYMS=["Apple","Star","Moon","Bolt","Crown"];
 const BADGES=['blue','white','red','triangle','crown','diamond'];
-const SHOP_PRICE=100,nameCost=u=>u.length<=4?500:u.length<=6?100:10,rarity=u=>u.length<=4?'legendary':u.length<=6?'rare':'common';
+const REG=[['heart','❤️','Heart',15,['#ffd1dc','#ff7a9c']],['bear','🧸','Teddy Bear',15,['#ffe3c9','#f0a56b']],['gift','🎁','Gift',25,['#ffd6d6','#ff7a7a']],['rose','🌹','Rose',25,['#ffd6dc','#e0526b']],['cake','🎂','Cake',50,['#fff0c2','#ffc857']],['bouquet','💐','Bouquet',50,['#e8f5d3','#8fd16a']],['rocket','🚀','Rocket',50,['#d6e6ff','#6aa6ff']],['champagne','🍾','Champagne',50,['#fff2c9','#e6c34b']],['trophy','🏆','Trophy',100,['#fff0b8','#f0b429']],['ring','💍','Ring',100,['#e5e0ff','#9a8cff']],['diamond','💎','Diamond',100,['#d3f3ff','#4fc3f7']]];
+const NFT=[['plushpepe','🐸','Plush Pepe'],['durovscap','🧢','Durov’s Cap'],['heartlocket','💝','Heart Locket'],['preciouspeach','🍑','Precious Peach'],['heroichelmet','🪖','Heroic Helmet'],['astralshard','💠','Astral Shard'],['eternalrose','🌹','Eternal Rose'],['lootbag','💰','Loot Bag'],['iongem','💎','Ion Gem'],['nailbracelet','⛓️','Nail Bracelet'],['scaredcat','🙀','Scared Cat'],['genielamp','🪔','Genie Lamp'],['swisswatch','⌚','Swiss Watch'],['signetring','💍','Signet Ring'],['tophat','🎩','Top Hat'],['toybear','🧸','Toy Bear'],['bondedring','💍','Bonded Ring'],['electricskull','💀','Electric Skull'],['minioscar','🏆','Mini Oscar'],['perfumebottle','🧴','Perfume Bottle'],['lovepotion','🧪','Love Potion'],['kissedfrog','🐸','Kissed Frog'],['magicpotion','⚗️','Magic Potion'],['nekohelmet','🐱','Neko Helmet'],['sakuraflower','🌸','Sakura Flower'],['lightsword','⚔️','Light Sword'],['witchhat','🧙','Witch Hat'],['snowglobe','🔮','Snow Globe']];
+const BACKDROPS=[['Emerald','#6fd3a5','#1c7a5a'],['Onyx Black','#3a3a3a','#0d0d0d'],['Pure Gold','#f7d774','#b8860b'],['Shamrock Green','#6bd16b','#1f7a1f'],['Cappuccino','#d1b49a','#7a5c46'],['Midnight Blue','#3b5bdb','#10163a'],['Navy Blue','#4a78c2','#14284b'],['Silver Blue','#b6c6dc','#6a7f9c'],['Sky Blue','#8fd3ff','#3a8fd1'],['Electric Purple','#c27bff','#5b1fa8'],['Amber','#ffc857','#b36b00'],['Lemongrass','#e0ee7a','#8a9a1f'],['Mystic Pearl','#f3d9ff','#a78bc4'],['Fire Engine','#ff6b5a','#9b1c10'],['Satin Gold','#e8c97a','#a67c2a'],['Rosewood','#c47a7a','#6b2e2e'],['Pacific Green','#4fd1c5','#16756c'],['Tomato','#ff7a59','#a82a10'],['Strawberry','#ff7fa0','#b5214b'],['Mint Green','#a8f0c6','#4fae80'],['Burgundy','#b0405a','#4a0e1f'],['Pistachio','#c5e89a','#79a33a'],['Copper','#e29a6a','#8a4a22'],['Desert Sand','#e9d3a1','#a88a4a'],['Carrot Juice','#ffa24a','#b3500b'],['Camo Green','#8aa56a','#3b4d28'],['Dark Lilac','#9a7fbf','#3d2a5e']];
+const MODELS=['Mardi Gras','Neon Pulse','Frost Byte','Golden Hour','Void','Candy','Aurora','Ember','Ocean Breeze','Royal','Retro','Pixel','Cosmic','Velvet','Chrome'],SYMS=['Apple','Star','Moon','Bolt','Crown','Heart','Clover','Skull','Flower','Fire','Gem','Cat','Snowflake','Cherry','Ghost'];
+const REACTS=['👍','❤️','🔥','😂','😮','😢','🎉','👎','💯','🤔','🙏','😍'];
+const nameCost=u=>u.length<=4?500:u.length<=6?100:10,rarity=u=>u.length<=4?'legendary':u.length<=6?'rare':'common';
 const FG='sys_freegram',UB='sys_unban',VB='sys_verif',CH='ch_freegram';
-const mkGift=owner=>{const g=pick(GIFTS),id='g'+(db.seq++);return db.gifts[id]={id,owner,e:g[0],n:g[1],c:g[2],num:1+rint(9999),model:pick(MODELS),bg:pick(BGS),sym:pick(SYMS),price:null}};
-const pubG=g=>({id:g.id,owner:g.owner,e:g.e,n:g.n,c:g.c,num:g.num,model:g.model,bg:g.bg,sym:g.sym,price:g.price});
+const fx=()=>Math.round((0.5+Math.random()*4.5)*10)/10;
+function rollNft(g){const b=pick(BACKDROPS);g.kind='nft';g.num=1+rint(9999);g.model=pick(MODELS);g.bg=b[0];g.c=[b[1],b[2]];g.sym=pick(SYMS);g.r=[fx(),fx(),fx()];g.price=null;return g}
+const mkGift=owner=>{const n=pick(NFT),id='g'+(db.seq++);return db.gifts[id]=rollNft({id,owner,key:n[0],e:n[1],n:n[2]})};
+const mkReg=(owner,x)=>{const id='g'+(db.seq++);return db.gifts[id]={id,owner,kind:'reg',key:x[0],e:x[1],n:x[2],cost:x[3],c:x[4],price:null}};
+const pubG=g=>({id:g.id,owner:g.owner,kind:g.kind||'nft',key:g.key||'',e:g.e,n:g.n,c:g.c,num:g.num,model:g.model,bg:g.bg,sym:g.sym,r:g.r,cost:g.cost,price:g.price,pg:!!(db.users[g.owner]&&(db.users[g.owner].pg||[]).includes(g.id))});
 const addName=(owner,u,coll)=>db.names[L(u)]={u,owner,price:null,r:rarity(u),coll:!!coll};
 const randName=owner=>{let u;do{u='user'+(10000+rint(90000))}while(db.names[u]);return addName(owner,u)};
 const ownedNames=id=>Object.values(db.names).filter(n=>n.owner===id);
@@ -125,15 +131,14 @@ function sysChat(me,U,to,t){
     if(!e)return botSay(VB,me,'v_nf');
     if(e.badge||e.admin)return botSay(VB,me,'v_has');
     const a=adminId();
-    if(a)botSay(FG,a,'v_req',{who:U.name+' @'+handle(me),target:'@'+n.u},[{k:'vgive',l:'btnGive'},{k:'ignore',l:'btnIgnore'}],{target:n.owner,req:me});
+    if(a)botSay(FG,a,'v_req',{who:U.name+' @'+handle(me),target:'@'+n.u},[...BADGES.map(x=>({k:'vgive:'+x,l:'bt_'+x})),{k:'ignore',l:'btnIgnore'}],{target:n.owner,req:me});
     return botSay(VB,me,'v_sent');
   }
-  if(to===FG)return botSay(FG,me,'m_fgreply');
 }
-function pressButton(me,U,m,k){
-  const bd=m.bd||{};
+function pressButton(me,U,m,k0){
+  const bd=m.bd||{},[k,ty]=String(k0).split(':');
   if(k==='unfreeze'&&U.admin){const T=db.users[bd.uid];if(T){T.frozen=false;T.appeal=false;botSay(UB,T.id,'ub_unfrozen')}}
-  else if(k==='vgive'&&U.admin){const e=ent(bd.target);if(e){e.badge=bd.type||'blue';if(bd.req&&db.users[bd.req])botSay(VB,bd.req,'v_ok')}}
+  else if(k==='vgive'&&U.admin&&BADGES.includes(ty)){const e=ent(bd.target);if(e){e.badge=ty;if(bd.req&&db.users[bd.req])botSay(VB,bd.req,'v_ok')}}
   else if(k==='vagree'&&bd.owner===me){const e=ent(bd.target);if(e)e.badge=bd.type||'blue';botSay(FG,me,'v_ok')}
   else if(k==='vdecl'&&bd.owner===me)botSay(FG,me,'v_no');
   else if(k!=='ignore')return false;
@@ -151,11 +156,15 @@ async function latest(){
 // ---------- http ----------
 const CORS={'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'Authorization, Content-Type','Access-Control-Allow-Methods':'GET,POST,OPTIONS'};
 function serveStatic(p,res){
+  const gm=/^\/gifts\/([a-z0-9_-]+)\.(png|webp|jpg|gif)$/.exec(p);
+  if(gm){const ct={png:'image/png',webp:'image/webp',jpg:'image/jpeg',gif:'image/gif'}[gm[2]],f1=path.join(__dirname,'gifts',gm[1]+'.'+gm[2]),f2=path.join(__dirname,'gift_'+gm[1]+'.'+gm[2]);
+    fs.readFile(f1,(e,d)=>{if(e)return fs.readFile(f2,(e2,d2)=>{if(e2){res.writeHead(404);return res.end()}res.writeHead(200,{'Content-Type':ct,'Cache-Control':'public,max-age=3600'});res.end(d2)});res.writeHead(200,{'Content-Type':ct,'Cache-Control':'public,max-age=3600'});res.end(d)});return}
+  if(false){fs.readFile('x',(e,d)=>{if(e){res.writeHead(404);return res.end()}res.writeHead(200,{'Content-Type':{png:'image/png',webp:'image/webp',jpg:'image/jpeg',gif:'image/gif'}[gm[2]],'Cache-Control':'public,max-age=3600'});res.end(d)});return}
   const ok={'/':['index.html','text/html; charset=utf-8'],'/index.html':['index.html','text/html; charset=utf-8'],'/icon.png':['icon.png','image/png']}[p];
   if(!ok){res.writeHead(404);return res.end('404')}
   fs.readFile(path.join(__dirname,ok[0]),(e,d)=>{if(e){res.writeHead(404);return res.end('404')}res.writeHead(200,{'Content-Type':ok[1]});res.end(d)});
 }
-const WRITE=new Set(['/api/send','/api/shop','/api/list','/api/buy','/api/names','/api/nlist','/api/nbuy','/api/stars','/api/handle']);
+const WRITE=new Set(['/api/send','/api/edit','/api/del','/api/react','/api/sendgift','/api/upgrade','/api/convert','/api/list','/api/buy','/api/names','/api/nlist','/api/nbuy','/api/stars','/api/handle']);
 function login(res,U,ip,dev){
   const token=crypto.randomBytes(24).toString('hex');
   db.tokens[token]={id:U.id,sid:crypto.randomBytes(6).toString('hex'),dev:String(dev||'Unknown').slice(0,60),ts:Date.now(),last:Date.now()};
@@ -215,26 +224,32 @@ async function route(req,res,p,url,b){
     return send(res,200,Object.entries(db.names).filter(([k,n])=>k.includes(q)&&ent(n.owner)).slice(0,20).map(([k,n])=>({...card(n.owner),handle:n.u})));
   }
   if(p==='/api/chats'){
-    const partners={};let lastAll=null,lastSelf=null,lastCh=null;
-    for(const m of db.msgs){if(m.to===CH)lastCh=m;else if(m.to==='all')lastAll=m;else if(m.from===me&&m.to===me)lastSelf=m;else if(m.from===me||m.to===me)partners[m.from===me?m.to:m.from]=m}
-    const txt=m=>m?(m.g?'🎁':m.k?{k:m.k,p:m.p}:m.t):'',pins=U.pins||[],lastFg=partners[FG];delete partners[FG];
-    const list=Object.entries(partners).filter(([o])=>db.users[o]).map(([o,m])=>({...card(o),last:txt(m),mid:m.id,pin:pins.includes(o)})).sort((a,b)=>(b.pin-a.pin)||(b.mid-a.mid));
-    return send(res,200,[{...card(CH),last:txt(lastCh),fixed:1,canPost:me===db.chats[CH].owner},{...card(FG),last:txt(lastFg),fixed:1},{id:me,kind:'self',last:txt(lastSelf),fixed:1},{id:'all',kind:'all',last:txt(lastAll),fixed:1},...list]);
+    const clr=U.clr||{},hid=U.hid||{},last={};
+    for(const m of db.msgs){
+      let k=null;
+      if(m.to===CH)k=CH;else if(m.to==='all')k='all';else if(m.from===me&&m.to===me)k=me;else if(m.from===me||m.to===me)k=m.from===me?m.to:m.from;
+      if(k!==null&&m.ts>(clr[k]||0))last[k]=m;
+    }
+    const txt=m=>m?(m.g?'🎁':m.k?{k:m.k,p:m.p}:m.t):'',pins=U.pins||[],L2=k=>last[k];
+    const list=Object.entries(last).filter(([k,m])=>![CH,'all',me,FG].includes(k)&&db.users[k]&&m.ts>(hid[k]||0)).map(([o,m])=>({...card(o),last:txt(m),ts:m.ts,mid:m.id,pin:pins.includes(o)})).sort((a,b)=>(b.pin-a.pin)||(b.mid-a.mid));
+    const f=(c,k,x)=>({...c,last:txt(L2(k)),ts:L2(k)&&L2(k).ts,fixed:1,pin:true,...x});
+    return send(res,200,[f(card(CH),CH,{canPost:me===db.chats[CH].owner}),f(card(FG),FG),f({id:me,kind:'self'},me),f({id:'all',kind:'all'},'all'),...list]);
   }
   if(p==='/api/pin'){const id=String(b.id||'');U.pins=U.pins||[];const i=U.pins.indexOf(id);if(i>=0)U.pins.splice(i,1);else if(U.pins.length<10)U.pins.push(id);save();return send(res,200,{ok:1})}
   if(p==='/api/messages'){
-    const w=url.searchParams.get('with');
-    const r=db.msgs.filter(m=>db.chats[w]||w==='all'?m.to===w:w===me?(m.from===me&&m.to===me):((m.from===me&&m.to===w)||(m.from===w&&m.to===me))).slice(-100);
+    const w=url.searchParams.get('with'),c0=(U.clr||{})[w]||0;
+    const r=db.msgs.filter(m=>m.ts>c0&&(db.chats[w]||w==='all'?m.to===w:w===me?(m.from===me&&m.to===me):((m.from===me&&m.to===w)||(m.from===w&&m.to===me)))).slice(-100);
     return send(res,200,r.map(m=>{const s=card(m.from);return{...m,u:{name:s.name,badge:s.badge,color:s.color,status:s.status}}}));
   }
   if(p==='/api/send'){
     const to=String(b.to||''),t=String(b.t||'').trim().slice(0,2000);
     if(to!=='all'&&!db.users[to]&&!db.chats[to])return err(res,404,'E_NOUSER');
-    if(db.chats[to]&&db.chats[to].owner!==me)return err(res,403,'E_NOPOST');
+    if((db.chats[to]&&db.chats[to].owner!==me)||to===FG)return err(res,403,'E_NOPOST');
     const m={from:me,fn:U.name,to,t};
+    if(b.reply){const r=db.msgs.find(x=>x.id===+b.reply);if(r)m.r={id:r.id,fn:r.fn,t:r.g?'🎁':r.k?'':String(r.t).slice(0,60)}}
     if(b.gift){
       const g=db.gifts[b.gift];
-      if(!g||g.owner!==me)return err(res,403,'E_NOTYOURS');
+      if(!g||g.owner!==me||g.kind==='reg')return err(res,403,'E_NOTYOURS');
       if(to==='all'||db.chats[to])return err(res,400,'E_GIFT_DM');
       g.owner=to;g.price=null;m.g=pubG(g);m.t='';
     }else if(!t)return err(res,400,'E_EMPTY');
@@ -244,15 +259,35 @@ async function route(req,res,p,url,b){
     else if(bot&&bot.bot)setTimeout(()=>{if(db.users[bot.id])say({from:to,fn:bot.name,to:me,t:pick(bot.lines&&bot.lines.length?bot.lines:['Hi! I trade gifts and usernames, check the market.','List a gift on the market, I will take a look 👀','I want a rare @name, who has one?'])})},1200);
     return send(res,200,{ok:1});
   }
+  if(p==='/api/edit'){const m=db.msgs.find(x=>x.id===+b.id&&x.from===me&&!x.g&&!x.k),t=String(b.t||'').trim().slice(0,2000);if(!m)return err(res,403,'E_NOTYOURS');if(!t)return err(res,400,'E_EMPTY');m.t=t;m.ed=1;notify(m);save();return send(res,200,{ok:1})}
+  if(p==='/api/del'){const i=db.msgs.findIndex(x=>x.id===+b.id&&(x.from===me||U.admin||x.to===me));if(i<0)return err(res,403,'E_NOTYOURS');const m=db.msgs.splice(i,1)[0];notify(m);save();return send(res,200,{ok:1})}
+  if(p==='/api/react'){
+    const m=db.msgs.find(x=>x.id===+b.id&&(x.to==='all'||db.chats[x.to]||x.from===me||x.to===me));
+    if(!m||!REACTS.includes(b.e))return err(res,400,'E_EMPTY');
+    m.re=m.re||{};const a=m.re[b.e]=m.re[b.e]||[],i=a.indexOf(me);if(i>=0)a.splice(i,1);else a.push(me);
+    notify(m);save();return send(res,200,{ok:1});
+  }
   if(p==='/api/btn'){const m=db.msgs.find(x=>x.id===+b.id&&x.to===me&&x.btn&&!x.done&&x.btn.some(y=>y.k===b.k));return m&&pressButton(me,U,m,b.k)?send(res,200,{ok:1}):err(res,403,'E_NOTYOURS')}
   if(p==='/api/sessions')return send(res,200,Object.entries(db.tokens).filter(([t,s])=>s.id===me).map(([t,s])=>({sid:s.sid,dev:s.dev,ts:s.ts,last:s.last,cur:t===tok})));
   if(p==='/api/kick'){for(const t in db.tokens)if(db.tokens[t].id===me&&db.tokens[t].sid===b.sid)delete db.tokens[t];save();return send(res,200,{ok:1})}
   if(p==='/api/kickall'){for(const t in db.tokens)if(db.tokens[t].id===me&&t!==tok)delete db.tokens[t];save();return send(res,200,{ok:1})}
   if(p==='/api/inv')return send(res,200,Object.values(db.gifts).filter(g=>g.owner===me).map(pubG));
-  if(p==='/api/shop'){
-    if(U.stars<SHOP_PRICE)return err(res,400,'E_NOTENOUGH');
-    if(Object.values(db.gifts).filter(g=>g.owner===me).length>=300)return err(res,400,'E_LIMIT');
-    U.stars-=SHOP_PRICE;const g=mkGift(me);save();return send(res,200,pubG(g));
+  if(p==='/api/shopitems')return send(res,200,REG.map(x=>({key:x[0],e:x[1],n:x[2],cost:x[3],c:x[4]})));
+  if(p==='/api/sendgift'){
+    const x=REG.find(r=>r[0]===b.key),to=String(b.to||'');
+    if(!x||!db.users[to])return err(res,404,'E_NOUSER');
+    if(U.stars<x[3])return err(res,400,'E_NOTENOUGH');
+    U.stars-=x[3];const g=mkReg(to,x);say({from:me,fn:U.name,to,t:String(b.note||'').slice(0,200),g:pubG(g)});return send(res,200,{ok:1});
+  }
+  if(p==='/api/upgrade'){const g=db.gifts[b.id];if(!g||g.owner!==me||g.kind!=='reg')return err(res,403,'E_NOTYOURS');if(U.stars<25)return err(res,400,'E_NOTENOUGH');U.stars-=25;delete g.cost;rollNft(g);save();return send(res,200,pubG(g))}
+  if(p==='/api/convert'){const g=db.gifts[b.id];if(!g||g.owner!==me||g.kind!=='reg')return err(res,403,'E_NOTYOURS');U.stars+=Math.floor(g.cost*.85);delete db.gifts[g.id];save();return send(res,200,{ok:1})}
+  if(p==='/api/gpin'){const g=db.gifts[b.id];if(!g||g.owner!==me)return err(res,403,'E_NOTYOURS');U.pg=U.pg||[];const i=U.pg.indexOf(g.id);if(i>=0)U.pg.splice(i,1);else if(U.pg.length<6)U.pg.push(g.id);save();return send(res,200,{ok:1})}
+  if(p==='/api/clear'||p==='/api/delchat'){const id=String(b.id||'');U.clr=U.clr||{};U.clr[id]=Date.now();if(p==='/api/delchat'){U.hid=U.hid||{};U.hid[id]=Date.now()}save();return send(res,200,{ok:1})}
+  if(p==='/api/pinfo'){
+    const id=String(url.searchParams.get('id')||''),e=ent(id);if(!e)return err(res,404,'E_NOUSER');
+    const u=db.users[id],pg=(u&&u.pg)||[];
+    const gl=Object.values(db.gifts).filter(g=>g.owner===id).sort((a,b)=>pg.includes(b.id)-pg.includes(a.id)).slice(0,40).map(pubG);
+    return send(res,200,{...card(id),bio:u?u.bio||'':'',phone:U.admin&&u?u.phone||'':'',stars:U.admin&&u?u.stars:undefined,frozen:!!(u&&u.frozen),admin:!!(u&&u.admin),gifts:gl});
   }
   if(p==='/api/market')return send(res,200,Object.values(db.gifts).filter(g=>g.price!=null).map(pubG));
   if(p==='/api/list'){const g=db.gifts[b.id],pr=Math.floor(+b.price);if(!g||g.owner!==me)return err(res,403,'E_NOTYOURS');if(!(pr>=1&&pr<=1e12))return err(res,400,'E_PRICE');g.price=pr;save();return send(res,200,{ok:1})}
@@ -278,7 +313,7 @@ async function route(req,res,p,url,b){
     const u=String(b.u||'').trim().replace(/^@/,''),l=L(u);
     if(!nameOk(u))return err(res,400,'E_NAMEFMT');
     if(db.names[l])return err(res,409,'E_TAKEN');
-    if(ownedNames(me).length>=30)return err(res,400,'E_LIMIT');
+    if(ownedNames(me).length>=40)return err(res,400,'E_LIMIT');
     if(U.stars<nameCost(u))return err(res,400,'E_NOTENOUGH');
     U.stars-=nameCost(u);addName(me,u,true);save();return send(res,200,{ok:1});
   }
@@ -319,10 +354,11 @@ async function route(req,res,p,url,b){
       save();return send(res,200,{ok:1});
     }
     if(p==='/api/admin/bot'){
-      const h=String(b.handle||'').trim().replace(/^@/,'');
+      let h=String(b.handle||'').trim().replace(/^@/,'').replace(/[^A-Za-z0-9_]/g,'');
+      if(!h)h=String(b.name||'').toLowerCase().replace(/[^a-z0-9_]/g,'');
       if(!nameOk(h))return err(res,400,'E_NAMEFMT');
       if(db.names[L(h)]||db.users['ai_'+L(h)])return err(res,409,'E_TAKEN');
-      makeBot(h,String(b.name||h).slice(0,30),String(b.lines||'').split(/\n/).map(s=>s.trim()).filter(Boolean).slice(0,20));save();return send(res,200,{ok:1});
+      const bot=makeBot(h,String(b.name||h).slice(0,30),String(b.lines||'').split(/\n/).map(s=>s.trim()).filter(Boolean).slice(0,20));save();return send(res,200,{ok:1,id:bot.id,handle:h});
     }
   }
   return err(res,404,'E_NOMETHOD');
@@ -346,6 +382,7 @@ const server=http.createServer(async(req,res)=>{
   if(d)db=Object.assign(db,d);
   sysBot(FG,'FreeGram','freegram','blue');sysBot(UB,'Ban_Bot','unban_bot');sysBot(VB,'Verification','verification');
   if(!traders().length){makeBot('ai_alice','AI Alice');makeBot('ai_neo','AI Neo');makeBot('ai_max','AI Max')}
+  for(const g of Object.values(db.gifts)){if(!g.kind){g.kind='nft';const n=NFT.find(x=>x[2]===g.n);g.key=n?n[0]:String(g.n||'').toLowerCase().replace(/[^a-z0-9]/g,'');if(!g.r)g.r=[fx(),fx(),fx()]}}
   initAdmin();save();
   setInterval(botTick,15000);
   const stop=async()=>{dirty=true;try{await flush()}catch(e){}process.exit(0)};
