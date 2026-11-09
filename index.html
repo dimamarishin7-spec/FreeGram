@@ -78,6 +78,8 @@ input.f,textarea.f{width:100%;border:0;background:var(--bg);color:var(--tx);bord
 .rq{border-left:2px solid var(--ac);padding:1px 8px;margin:0 0 4px;font-size:13px;color:var(--ac);border-radius:2px}.rq b{font-weight:600}
 .bar{flex-wrap:wrap}.rp{flex-basis:100%;display:none;align-items:center;justify-content:space-between;border-left:2px solid var(--ac);padding:2px 8px;font-size:13px;color:var(--mut)}.rp .ic{width:28px;height:28px}
 .m{cursor:pointer}.nm{cursor:pointer}.hc[data-pf],.hr[data-pf]{cursor:pointer}
+.cw{position:relative;overflow:hidden;background:var(--list)}.cw .cr{position:relative;transition:transform .2s;touch-action:pan-y}
+.acl,.acr{position:absolute;top:0;bottom:0;display:flex}.acl{left:0}.acr{right:0}.acl button,.acr button{border:0;color:#fff;font:inherit;font-size:12px;width:76px;padding:0 4px;cursor:pointer}.acl button{background:#3390ec}
 </style></head><body>
 <div id="app"><header id="hd"></header><main id="main"></main><nav id="nav"></nav></div><div id="toast"></div>
 <script>
@@ -148,6 +150,76 @@ admTools|Admin tools|Инструменты админа
 botDone|Bot created|Бот создан
 phoneL|Phone|Телефон
 pinned|Pinned|Закреплено
+also|and also:|а также:
+estPrice|estimated price|примерная цена
+owner|Owner|Владелец
+giftedBy|Gifted by|Подарил
+comment|Comment|Комментарий
+comm|25% commission|комиссия 25%
+offerBtn|Offer to buy|Предложить купить
+offerSent|Offer sent|Предложение отправлено
+btnSell|Sell|Продать
+btnDecline|Decline|Отказаться
+btnBuy|Buy|Купить
+m_sold|Your gift {n} was bought by {who} for ★{price}. You received ★{got} (25% commission).|Ваш подарок {n} купил {who} за ★{price}. Вы получили ★{got} (комиссия 25%).
+m_sold_name|Your username {n} was bought by {who} for ★{price}.|Ваш юзернейм {n} купил {who} за ★{price}.
+m_offer|{who} offers ★{price} for your gift {n}. Sell it for this price? (25% commission)|{who} предлагает ★{price} за ваш подарок {n}. Продать за эту цену? (комиссия 25%)
+m_offer_ok|{who} sold you {n} for ★{price}.|{who} продал вам {n} за ★{price}.
+m_offer_no|{who} declined your offer for {n}.|{who} отклонил ваше предложение на {n}.
+m_offer_fail|The deal failed: the buyer has not enough stars or the gift is gone.|Сделка не состоялась: у покупателя не хватает звёзд или подарка уже нет.
+done_offeryes|Sold|Продано
+done_offerno|Declined|Отклонено
+done_anbuy|Done|Готово
+an_start|Send any number that starts with +888 followed by 4 or 5 digits, for example +888 12345.|Отправьте любой номер, который начинается с +888 и дальше 4 или 5 цифр, например +888 12345.
+an_bad|Wrong format. The number must start with +888 and have 4 or 5 more digits.|Неверный формат. Номер должен начинаться с +888, дальше 4 или 5 цифр.
+an_taken|{num} is already taken.|Номер {num} занят.
+an_have|Your account already has an anonymous number.|У вашего аккаунта уже есть анонимный номер.
+an_price|{num} is free! Price: ★{price}.|Номер {num} свободен! Цена: ★{price}.
+an_bought|Done! {num} is yours. Send /code to get your login code.|Готово! Номер {num} ваш. Отправьте /code, чтобы получить код для входа.
+an_nostars|Not enough stars.|Не хватает звёзд.
+an_code|Your code for {num}: {code}\\nIt never changes. Use it to log in or to link this number to another account.|Ваш код для {num}: {code}\\nОн никогда не меняется. Используйте его для входа или чтобы привязать номер к другому аккаунту.
+an_nonum|You have no anonymous number. Send /start to buy one.|У вас нет анонимного номера. Отправьте /start, чтобы купить.
+newChat|New chat|Новый чат
+newGroup|New group|Новая группа
+newChannel|New channel|Новый канал
+groupName|Name|Название
+chanDesc|Description|Описание
+optional|optional|необязательно
+join|Join|Вступить
+leave|Leave|Покинуть
+members|members|участников
+addMember|Add member|Добавить участника
+delGroup|Delete|Удалить
+archive|Archive|Архив
+unarchive|Unarchive|Из архива
+sellName|Sell a username|Продать юзернейм
+sellNameHint|Create a collectible username first: Settings → Username → Make collectible.|Сначала создайте коллекционный юзернейм: Настройки → Юзернейм → Сделать коллекционный.
+revoke|Remove badge|Отозвать галочку
+gp|Gift pictures|Картинки подарков
+privacy|Privacy and Security|Защита
+phoneNum|Phone number|Номер телефона
+changeNum|Change number|Сменить номер
+linkAnon|Link anonymous number|Привязать анонимный номер
+rmAnon|Remove anonymous number|Убрать анонимный номер
+rmReg|Remove regular number|Убрать обычный номер
+regNum|Regular number|Обычный номер
+anonNum|Anonymous number|Анонимный номер
+anonLinkHint|Get a number from @anon_number. Enter it with its /code.|Номер можно купить у @anon_number. Введите его вместе с кодом из /code.
+hidePhone|Hide my phone number|Скрыть мой номер
+noMsgs|Only people I wrote to can message me|Писать мне могут только те, кому писал я
+noMsgsHint|Others will not be able to start a chat with you.|Остальные не смогут написать вам первыми.
+paidMsg|Price per message from new people (stars)|Цена сообщения от новых людей (звёзды)
+paidMsgHint|0 means free. People you wrote to can still message you for free.|0 значит бесплатно. Тем, кому вы писали, писать можно бесплатно.
+chPw|Change password|Сменить пароль
+oldPw|Old password|Старый пароль
+newPw2|New password|Новый пароль
+on|On|Вкл
+off|Off|Выкл
+msgPrice|Message price|Цена сообщения
+E_NOMSG|This user does not accept messages from new people|Этот человек не принимает сообщения от новых людей
+E_TWOANON|You can have only one anonymous number|Можно иметь только один анонимный номер
+E_NEEDONE|You need at least one number|Нужен хотя бы один номер
+E_ACCLIMIT|You can have at most 3 accounts on this device|На устройстве можно не больше 3 аккаунтов
 general|General chat|Общий чат
 saved|Saved Messages|Избранное
 searchPh|Search by username|Поиск по юзернейму
@@ -260,7 +332,7 @@ E_EXISTS|This number is already registered|Этот номер уже зарег
 E_LOGIN|Wrong phone or password|Неверный номер или пароль
 E_ANON_REG|Anonymous numbers cannot be registered here yet|Анонимные номера пока нельзя зарегистрировать
 E_ANON_CODE|Anonymous numbers sign in with a code|Анонимные номера входят по коду
-E_ANON_SOON|Anonymous numbers will be available later via the bot|Анонимные номера будут доступны позже через бота
+E_ANON_SOON|No account uses this number. Get one from @anon_number|Этот номер ни к какому аккаунту не привязан. Купить номер можно у @anon_number
 E_CODE|Wrong code|Неверный код
 E_AUTH|Session ended, log in again|Сеанс завершён, войдите снова
 E_FROZEN|Your account is frozen|Аккаунт заморожен
@@ -297,11 +369,11 @@ try{ACCTS=JSON.parse(ls.g("fg_accts")||"[]")}catch(e){}
 ACT=Math.min(+ls.g("fg_act")||0,Math.max(ACCTS.length-1,0));
 const TOK=()=>ACCTS[ACT]?ACCTS[ACT].tok:"";
 const saveAcc=()=>{ls.s("fg_accts",JSON.stringify(ACCTS));ls.s("fg_act",ACT)};
-let PF=null,MSGS=[],REPLY=null,EDIT=null,NOCLICK=0;
+let PF=null,MSGS=[],REPLY=null,EDIT=null,NOCLICK=0,IMGV=0,ARCHV=false,GCAT=null;
 async function api(p,b,tok){
   let r;try{r=await fetch(API+p,{method:b?"POST":"GET",headers:{"Content-Type":"application/json",Authorization:"Bearer "+(tok||TOK())},body:b?JSON.stringify(b):undefined})}catch(e){throw new Error(t("noConn"))}
   const j=await r.json().catch(()=>({}));
-  if(!r.ok){if(r.status===401&&ME&&!tok){ACCTS.splice(ACT,1);ACT=0;saveAcc();ME=null;toast(t("E_AUTH"));ACCTS.length?boot():authView()}throw new Error(t(j.error||"E_SERVER"))}
+  if(!r.ok){if(r.status===401&&ME&&!tok){ACCTS.splice(ACT,1);ACT=0;saveAcc();ME=null;toast(t("E_AUTH"));ACCTS.length?boot():authView()}{const er=new Error(t(j.error||"E_SERVER"));er.status=r.status;throw er}}
   return j;
 }
 function toast(m){const e=$("toast");e.textContent=m;e.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display="none",2600)}
@@ -314,7 +386,7 @@ const badge=b=>b&&BD[b]?`<svg class="bd" viewBox="0 0 16 16" data-bd="${b}">${BD
 const nm=c=>`<span style="${c.color?"color:"+c.color:""}">${esc(c.name)}</span>${badge(c.badge)}${c.status?" "+esc(c.status):""}`;
 const hue=s=>{let h=0;for(const ch of String(s))h=(h*31+ch.charCodeAt(0))%360;return h};
 const GR=[["#ff885e","#ff516a"],["#ffcd6a","#ffa85c"],["#82b1ff","#665fff"],["#a0de7e","#54cb68"],["#53edd6","#28c9b7"],["#72d5fd","#2a9ef1"],["#e0a2f3","#d669ed"]];
-const P={edit:"M17 3a2.8 2.8 0 0 1 4 4L7.5 20.5 2 22l1.5-5.5z",mon:"M3 4h18v12H3zM8 21h8M12 16v5",users:"M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8",globe:"M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z",moon:"M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z",pin:"M12 17v5M9 3h6l-1 7 3 3v2H7v-2l3-3z",out:"M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9",book:"M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z",star:"M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z",at:"M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.9 7.9",shield:"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",gift:"M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z",bag:"M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0",chat:"M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.3A8 8 0 1 1 21 12z",gear:"M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z",clip:"M21 11.5l-8.5 8.5a5 5 0 0 1-7-7L14 4.5a3.3 3.3 0 0 1 4.7 4.7L10 18a1.7 1.7 0 0 1-2.4-2.4l7.8-7.8",send:"M12 19V6M6 12l6-6 6 6",search:"M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3",pinI:"M12 17v5M9 3h6l-1 7 3 3v2H7v-2l3-3z",tv:"M2 7h20v13H2zM7 2l5 5 5-5"};
+const P={edit:"M17 3a2.8 2.8 0 0 1 4 4L7.5 20.5 2 22l1.5-5.5z",mon:"M3 4h18v12H3zM8 21h8M12 16v5",users:"M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8",globe:"M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z",moon:"M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z",pin:"M12 17v5M9 3h6l-1 7 3 3v2H7v-2l3-3z",out:"M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9",book:"M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z",star:"M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z",at:"M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.9 7.9",shield:"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",gift:"M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z",bag:"M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0",chat:"M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.3A8 8 0 1 1 21 12z",gear:"M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z",clip:"M21 11.5l-8.5 8.5a5 5 0 0 1-7-7L14 4.5a3.3 3.3 0 0 1 4.7 4.7L10 18a1.7 1.7 0 0 1-2.4-2.4l7.8-7.8",send:"M12 19V6M6 12l6-6 6 6",search:"M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3",pinI:"M12 17v5M9 3h6l-1 7 3 3v2H7v-2l3-3z",tv:"M2 7h20v13H2zM7 2l5 5 5-5",phone:"M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z",arch:"M21 8v13H3V8M1 3h22v5H1zM10 12h4"};
 const IC=p=>`<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${P[p]}"/></svg>`;
 const TI=p=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="${P[p]}"/></svg>`;
 const CHEV='<svg class="chev" viewBox="0 0 8 14"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -328,10 +400,12 @@ function av(c,sz){
   if(c.kind==="all")return A("🌌","linear-gradient(135deg,#6a5acd,#2b1b6b)");
   if(c.id==="sys_unban")return A("🛡","linear-gradient(#ff7a7a,#e5484d)");
   if(c.id==="sys_verif")return A("✓","linear-gradient(#54a9eb,#2a8cff)");
+  if(c.kind==="arch")return A(`<span style="width:48%;display:flex">${IC("arch")}</span>`,"linear-gradient(#a6b3c4,#7f8da1)");
+  if(c.id==="sys_anon")return A('<span style="font-size:14px;font-weight:700">+888</span>',"linear-gradient(#4a4a4f,#151517)");
   const g=GR[hue(c.id)%7];return A(esc([...(c.name||"?")][0].toUpperCase()),`linear-gradient(${g[0]},${g[1]})`);
 }
-const cname=c=>c.kind==="self"?t("saved"):c.kind==="all"?t("general"):c.name;
-const SYS={ch:{id:"ch_freegram",kind:"channel",name:"FreeGram",badge:"blue"},fg:{id:"sys_freegram",kind:"bot",name:"FreeGram",handle:"freegram",badge:"blue"},ub:{id:"sys_unban",kind:"bot",name:"Ban_Bot",handle:"unban_bot"},vb:{id:"sys_verif",kind:"bot",name:"Verification",handle:"verification"}};
+const cname=c=>c.kind==="arch"?t("archive"):c.kind==="self"?t("saved"):c.kind==="all"?t("general"):c.name;
+const SYS={an:{id:"sys_anon",kind:"bot",name:"Anonymous Numbers",handle:"anon_number",badge:"blue"},ch:{id:"ch_freegram",kind:"channel",name:"FreeGram",badge:"blue"},fg:{id:"sys_freegram",kind:"bot",name:"FreeGram",handle:"freegram",badge:"blue"},ub:{id:"sys_unban",kind:"bot",name:"Ban_Bot",handle:"unban_bot"},vb:{id:"sys_verif",kind:"bot",name:"Verification",handle:"verification"}};
 // ---------- auth ----------
 const dialOf=cc=>COUNTRIES.find(c=>c[0]===cc)[3];
 function authView(msg,step){
@@ -354,7 +428,7 @@ async function authNext(){
   const dial=dialOf(AU.cc);let d=$("ph").value.replace(/\D/g,"");
   if(dial==="7"&&d.length===11&&(d[0]==="8"||d[0]==="7"))d=d.slice(1);
   AU.phone=d;AU.full="+"+dial+d;
-  try{const j=await api("/api/check",{phone:AU.full},"x");AU.haspw=j.haspw;AU.step=j.anon?"code":j.exists?"pw":"new";authView("")}catch(e){authView(e.message)}
+  try{const j=await api("/api/check",{phone:AU.full},"x");if(j.anon&&!j.exists)return authView(t("E_ANON_SOON"));AU.haspw=j.haspw;AU.step=j.anon?"code":j.exists?"pw":"new";authView("")}catch(e){authView(e.message)}
 }
 async function authGo(){
   const g=i=>$(i)?$(i).value:"";
@@ -362,6 +436,7 @@ async function authGo(){
   try{
     const j=await api(path,{phone:AU.full,password:g("pw"),name:g("un"),code:g("cd"),dev:DEV},"x");
     const me=await api("/api/me",null,j.token),i=ACCTS.findIndex(a=>a.id===me.id);
+    if(i<0&&ACCTS.length>=3)return authView(t("E_ACCLIMIT"));
     if(i>=0){ACCTS[i].tok=j.token;ACT=i}else{ACCTS.push({tok:j.token,id:me.id,name:me.name});ACT=ACCTS.length-1}
     saveAcc();AU={step:"phone",cc:AU.cc,phone:"",msg:"",adding:false};cur=null;SUB=null;tab="chats";boot();
   }catch(e){authView(e.message)}
@@ -372,7 +447,7 @@ function pickCountry(){
   $("cs").oninput=e=>{$("cl").innerHTML=draw(e.target.value.toLowerCase())};
 }
 function sheet(html,onclick){const s=document.createElement("div");s.className="sheet";s.innerHTML=`<div>${html}</div>`;s.onclick=e=>{if(e.target===s)s.remove();else onclick&&onclick(e,s)};document.body.appendChild(s);return s}
-function ask(title,cb){sheet(`<b>${esc(title)}</b><input class="f" id="ask" inputmode="numeric"><button class="btn" data-ok="1">OK</button>`,(e,s)=>{if(e.target.dataset.ok){const v=$("ask").value.trim();s.remove();cb(v)}});$("ask").focus()}
+function ask(title,cb,txt){sheet(`<b>${esc(title)}</b><input class="f" id="ask" ${txt?"":'inputmode="numeric"'}><button class="btn" data-ok="1">OK</button>`,(e,s)=>{if(e.target.dataset.ok){const v=$("ask").value.trim();s.remove();cb(v)}});$("ask").focus()}
 // ---------- app ----------
 async function boot(){
   if(!TOK())return authView();
@@ -382,15 +457,15 @@ async function boot(){
   es=new EventSource(API+"/api/stream?token="+TOK());
   es.addEventListener("msg",()=>{if(cur)refreshMsgs();else if(tab==="chats"&&!SUB)render()});
   es.onerror=()=>setTimeout(()=>{if(ME)api("/api/me").catch(()=>{})},4000);
-  render();checkUpdate();
+  render();checkUpdate();pruneAccts();
 }
 const lastTxt=l=>l&&typeof l==="object"?t(l.k,l.p):l||"";
 const SYE={Apple:"🍎",Star:"⭐",Moon:"🌙",Bolt:"⚡",Crown:"👑",Heart:"❤️",Clover:"🍀",Skull:"💀",Flower:"🌸",Fire:"🔥",Gem:"💎",Cat:"🐱",Snowflake:"❄️",Cherry:"🍒",Ghost:"👻"};
 const gbg=g=>g.kind==="reg"?`linear-gradient(160deg,${g.c[0]},${g.c[1]})`:`radial-gradient(circle at 50% 40%,${g.c[0]},${g.c[1]})`;
-const gimg=(g,s)=>`<span class="gi" style="font-size:${s}px;width:${Math.round(s*1.3)}px;height:${Math.round(s*1.3)}px">${g.e}<img src="${API}/gifts/${esc(g.key||"")}.png" alt="" onload="this.parentNode.firstChild.nodeValue=''" onerror="this.remove()"></span>`;
+const gimg=(g,s)=>`<span class="gi" style="font-size:${s}px;width:${Math.round(s*1.3)}px;height:${Math.round(s*1.3)}px">${g.e}<img src="${API}/gifts/${esc(g.key||"")}.png?v=${IMGV}" alt="" onload="this.parentNode.firstChild.nodeValue=''" onerror="this.remove()"></span>`;
 const pat=g=>g.kind==="reg"?"":`<div class="pt">${(SYE[g.sym]||"✨").repeat(20)}</div>`;
-const card=(g,btns)=>`<div class="gc" style="background:${gbg(g)}">${pat(g)}${gimg(g,44)}<b>${esc(g.n)}${g.kind==="reg"?"":" #"+g.num}</b><div class="s2">${g.kind==="reg"?"★ "+g.cost:esc(g.model)}</div>${g.price!=null?`<div>★ ${fmt(g.price)}</div>`:""}${g.pg?'<div class="pgm">📌</div>':""}${btns||""}</div>`;
-const gHtml=(g,w,m)=>`<div class="gm"><div class="gb" style="background:${gbg(g)}">${pat(g)}<div class="gt">${t(w==="me"?"giftSent":"giftGot")}</div>${gimg(g,64)}<b>${esc(g.n)}${g.kind==="reg"?"":" #"+g.num}</b>${g.kind==="reg"?`<div>★ ${g.cost}</div>`:`<div class="at"><div><span>${t("model")}</span><b>${esc(g.model)} <i>${g.r?g.r[0]+"%":""}</i></b></div><div><span>${t("bg")}</span><b>${esc(g.bg)} <i>${g.r?g.r[1]+"%":""}</i></b></div><div><span>${t("sym")}</span><b>${esc(g.sym)} <i>${g.r?g.r[2]+"%":""}</i></b></div></div>`}${m&&m.t?`<div class="gn">${esc(m.t)}</div>`:""}</div></div>`;
+const card=(g,btns)=>`<div class="gc" data-gd="${esc(g.id||"")}" style="background:${gbg(g)}">${pat(g)}${gimg(g,44)}<b>${esc(g.n)}${g.kind==="reg"?"":" #"+g.num}</b><div class="s2">${g.kind==="reg"?"★ "+g.cost:esc(g.model)}</div>${g.price!=null?`<div>★ ${fmt(g.price)}</div>`:""}${g.pg?'<div class="pgm">📌</div>':""}${btns||""}</div>`;
+const gHtml=(g,w,m)=>`<div class="gm"><div class="gb" data-gd="${esc(g.id||"")}" style="background:${gbg(g)}">${pat(g)}<div class="gt">${t(w==="me"?"giftSent":"giftGot")}</div>${gimg(g,64)}<b>${esc(g.n)}${g.kind==="reg"?"":" #"+g.num}</b>${g.kind==="reg"?`<div>★ ${g.cost}</div>`:`<div class="at"><div><span>${t("model")}</span><b>${esc(g.model)} <i>${g.r?g.r[0]+"%":""}</i></b></div><div><span>${t("bg")}</span><b>${esc(g.bg)} <i>${g.r?g.r[1]+"%":""}</i></b></div><div><span>${t("sym")}</span><b>${esc(g.sym)} <i>${g.r?g.r[2]+"%":""}</i></b></div></div>`}${m&&m.t?`<div class="gn">${esc(m.t)}</div>`:""}</div></div>`;
 const li=(ic,col,txt,attr,right)=>`<div class="li" ${attr}><div class="ico" style="background:${col}">${IC(ic)}</div><div class="lt"><span>${txt}</span><span class="rt">${right||""}${CHEV}</span></div></div>`;
 const nrow=(n,btns)=>`<div class="li" style="cursor:default"><div class="ico" style="background:#34c759">${IC("at")}</div><div class="lt"><span><b>@${esc(n.u)}</b><br><small class="mut">${t(n.r)}${n.coll?" · ✦":""}${n.primary?" · "+t("isPrimary"):""}${n.price!=null?" · ★ "+fmt(n.price):""}</small></span><span class="rt">${btns||""}</span></div></div>`;
 const tm=ts=>new Date(ts).toLocaleTimeString(LANG==="ru"?"ru-RU":"en-US",{hour:"2-digit",minute:"2-digit"});
@@ -398,8 +473,8 @@ const loc=()=>LANG==="ru"?"ru-RU":"en-US";
 const fmtTime=ts=>{if(!ts)return"";const d=new Date(ts),n=new Date();if(d.toDateString()===n.toDateString())return tm(ts);if(n-d<6*864e5)return d.toLocaleDateString(loc(),{weekday:"short"});return d.toLocaleDateString(loc(),{day:"2-digit",month:"2-digit",year:"2-digit"})};
 const dayLabel=ts=>{const d=new Date(ts);return d.toDateString()===new Date().toDateString()?t("today"):d.toLocaleDateString(loc(),{day:"numeric",month:"long"})};
 const rmBar=()=>document.querySelector(".bar")?.remove();
-function head(title,backTo,right,sub,pf){
-  $("hd").innerHTML=`<div class="hl">${backTo?`<button class="hb" data-a="${backTo}">${BACK}</button>`:""}</div><div class="hc" ${pf?`data-pf="${esc(pf)}"`:""}><b>${title}</b>${sub?`<span>${sub}</span>`:""}</div><div class="hr" ${pf?`data-pf="${esc(pf)}"`:""}>${right||""}</div>`;
+function head(title,backTo,right,sub,pf,left){
+  $("hd").innerHTML=`<div class="hl">${backTo?`<button class="hb" data-a="${backTo}">${BACK}</button>`:""}${left||""}</div><div class="hc" ${pf?`data-pf="${esc(pf)}"`:""}><b>${title}</b>${sub?`<span>${sub}</span>`:""}</div><div class="hr" ${pf?`data-pf="${esc(pf)}"`:""}>${right||""}</div>`;
 }
 function updRp(){const r=$("rp");if(!r)return;r.innerHTML=EDIT?`<span>✎ ${t("editMsg")}</span><button class="ic" data-a="rpx">✕</button>`:REPLY?`<span><b>${esc(REPLY.fn)}</b> ${esc(String(REPLY.t).slice(0,60))}</span><button class="ic" data-a="rpx">✕</button>`:"";r.style.display=EDIT||REPLY?"flex":"none"}
 async function refreshMsgs(){
@@ -415,12 +490,12 @@ async function refreshMsgs(){
       const rcs=m.re?Object.entries(m.re).filter(([e,a])=>a.length):[];
       const rc=rcs.length?`<div class="rc">${rcs.map(([e,a])=>`<span class="${a.includes(ME.id)?"mine":""}" data-rx="${m.id}:${e}">${e} ${a.length}</span>`).join("")}</div>`:"";
       const kb=m.btn?`<div class="kb">${m.done?`<div class="kd">${t("done_"+m.done.split(":")[0])}</div>`:m.btn.map(b=>`<button class="ib" data-bt="${m.id}" data-k="${b.k}">${t(b.l)}</button>`).join("")}</div>`:"";
-      const nmx=cur.id==="all"&&w==="in"&&!sameP?`<span class="nm" data-pf="${esc(m.from)}" style="color:hsl(${hue(m.from)} 60% 45%)">${nm(m.u)}</span>`:"";
+      const nmx=(cur.id==="all"||cur.kind==="group")&&w==="in"&&!sameP?`<span class="nm" data-pf="${esc(m.from)}" style="color:hsl(${hue(m.from)} 60% 45%)">${nm(m.u)}</span>`:"";
       h+=`<div class="mw ${w}${sameP?" tight":""}"><div class="m ${w}${sameN?"":" tail"}" data-mm="${m.id}">${nmx}${rq}${body}<span class="mt">${m.ed?t("edited")+" ":""}${tm(m.ts)}${w==="me"?TICK:""}</span></div>${rc}${kb}</div>`;
     });
     box.innerHTML=h;$("main").scrollTop=$("main").scrollHeight}catch(e){}
 }
-function openChat(c){cur=c;SUB=null;PF=null;REPLY=null;EDIT=null;render()}
+function openChat(c){if((c.kind==="group"||c.kind==="channel")&&c.joined===false){cur=null;SUB=null;PF=c.id;return render()}cur=c;SUB=null;PF=null;REPLY=null;EDIT=null;render()}
 async function render(){
   try{ME=await api("/api/me")}catch(e){if(!ME)return}
   const tabs=[["chats","chat",t("tChats")],["gifts","gift",t("tGifts")],["market","bag",t("tMarket")],...(ME.admin?[["admin","shield",t("tAdmin")]]:[]),["set","gear",t("tSet")]];
@@ -429,7 +504,7 @@ async function render(){
   const m=$("main");m.className=cur&&!PF?"wall":tab==="chats"&&!SUB&&!PF?"lst":"";
   if(PF){rmBar();try{await profView(m)}catch(e){m.innerHTML=`<p class="err" style="padding:16px">${esc(e.message)}</p>`}return}
   if(cur){
-    const sub=cur.kind==="bot"?t("kBot"):cur.kind==="channel"?t("kChannel"):cur.kind==="user"&&cur.handle?"@"+cur.handle:"";
+    const sub=cur.kind==="bot"?t("kBot"):(cur.kind==="channel"||cur.kind==="group")&&cur.members?fmt(cur.members)+" "+t("members"):cur.kind==="channel"?t("kChannel"):cur.kind==="user"&&cur.handle?"@"+cur.handle:"";
     head(nm({...cur,name:cname(cur)}),"back",av(cur,36),sub,cur.kind==="self"||cur.kind==="all"?"":cur.id);
     const ro=(cur.kind==="channel"&&!cur.canPost)||cur.id==="sys_freegram";
     if(!$("msgs"))m.innerHTML='<div class="msgs" id="msgs"></div>';
@@ -441,68 +516,131 @@ async function render(){
   rmBar();
   try{
   if(SUB)return await subView(m);
-  head(({chats:t("tChats"),gifts:t("tGifts"),market:t("tMarket"),admin:t("tAdmin"),set:t("tSet")})[tab],null,`<span class="pill">★ ${fmt(ME.stars)}</span>`);
-  if(tab==="chats"){const l=await api("/api/chats");
-    m.innerHTML=`<div class="sr">${TI("search")}<input id="q" placeholder="${t("searchPh")}"></div><div id="res"></div>`+l.map(c=>`<div class="cr" data-c='${esc(JSON.stringify(c))}'>${av(c,54)}<div class="t"><div class="l1"><b>${nm({...c,name:cname(c)})}</b><span class="tm">${fmtTime(c.ts)}</span></div><div class="l2"><span class="s">${esc(lastTxt(c.last))}</span>${c.pin?`<span class="pin">${TI("pinI")}</span>`:""}</div></div></div>`).join("")}
+  if(tab==="chats"&&ARCHV)head(t("archive"),"aback");else head(({chats:t("tChats"),gifts:t("tGifts"),market:t("tMarket"),admin:t("tAdmin"),set:t("tSet")})[tab],null,`<span class="pill">★ ${fmt(ME.stars)}</span>`,null,null,tab==="chats"?`<button class="hb" data-a="newchat" style="padding:6px 8px">${TI("edit")}</button>`:"");
+  if(tab==="chats"){const l=await api("/api/chats"+(ARCHV?"?arch=1":""));
+    const rowH=c=>`<div class="cw">${c.fixed?"":`<div class="acl"><button data-cm="pin:${esc(c.id)}">${t(c.pin?"unpinChat":"pinChat")}</button></div>`}<div class="acr">${c.fixed?"":`<button data-cm="arch:${esc(c.id)}" style="background:#8e8e93">${t(c.arch?"unarchive":"archive")}</button>`}<button data-cm="clear:${esc(c.id)}" style="background:#ff9500">${t("clearHist")}</button>${c.fixed?"":`<button data-cm="del:${esc(c.id)}" style="background:#ff3b30">${t("delChat")}</button>`}</div><div class="cr" data-c='${esc(JSON.stringify(c))}'>${av(c,54)}<div class="t"><div class="l1"><b>${nm({...c,name:cname(c)})}</b><span class="tm">${fmtTime(c.ts)}</span></div><div class="l2"><span class="s">${esc(lastTxt(c.last))}</span>${c.pin?`<span class="pin">${TI("pinI")}</span>`:""}</div></div></div></div>`;
+    m.innerHTML=(ARCHV?"":`<div class="sr">${TI("search")}<input id="q" placeholder="${t("searchPh")}"></div><div id="res"></div>`)+l.map(c=>c.kind==="arch"?`<div class="cw"><div class="cr" data-ar="1">${av(c,54)}<div class="t"><div class="l1"><b>${t("archive")}</b></div><div class="l2"><span class="s">${c.count}</span></div></div></div></div>`:rowH(c)).join("")}
   if(tab==="gifts"){const inv=await api("/api/inv");
     m.innerHTML=`<button class="btn w" data-a="gself">${t("buyGift")}</button><div class="sh">${t("myGifts")} (${inv.length})</div><div class="pad"><div class="grid">${inv.map(g=>card(g,gBtns(g))).join("")}</div></div>`}
   if(tab==="market"){const [gl,nl]=await Promise.all([api("/api/market"),api("/api/nmarket")]);
-    m.innerHTML=`<div class="sh">${t("tGifts")}</div><div class="pad"><div class="grid">${gl.map(g=>card(g,g.owner===ME.id?`<button data-unl="${g.id}">${t("unlist")}</button>`:`<button data-buy="${g.id}">${t("buy")}</button>`)).join("")||`<span class="mut">${t("empty")}</span>`}</div></div><div class="sh">${t("usernames")}</div><div class="grp">${nl.map(n=>nrow({...n,coll:1},n.mine?`<button class="btn g" data-nunl="${esc(n.u)}">${t("unlist")}</button>`:`<button class="btn" data-nbuy="${esc(n.u)}">${t("buy")}</button>`)).join("")||`<div class="note">${t("empty")}</div>`}</div>`}
-  if(tab==="admin")m.innerHTML=`<div class="sr">${TI("search")}<input id="aq" placeholder="${t("adSearch")}"></div><div id="ares"></div><div class="sh">${t("createBot")}</div><div class="grp"><input id="bn" placeholder="${t("botName")}"><input id="bh" placeholder="${t("botHandle")}"><textarea id="bl" rows="3" placeholder="${t("botLines")}"></textarea></div><button class="btn w" data-a="mkbot">${t("create")}</button>`;
-  if(tab==="set")m.innerHTML=`<div class="prof" data-pf="${esc(ME.id)}" style="cursor:pointer">${av(ME,96)}<b>${nm(ME)}</b><div class="mut">${esc(ME.phone)} · @${esc(ME.handle)}</div>${ME.bio?`<div class="bio">${esc(ME.bio)}</div>`:""}</div>
-  <div class="grp">${li("edit","#3390ec",t("editProfile"),'data-s="edit"')}${li("at","#34c759",t("username"),'data-s="user"',"@"+esc(ME.handle))}${li("star","#ffb400",t("stars"),'data-s="stars"',fmt(ME.stars))}${li("book","#3390ec",t("saved"),`data-c='${esc(JSON.stringify({id:ME.id,kind:"self"}))}'`)}</div>
-  <div class="grp">${li("mon","#ff9500",t("devices"),'data-s="dev"')}${li("users","#af52de",t("accounts"),'data-s="acc"',ACCTS.length+"/3")}${li("pin","#ff3b30",t("important"),'data-s="imp"')}</div>
+    m.innerHTML=`<div class="sh">${t("tGifts")}</div><div class="pad"><div class="grid">${gl.map(g=>card(g,g.owner===ME.id?`<button data-unl="${g.id}">${t("unlist")}</button>`:`<button data-buy="${g.id}">${t("buy")}</button>`)).join("")||`<span class="mut">${t("empty")}</span>`}</div></div><div class="sh">${t("usernames")}</div><div class="grp"><div class="li" data-a="sellname"><div class="lt"><span style="color:var(--ac)">${t("sellName")}</span></div></div>${nl.map(n=>nrow({...n,coll:1},n.mine?`<button class="btn g" data-nunl="${esc(n.u)}">${t("unlist")}</button>`:`<button class="btn" data-nbuy="${esc(n.u)}">${t("buy")}</button>`)).join("")}</div>`}
+  if(tab==="admin"){GCAT=await api("/api/catalog");
+    m.innerHTML=`<div class="sr">${TI("search")}<input id="aq" placeholder="${t("adSearch")}"></div><div id="ares"></div><div class="sh">${t("gp")}</div><div class="pad"><div class="grid">${[...GCAT.reg,...GCAT.nft].map(x=>`<div class="gc" data-gi="${x.key}" style="background:var(--card);color:var(--tx);cursor:pointer">${gimg(x,34)}<b style="text-shadow:none;font-size:12px">${esc(x.n)}</b>${GCAT.imgs.includes(x.key)?'<div class="s2">✓</div>':""}</div>`).join("")}</div></div>`}
+  if(tab==="set")m.innerHTML=`<div class="prof" data-pf="${esc(ME.id)}" style="cursor:pointer">${av(ME,96)}<b>${nm(ME)}</b><div class="mut">${esc(ME.phone||ME.anon)} · @${esc(ME.handle)}</div>${ME.bio?`<div class="bio">${esc(ME.bio)}</div>`:""}</div>
+  <div class="grp">${li("edit","#3390ec",t("editProfile"),'data-s="edit"')}${li("at","#34c759",t("username"),'data-s="user"',"@"+esc(ME.handle))}${li("phone","#ff9500",t("phoneNum"),'data-s="num"')}${li("star","#ffb400",t("stars"),'data-s="stars"',fmt(ME.stars))}${li("book","#3390ec",t("saved"),`data-c='${esc(JSON.stringify({id:ME.id,kind:"self"}))}'`)}</div>
+  <div class="grp">${li("shield","#34c759",t("privacy"),'data-s="priv"')}${li("mon","#ff9500",t("devices"),'data-s="dev"')}${li("users","#af52de",t("accounts"),'data-s="acc"',ACCTS.length+"/3")}${li("pin","#ff3b30",t("important"),'data-s="imp"')}</div>
   <div class="grp">${li("globe","#5856d6",t("lang"),'data-a="lang"',t("langName"))}${li("moon","#636366",t("theme"),'data-a="theme"')}</div>
-  <div class="grp">${li("out","#ff3b30",t("logout"),'data-a="logout"')}</div><div class="note" style="text-align:center">FreeGram 3.0${BUILD?" · build "+BUILD:""}</div>`;
+  <div class="grp">${li("out","#ff3b30",t("logout"),'data-a="logout"')}</div><div class="note" style="text-align:center">FreeGram 4.0${BUILD?" · build "+BUILD:""}</div>`;
   }catch(e){m.innerHTML=`<p class="err" style="padding:16px">${esc(e.message)}</p>`}
 }
 const gBtns=g=>(g.kind==="reg"?`<button data-up="${g.id}">${t("upgrade")}</button><button data-cv="${g.id}">${t("convert")}</button>`:(g.price==null?`<button data-sell="${g.id}">${t("sell")}</button>`:`<button data-unl="${g.id}">${t("unlist")}</button>`))+`<button data-gp="${g.id}">${t(g.pg?"unpinG":"pinG")}</button>`;
 const EMO=["","⭐","🔥","💎","👑","🚀","🎮","🎵","❤️","🌈","🦄","🌙","⚡","🍑","😎"],COL=["","#e53935","#fb8c00","#c9a800","#43a047","#00acc1","#1e88e5","#8e24aa","#ec407a"];
 let ED={};
 async function subView(m){
-  head(({edit:t("editProfile"),user:t("username"),stars:t("stars"),dev:t("devices"),acc:t("accounts"),imp:t("important")})[SUB],"sback");
+  head(({edit:t("editProfile"),user:t("username"),stars:t("stars"),dev:t("devices"),acc:t("accounts"),imp:t("important"),priv:t("privacy"),num:t("phoneNum")})[SUB],"sback");
   if(SUB==="edit"){ED=ED.k?ED:{k:1,status:ME.status,color:ME.color};
     m.innerHTML=`<div class="prof">${av(ME,96)}</div><div class="grp"><input id="pn" placeholder="${t("name")}" value="${esc(ME.name)}"><input id="pb" placeholder="${t("bio")}" maxlength="120" value="${esc(ME.bio)}"></div><div class="sh">${t("status")}</div><div class="grp emo">${EMO.map(e=>`<span data-st="${e}" class="${ED.status===e?"on":""}">${e||"∅"}</span>`).join("")}</div><div class="sh">${t("nameColor")}</div><div class="grp dots">${COL.map(c=>`<span data-co="${c}" class="${ED.color===c?"on":""}" style="${c?"background:"+c:""}">${c?"":"∅"}</span>`).join("")}</div><button class="btn w" data-a="saveprof">${t("save")}</button>`}
   if(SUB==="user")m.innerHTML=`<div class="prof"><b>@${esc(ME.handle)}</b></div><div class="grp"><input id="uh" placeholder="${t("engOnly")}"></div><button class="btn w" data-a="sethandle" style="margin-top:0">${t("setUser")}</button><div class="sh">${t("mkColl")}</div><div class="grp"><input id="uc" placeholder="${t("engOnly")}"></div><div class="note">${t("collHint")}</div><button class="btn w" data-a="mkcoll" style="margin-top:6px">${t("mkColl")}</button><div class="sh">${t("myNames")}</div><div class="grp">${ME.names.map(n=>nrow(n,(n.primary?"":`<button class="btn g" data-pri="${esc(n.u)}">★</button>`)+(n.coll?(n.price==null?`<button class="btn g" data-nsell="${esc(n.u)}">${t("sell")}</button>`:`<button class="btn g" data-nunl="${esc(n.u)}">${t("unlist")}</button>`):""))).join("")}</div>`;
   if(SUB==="stars")m.innerHTML=`<div class="prof"><b>★ ${fmt(ME.stars)}</b></div><div class="grp"><input id="sa" inputmode="numeric" placeholder="${t("starsPh")}"></div><button class="btn w" data-a="stars" style="margin-top:0">${t("setStars")}</button>`;
   if(SUB==="dev"){const l=await api("/api/sessions");m.innerHTML=`<div class="grp">${l.sort((a,b)=>b.last-a.last).map(s=>`<div class="li" style="cursor:default"><div class="ico" style="background:${/Android/.test(s.dev)?"#34c759":/Windows/.test(s.dev)?"#3390ec":"#ff9500"}">${IC(/Android|Windows/.test(s.dev)?"mon":"globe")}</div><div class="lt"><span><b>${esc(s.dev)}</b><br><small class="mut">${s.cur?t("thisDev")+" · ":""}${new Date(s.last).toLocaleString(loc())}</small></span><span class="rt">${s.cur?"":`<button class="btn g" data-kick="${s.sid}">✕</button>`}</span></div></div>`).join("")}</div><button class="btn w" data-a="kickall" style="background:#ff3b30">${t("kickAll")}</button>`}
+  if(SUB==="acc"){await pruneAccts();if(!ME)return}
   if(SUB==="acc")m.innerHTML=`<div class="lst">${ACCTS.map((a,i)=>`<div class="cr" data-sw="${i}"><div class="av" style="width:54px;height:54px;background:linear-gradient(${GR[hue(a.id)%7][0]},${GR[hue(a.id)%7][1]})">${esc([...(a.name||"?")][0].toUpperCase())}</div><div class="t"><div class="l1"><b>${esc(a.name)}</b></div><div class="l2"><span class="s">${i===ACT?"✓":""}</span></div></div></div>`).join("")}</div>`+(ACCTS.length<3?`<button class="btn w" data-a="addacc">${t("addAcc")}</button>`:"");
-  if(SUB==="imp")m.innerHTML=`<div class="lst">${[SYS.ch,SYS.fg,SYS.vb,SYS.ub].map(c=>`<div class="cr" data-c='${esc(JSON.stringify(c))}'>${av(c,54)}<div class="t"><div class="l1"><b>${nm(c)}</b></div><div class="l2"><span class="s">${c.handle?"@"+c.handle:t("kChannel")}</span></div></div></div>`).join("")}</div>`;
+  if(SUB==="priv"){const pv=ME.pv||{};m.innerHTML=`<div class="grp"><div class="li" data-pv="ph"><div class="lt"><span>${t("hidePhone")}</span><span class="rt">${pv.ph?t("on"):t("off")}</span></div></div><div class="li" data-pv="nm"><div class="lt"><span>${t("noMsgs")}</span><span class="rt">${pv.nm?t("on"):t("off")}</span></div></div></div><div class="note">${t("noMsgsHint")}</div><div class="grp"><input id="mp" inputmode="numeric" placeholder="${t("paidMsg")}" value="${pv.mp||""}"></div><button class="btn w" data-a="savemp" style="margin-top:0">${t("save")}</button><div class="note">${t("paidMsgHint")}</div><div class="sh">${t("chPw")}</div><div class="grp"><input id="op" type="password" placeholder="${t("oldPw")}"><input id="np" type="password" placeholder="${t("newPw2")}"></div><button class="btn w" data-a="savepw" style="margin-top:0">${t("save")}</button><div class="grp">${li("mon","#ff9500",t("devices"),'data-s="dev"')}</div>`}
+  if(SUB==="num")m.innerHTML=`<div class="grp"><div class="inf"><small>${t("regNum")}</small>${ME.phone?esc(ME.phone):"—"}</div><div class="inf"><small>${t("anonNum")}</small>${ME.anon?esc(ME.anon):"—"}</div></div><div class="sh">${t("changeNum")}</div><div class="grp"><input id="nph" type="tel" placeholder="+1 555 123 4567"><input id="npw" type="password" placeholder="${t("pw")}"></div><button class="btn w" data-a="chreg" style="margin-top:0">${t("changeNum")}</button><div class="sh">${t("linkAnon")}</div><div class="grp"><input id="aph" type="tel" placeholder="+888 12345"><input id="acd" inputmode="numeric" placeholder="${t("code")}"></div><div class="note">${t("anonLinkHint")}</div><button class="btn w" data-a="chanon" style="margin-top:0">${t("linkAnon")}</button>${ME.anon&&ME.phone?`<button class="btn w g" data-a="rmanon" style="margin-top:0">${t("rmAnon")}</button><button class="btn w g" data-a="rmreg" style="margin-top:0">${t("rmReg")}</button>`:""}`;
+  if(SUB==="imp")m.innerHTML=`<div class="lst">${[SYS.ch,SYS.fg,SYS.vb,SYS.an,SYS.ub].map(c=>`<div class="cr" data-c='${esc(JSON.stringify(c))}'>${av(c,54)}<div class="t"><div class="l1"><b>${nm(c)}</b></div><div class="l2"><span class="s">${c.handle?"@"+c.handle:t("kChannel")}</span></div></div></div>`).join("")}</div>`;
 }
+const bi=b=>badge(b).replace(/ data-bd="[a-z]+"/,"");
 async function profView(m){
-  const p=await api("/api/pinfo?id="+encodeURIComponent(PF)),isMe=p.id===ME.id,ent=p.kind==="user"||p.kind==="bot";
+  const p=await api("/api/pinfo?id="+encodeURIComponent(PF)),isMe=p.id===ME.id,usr=p.kind==="user"||p.kind==="bot",isChat=!!p.chat,id=esc(p.id);
   head(esc(p.name),"pback",isMe?`<button class="hb" data-s="edit" style="color:var(--ac);padding:6px">${t("edit")}</button>`:"");
   m.className="";
-  const sub=p.kind==="bot"?t("kBot"):p.kind==="channel"?t("kChannel"):"";
-  let h=`<div class="prof">${av(p,96)}<b>${nm(p)}</b><div class="mut">${sub}</div></div><div class="acts"><div data-c='${esc(JSON.stringify(isMe?{id:ME.id,kind:"self"}:p))}'>${TI("chat")}<span>${t("msgBtn")}</span></div>${ent&&!isMe?`<div data-gf="${esc(p.id)}">${TI("gift")}<span>${t("giftBtn")}</span></div>`:""}</div>`;
-  h+=`<div class="grp">${p.handle?`<div class="inf"><small>${t("username")}</small>@${esc(p.handle)}</div>`:""}${p.bio?`<div class="inf"><small>${t("bio")}</small>${esc(p.bio)}</div>`:""}${p.phone?`<div class="inf"><small>${t("phoneL")}</small>${esc(p.phone)}</div>`:""}${p.stars!=null?`<div class="inf"><small>${t("stars")}</small>★ ${fmt(p.stars)}</div>`:""}</div>`;
+  const sub=p.kind==="bot"?t("kBot"):p.kind==="channel"?t("kChannel"):p.kind==="group"?fmt(p.chat.members)+" "+t("members"):"";
+  const co={...p,joined:isChat?p.chat.joined:undefined,canPost:isChat?(p.kind==="channel"?p.chat.mine:true):undefined};
+  let h=`<div class="prof">${av(p,96)}<b>${nm(p)}</b><div class="mut">${sub}</div></div><div class="acts">`;
+  if(isChat&&!p.chat.joined)h+=`<div data-ch="join:${id}">${TI("users")}<span>${t("join")}</span></div>`;
+  else h+=`<div data-c='${esc(JSON.stringify(isMe?{id:ME.id,kind:"self"}:co))}'>${TI("chat")}<span>${t("msgBtn")}</span></div>`;
+  if(usr&&!isMe)h+=`<div data-gf="${id}">${TI("gift")}<span>${t("giftBtn")}</span></div>`;
+  if(isChat&&p.chat.joined&&!p.chat.mine&&p.id!=="ch_freegram")h+=`<div data-ch="leave:${id}">${TI("out")}<span>${t("leave")}</span></div>`;
+  if(isChat&&p.chat.mine&&p.id!=="ch_freegram")h+=`<div data-ch="add:${id}">${TI("users")}<span>${t("addMember")}</span></div>`;
+  h+=`</div>`;
+  const nms=p.names||[],prim=nms.find(n=>n.primary),oth=nms.filter(n=>!n.primary),inf=(k,v)=>`<div class="inf"><small>${t(k)}</small>${v}</div>`;
+  const info=(usr&&nms.length?inf("username",(prim?"@"+esc(prim.u):"")+(oth.length?`<br><small style="display:inline">${t("also")}</small><br>${oth.map(n=>"@"+esc(n.u)).join(" ")}`:"")):p.handle?inf("username","@"+esc(p.handle)):"")+(p.bio?inf("bio",esc(p.bio)):"")+(p.phone?inf("regNum",esc(p.phone)):"")+(p.anon?inf("anonNum",esc(p.anon)):"")+(p.mp?inf("msgPrice","★ "+fmt(p.mp)):"")+(p.stars!=null?inf("stars","★ "+fmt(p.stars)):"")+(isChat?inf("owner",esc(p.chat.owner.name))+inf("members",fmt(p.chat.members)):"");
+  if(info)h+=`<div class="grp">${info}</div>`;
   if(p.gifts&&p.gifts.length)h+=`<div class="sh">${t("tGifts")} (${p.gifts.length})</div><div class="pad"><div class="grid">${p.gifts.map(g=>card(g,isMe?`<button data-gp="${g.id}">${t(g.pg?"unpinG":"pinG")}</button>`:"")).join("")}</div></div>`;
-  if(!isMe)h+=`<div class="grp" style="margin-top:18px"><div class="li" data-cm="clear:${esc(p.id)}"><div class="lt"><span>${t("clearHist")}</span></div></div><div class="li" data-cm="del:${esc(p.id)}"><div class="lt"><span style="color:#ff3b30">${t("delChat")}</span></div></div></div>`;
+  if(!isMe)h+=`<div class="grp" style="margin-top:18px"><div class="li" data-cm="clear:${id}"><div class="lt"><span>${t("clearHist")}</span></div></div>${!isChat?`<div class="li" data-cm="del:${id}"><div class="lt"><span style="color:#ff3b30">${t("delChat")}</span></div></div>`:p.chat.mine&&p.id!=="ch_freegram"?`<div class="li" data-ch="del:${id}"><div class="lt"><span style="color:#ff3b30">${t("delGroup")}</span></div></div>`:""}</div>`;
   if(ME.admin){
-    h+=`<div class="sh">${t("admTools")} · ${t("badge")}</div><div class="grp emo">${["",...BADGES].map(b=>`<span data-vt="${b}" class="${p.badge===b?"on":""}">${b?badge(b):"∅"}</span>`).join("")}</div><label class="note"><input type="checkbox" id="ak"> ${t("ask")}</label>`;
+    h+=`<div class="sh">${t("admTools")} · ${t("badge")}</div><div class="grp emo">${BADGES.map(b=>`<span data-vt="${b}" class="${p.badge===b?"on":""}">${bi(b)}</span>`).join("")}</div><label class="note"><input type="checkbox" id="ak"> ${t("ask")}</label><div class="grp"><div class="li" data-vt=""><div class="lt"><span style="color:#ff3b30">${t("revoke")}</span></div></div></div>`;
     if(p.kind==="user"&&!p.admin)h+=`<div class="grp"><div class="li" data-fr="${p.frozen?0:1}"><div class="lt"><span>${t(p.frozen?"unfreeze":"freeze")}</span></div></div><div class="li" data-ks="1"><div class="lt"><span>${t("kickSess")}</span></div></div><div class="li" data-as="1"><div class="lt"><span>${t("setStarsAdm")}</span></div></div><div class="li" data-ban="1"><div class="lt"><span style="color:#ff3b30">${t("ban")}</span></div></div></div>`;
   }
   m.innerHTML=h;
 }
 async function giftSheet(to){
   const [shop,inv]=await Promise.all([api("/api/shopitems"),to===ME.id?Promise.resolve([]):api("/api/inv")]);
-  const mine=inv.filter(g=>g.kind!=="reg");
-  sheet(`<b>${t("sendGift")}</b><div class="sh" style="padding-left:2px">${t("giftShop")}</div><div class="grid">${shop.map(x=>`<div class="gc" data-gs="${x.key}" style="background:linear-gradient(160deg,${x.c[0]},${x.c[1]});cursor:pointer">${gimg(x,44)}<b>${esc(x.n)}</b><div class="s2">★ ${x.cost}</div></div>`).join("")}</div>${mine.length?`<div class="sh" style="padding-left:2px">${t("myNft")}</div><div class="grid">${mine.map(g=>card(g,`<button data-sg="${g.id}">${t("send")}</button>`)).join("")}</div>`:""}`,async(ev,sh)=>{
+  const mine=inv.filter(g=>g.kind!=="reg"),nd=g=>card(g,`<button data-sg="${g.id}">${t("send")}</button>`).replace(` data-gd="${g.id}"`,"");
+  const noteSheet=(pv,btn,go)=>sheet(`<div style="text-align:center">${pv}</div><input class="f" id="gnote" maxlength="200" placeholder="${t("note")}"><button class="btn w" data-ok="1" style="width:100%;margin:8px 0 0">${btn}</button>`,async(e2,s2)=>{if(e2.target.dataset.ok){try{await go($("gnote").value);s2.remove();toast(t("done"));cur?refreshMsgs():render()}catch(z){toast(z.message)}}});
+  sheet(`<b>${t("sendGift")}</b><div class="sh" style="padding-left:2px">${t("giftShop")}</div><div class="grid">${shop.map(x=>`<div class="gc" data-gs="${x.key}" style="background:linear-gradient(160deg,${x.c[0]},${x.c[1]});cursor:pointer">${gimg(x,44)}<b>${esc(x.n)}</b><div class="s2">★ ${x.cost}</div></div>`).join("")}</div>${mine.length?`<div class="sh" style="padding-left:2px">${t("myNft")}</div><div class="grid">${mine.map(nd).join("")}</div>`:""}`,(ev,sh)=>{
     const gs=ev.target.closest("[data-gs]"),sg=ev.target.dataset.sg;
-    if(sg){try{await api("/api/send",{to,gift:sg});sh.remove();toast(t("done"));cur?refreshMsgs():render()}catch(x){toast(x.message)}return}
-    if(gs){const x=shop.find(i=>i.key===gs.dataset.gs);sh.remove();
-      sheet(`<div style="text-align:center">${gimg(x,64)}<b style="display:block">${esc(x.n)}</b></div><input class="f" id="gnote" maxlength="200" placeholder="${t("note")}"><button class="btn w" data-ok="1" style="width:100%;margin:8px 0 0">${t("sendFor",{n:x.cost})}</button>`,async(e2,s2)=>{if(e2.target.dataset.ok){try{await api("/api/sendgift",{to,key:x.key,note:$("gnote").value});s2.remove();toast(t("done"));cur?refreshMsgs():render()}catch(z){toast(z.message)}}})}
+    if(sg){const g=mine.find(x=>x.id===sg);sh.remove();return noteSheet(`${gimg(g,64)}<b style="display:block">${esc(g.n)} #${g.num}</b>`,t("send"),v=>api("/api/send",{to,t:v,gift:sg}))}
+    if(gs){const x=shop.find(i=>i.key===gs.dataset.gs);sh.remove();return noteSheet(`${gimg(x,64)}<b style="display:block">${esc(x.n)}</b>`,t("sendFor",{n:x.cost}),v=>api("/api/sendgift",{to,key:x.key,note:v}))}
   });
 }
+async function giftInfo(id){
+  let g;try{g=await api("/api/ginfo?id="+encodeURIComponent(id))}catch(e){return toast(e.message)}
+  const reg=g.kind==="reg",inf=(k,v)=>`<div class="inf"><small>${t(k)}</small>${v}</div>`,pct=i=>g.r?` <span class="mut">${g.r[i]}%</span>`:"";
+  sheet(`<div style="text-align:center;border-radius:16px;overflow:hidden;position:relative;padding:14px;color:#fff;background:${gbg(g)}">${pat(g)}<div style="position:relative">${gimg(g,72)}<b style="display:block;font-size:18px">${esc(g.n)}${reg?"":" #"+g.num}</b><div>≈ ★ ${fmt(g.est)} · ${t("estPrice")}</div>${g.price!=null?`<div>★ ${fmt(g.price)}</div>`:""}</div></div><div class="grp" style="margin:10px 0"><div class="li" data-pf="${esc(g.owner.id)}"><div class="lt"><span>${t("owner")}</span><span class="rt">${esc(g.owner.name)}${CHEV}</span></div></div>${reg?"":inf("model",esc(g.model)+pct(0))+inf("bg",esc(g.bg)+pct(1))+inf("sym",esc(g.sym)+pct(2))}${g.from?`<div class="li" data-pf="${esc(g.from.id)}"><div class="lt"><span>${t("giftedBy")}</span><span class="rt">${esc(g.from.name)}${CHEV}</span></div></div>`:""}${g.note?inf("comment",esc(g.note)):""}</div>${!reg&&g.owner.id!==ME.id?`<button class="btn w" data-offer="1" style="width:100%;margin:0">${t("offerBtn")}</button>`:""}`,(e,sh)=>{
+    if(e.target.closest("[data-pf]"))sh.remove();
+    if(e.target.dataset.offer){sh.remove();ask(t("price")+" · "+t("comm"),async v=>{try{await api("/api/offer",{id,price:v});toast(t("offerSent"))}catch(x){toast(x.message)}})}
+  });
+}
+function newChatSheet(){
+  sheet(`<b>${t("newChat")}</b><div class="grp" style="margin:10px 0"><div class="li" data-nc="group"><div class="lt"><span>${t("newGroup")}</span></div></div><div class="li" data-nc="channel"><div class="lt"><span>${t("newChannel")}</span></div></div></div>`,(e,s)=>{const r=e.target.closest("[data-nc]");if(r){s.remove();ncForm(r.dataset.nc)}});
+}
+function ncForm(type){
+  sheet(`<b>${t(type==="group"?"newGroup":"newChannel")}</b><div class="grp" style="margin:10px 0"><input id="cn" placeholder="${t("groupName")}" maxlength="40"><input id="cu" placeholder="@username (${t("optional")})" autocapitalize="off"><input id="cdsc" placeholder="${t("chanDesc")} (${t("optional")})" maxlength="200"></div><button class="btn w" data-ok="1" style="width:100%;margin:0">${t("create")}</button>`,async(e,s)=>{
+    if(e.target.dataset.ok){try{const c=await api("/api/chat/new",{type,name:$("cn").value,handle:$("cu").value,desc:$("cdsc").value});s.remove();c.joined=true;c.canPost=true;openChat(c)}catch(x){toast(x.message)}}
+  });
+}
+function sellNameSheet(){
+  const l=ME.names.filter(n=>n.coll&&n.price==null);
+  sheet(`<b>${t("sellName")}</b><div class="grp" style="margin:10px 0">${l.map(n=>nrow(n,`<button class="btn" data-nsell="${esc(n.u)}">${t("sell")}</button>`)).join("")||`<div class="note">${t("sellNameHint")}</div>`}</div>`,(e,s)=>{if(e.target.closest("[data-nsell]"))s.remove()});
+}
+function pickImg(key){
+  const i=document.createElement("input");i.type="file";i.accept="image/*";
+  i.onchange=()=>{const f=i.files[0];if(!f)return;const im=new Image();im.onload=async()=>{
+    const c=document.createElement("canvas");c.width=c.height=256;const x=c.getContext("2d"),r=Math.min(256/im.width,256/im.height),w=im.width*r,h=im.height*r;
+    x.drawImage(im,(256-w)/2,(256-h)/2,w,h);
+    try{await api("/api/admin/gimg",{key,data:c.toDataURL("image/webp",.85)});IMGV=Date.now();toast(t("done"));render()}catch(e){toast(e.message)}};im.src=URL.createObjectURL(f)};
+  i.click();
+}
+async function pruneAccts(){
+  let lost=false;
+  for(let i=ACCTS.length-1;i>=0;i--){
+    try{const me=await api("/api/me",null,ACCTS[i].tok);ACCTS[i].name=me.name}
+    catch(e){if(e.status===401){ACCTS.splice(i,1);if(i<ACT)ACT--;else if(i===ACT){ACT=0;lost=true}}}
+  }
+  saveAcc();if(lost){ME=null;ACCTS.length?boot():authView()}
+}
+function swReset(except){document.querySelectorAll(".cw .cr").forEach(r=>{if(r!==except)r.style.transform=""})}
+let SW=null;
+document.addEventListener("touchstart",e=>{const r=e.target.closest(".cw .cr");swReset(r);if(!r||!r.dataset.c){SW=null;return}const q=e.touches[0];SW={r,x:q.clientX,y:q.clientY,dx:0,on:false,base:r.style.transform?parseFloat(r.style.transform.replace(/[^-\d.]/g,""))*(r.style.transform.includes("-")?-1:1):0};r.style.transition="none"},{passive:true});
+document.addEventListener("touchmove",e=>{if(!SW)return;const q=e.touches[0],dx=q.clientX-SW.x,dy=q.clientY-SW.y;
+  if(!SW.on){if(Math.abs(dx)>10&&Math.abs(dx)>Math.abs(dy)){SW.on=true;clearTimeout(LPT)}else return}
+  const cw=SW.r.parentNode,w=cw.querySelector(".acr").offsetWidth,l=cw.querySelector(".acl"),lw=l?l.offsetWidth:0;
+  SW.dx=Math.max(-w,Math.min(lw,SW.base+dx));SW.r.style.transform=`translateX(${SW.dx}px)`},{passive:true});
+document.addEventListener("touchend",()=>{if(!SW)return;const r=SW.r;r.style.transition="";
+  if(SW.on){NOCLICK=Date.now()+400;const cw=r.parentNode,w=cw.querySelector(".acr").offsetWidth,l=cw.querySelector(".acl"),lw=l?l.offsetWidth:0;
+    r.style.transform=SW.dx<-40?`translateX(${-w}px)`:SW.dx>40&&lw?`translateX(${lw}px)`:""}
+  SW=null});
 async function chatAct(act,id){
   if(act==="pin")await api("/api/pin",{id});
+  else if(act==="arch")await api("/api/archive",{id});
   else if(act==="clear"){if(!confirm(t("confirmClear")))return;await api("/api/clear",{id})}
   else if(act==="del"){if(!confirm(t("confirmDelChat")))return;await api("/api/delchat",{id});if(cur&&cur.id===id)cur=null;PF=null}
   toast(t("done"));render();
 }
 function ctxMenu(c){
   const row=(a,txt,red)=>`<div class="li" data-cm="${a}:${esc(c.id)}"><div class="lt"><span ${red?'style="color:#ff3b30"':""}>${txt}</span></div></div>`;
-  sheet(`<b>${esc(cname(c))}</b><div class="grp" style="margin:10px 0">${c.fixed?"":row("pin",t(c.pin?"unpinChat":"pinChat"))}${row("clear",t("clearHist"))}${c.fixed?"":row("del",t("delChat"),1)}</div>`,(e,s)=>{if(e.target.closest("[data-cm]"))s.remove()});
+  sheet(`<b>${esc(cname(c))}</b><div class="grp" style="margin:10px 0">${c.fixed?"":row("pin",t(c.pin?"unpinChat":"pinChat"))}${c.fixed?"":row("arch",t(c.arch?"unarchive":"archive"))}${row("clear",t("clearHist"))}${c.fixed?"":row("del",t("delChat"),1)}</div>`,(e,s)=>{if(e.target.closest("[data-cm]"))s.remove()});
 }
 function msgMenu(id){
   const m=MSGS.find(x=>x.id===id);if(!m||m.g)return;
@@ -555,10 +693,28 @@ async function checkUpdate(){
 }
 function switchTo(i){ACT=i;saveAcc();cur=null;SUB=null;tab="chats";ME=null;boot()}
 document.addEventListener("click",async e=>{
-  const T=e.target.closest("[data-a],[data-t],[data-c],[data-pf],[data-gf],[data-gp],[data-up],[data-cv],[data-cm],[data-mm],[data-rx],[data-vt],[data-fr],[data-ks],[data-as],[data-ban],[data-s],[data-bd],[data-bt],[data-buy],[data-sell],[data-unl],[data-pri],[data-nsell],[data-nunl],[data-nbuy],[data-kick],[data-sw],[data-st],[data-co],[data-ad]");if(!T)return;
+  const T=e.target.closest("[data-a],[data-t],[data-c],[data-ar],[data-ch],[data-gd],[data-gi],[data-pv],[data-pf],[data-gf],[data-gp],[data-up],[data-cv],[data-cm],[data-mm],[data-rx],[data-vt],[data-fr],[data-ks],[data-as],[data-ban],[data-s],[data-bd],[data-bt],[data-buy],[data-sell],[data-unl],[data-pri],[data-nsell],[data-nunl],[data-nbuy],[data-kick],[data-sw],[data-st],[data-co],[data-ad]");if(!T)return;
   const d=T.dataset,a=d.a;
   try{
   if(Date.now()<NOCLICK)return;
+  if(d.ar){ARCHV=true;return render()}
+  if(a==="aback"){ARCHV=false;return render()}
+  if(a==="newchat")return newChatSheet();
+  if(d.c){const rr=T.closest(".cr");if(rr&&rr.style.transform&&rr.style.transform!=="translateX(0px)"){swReset();return}}
+  if(d.ch){const q=d.ch.split(":"),op=q[0],cid=q.slice(1).join(":");
+    if(op==="join"){await api("/api/chat/join",{id:cid});toast(t("done"));const p=await api("/api/pinfo?id="+encodeURIComponent(cid));PF=null;return openChat({...p,joined:true,canPost:p.kind==="channel"?p.chat.mine:true})}
+    if(op==="leave"){await api("/api/chat/leave",{id:cid});PF=null;cur=null;return render()}
+    if(op==="del"){if(!confirm(t("confirmDelChat")))return;await api("/api/chat/del",{id:cid});PF=null;cur=null;return render()}
+    if(op==="add")return ask(t("addMember")+" @username",async v=>{try{await api("/api/chat/add",{id:cid,u:v});toast(t("done"));render()}catch(x){toast(x.message)}},true)}
+  if(d.gd)return giftInfo(d.gd);
+  if(d.gi)return pickImg(d.gi);
+  if(a==="sellname")return sellNameSheet();
+  if(d.pv){const body={};body[d.pv]=!(ME.pv||{})[d.pv];await api("/api/privacy",body);return render()}
+  if(a==="savemp"){await api("/api/privacy",{mp:$("mp").value||0});toast(t("done"));return render()}
+  if(a==="savepw"){await api("/api/setpw",{old:$("op").value,new:$("np").value});toast(t("done"));return render()}
+  if(a==="chreg"){await api("/api/numchange",{kind:"reg",phone:$("nph").value,password:$("npw").value});toast(t("done"));return render()}
+  if(a==="chanon"){await api("/api/numchange",{kind:"anon",phone:$("aph").value,code:$("acd").value});toast(t("done"));return render()}
+  if(a==="rmanon"||a==="rmreg"){await api("/api/numremove",{kind:a==="rmanon"?"anon":"reg"});toast(t("done"));return render()}
   if(d.pf){e.preventDefault();PF=d.pf;return render()}
   if(a==="pback"){PF=null;return render()}
   if(a==="gift")return giftSheet(cur.id);
@@ -585,7 +741,7 @@ document.addEventListener("click",async e=>{
   if(a==="go")return authGo();
   if(a==="again")return authView("","phone");
   if(a==="cancelAdd"){AU.adding=false;AU.step="phone";return boot()}
-  if(d.t){tab=d.t;cur=null;SUB=null;PF=null;return render()}
+  if(d.t){tab=d.t;cur=null;SUB=null;PF=null;ARCHV=false;return render()}
   if(d.c){return openChat(JSON.parse(d.c))}
   if(a==="back"){cur=null;return render()}
   if(d.s){SUB=d.s;ED={};return render()}
@@ -598,7 +754,7 @@ document.addEventListener("click",async e=>{
   if(a==="mkcoll"){await api("/api/names",{u:$("uc").value});return render()}
   if(a==="sethandle"){await api("/api/handle",{u:$("uh").value});return render()}
   if(a==="stars"){await api("/api/stars",{amount:$("sa").value});return render()}
-  if(d.sell)return ask(t("price"),async v=>{try{await api("/api/list",{id:d.sell,price:v});render()}catch(x){toast(x.message)}});
+  if(d.sell)return ask(t("price")+" · "+t("comm"),async v=>{try{await api("/api/list",{id:d.sell,price:v});render()}catch(x){toast(x.message)}});
   if(d.nsell)return ask(t("price"),async v=>{try{await api("/api/nlist",{u:d.nsell,price:v});render()}catch(x){toast(x.message)}});
   if(d.unl){await api("/api/unlist",{id:d.unl});return render()}
   if(d.nunl){await api("/api/nunlist",{u:d.nunl});return render()}
