@@ -222,7 +222,7 @@ function login(res,U,ip,dev){
 }
 async function route(req,res,p,url,b){
   const ip=req.socket.remoteAddress;
-  if(p==='/api/ping')return send(res,200,{ok:1});
+  if(p==='/api/ping')return send(res,200,{ok:1,db:TURL?'turso':'file',users:Object.keys(db.users).length,up:Math.round(process.uptime())});
   if(p==='/api/version')return send(res,200,{latest:await latest(),repo:E.REPO||''});
   if(['/api/check','/api/register','/api/login','/api/anon'].includes(p)){
     if((fails.get(ip)||0)>=20)return err(res,429,'E_RATE');

@@ -530,7 +530,8 @@ async function render(){
   <div class="grp">${li("edit","#3390ec",t("editProfile"),'data-s="edit"')}${li("at","#34c759",t("username"),'data-s="user"',"@"+esc(ME.handle))}${li("phone","#ff9500",t("phoneNum"),'data-s="num"')}${li("star","#ffb400",t("stars"),'data-s="stars"',fmt(ME.stars))}${li("book","#3390ec",t("saved"),`data-c='${esc(JSON.stringify({id:ME.id,kind:"self"}))}'`)}</div>
   <div class="grp">${li("shield","#34c759",t("privacy"),'data-s="priv"')}${li("mon","#ff9500",t("devices"),'data-s="dev"')}${li("users","#af52de",t("accounts"),'data-s="acc"',ACCTS.length+"/3")}${li("pin","#ff3b30",t("important"),'data-s="imp"')}</div>
   <div class="grp">${li("globe","#5856d6",t("lang"),'data-a="lang"',t("langName"))}${li("moon","#636366",t("theme"),'data-a="theme"')}</div>
-  <div class="grp">${li("out","#ff3b30",t("logout"),'data-a="logout"')}</div><div class="note" style="text-align:center">FreeGram 4.0${BUILD?" · build "+BUILD:""}</div>`;
+  <div class="grp">${li("out","#ff3b30",t("logout"),'data-a="logout"')}</div><div class="note" style="text-align:center">FreeGram 4.0${BUILD?" · build "+BUILD:""}<br><span id="srvinfo">${esc(API.replace(/^https?:\/\//,""))}</span></div>`;
+  fetch(API+"/api/ping").then(r=>r.json()).then(j=>{const e=$("srvinfo");if(e)e.textContent+=" · "+j.db+" · "+j.users+" users"}).catch(()=>{});
   }catch(e){m.innerHTML=`<p class="err" style="padding:16px">${esc(e.message)}</p>`}
 }
 const gBtns=g=>(g.kind==="reg"?`<button data-up="${g.id}">${t("upgrade")}</button><button data-cv="${g.id}">${t("convert")}</button>`:(g.price==null?`<button data-sell="${g.id}">${t("sell")}</button>`:`<button data-unl="${g.id}">${t("unlist")}</button>`))+`<button data-gp="${g.id}">${t(g.pg?"unpinG":"pinG")}</button>`;
